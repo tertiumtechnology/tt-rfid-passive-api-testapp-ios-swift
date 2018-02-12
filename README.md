@@ -16,3 +16,6 @@ To download full source code for the demo application and the libraries files fo
 - Open Xcode
 - Search the directory where you downloaded the files and open the project ```tt-rfid-passive-api-testapp-ios-swift/RfidTxRxLibDemoAppIosSwift.xcodeproj```
 - Select a connected iOS device as build device and press Run
+
+## Troubleshooting
+If you have missing files (red filenames in Xcode) you may haven't correctly specified ```--recurse-submodules``` to git clone command. Please ensure the option is specified.
