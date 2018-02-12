@@ -1,5 +1,5 @@
 # tt-rfid-passive-api-testapp-ios-swift
-iOS Swift demo application for Tertium rfid passive devices API.
+iOS Swift demo application for Tertium passive rfid devices API.
 
 ## License
 The test application and the libraries are released under the MIT license. Please see the `LICENSE.txt` file.
