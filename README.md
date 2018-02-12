@@ -8,7 +8,7 @@ The test application and the libraries are released under the MIT license. Pleas
 Xcode 9+
 
 ## Installation
-To download full source code for the demo application and the libraries files follow these steps:
+To download full source code for the demo application and the libraries follow these steps:
 
 - Open a terminal window
 - Change current directory to any Xcode source directory you have (f.e. Desktop/coding/)
