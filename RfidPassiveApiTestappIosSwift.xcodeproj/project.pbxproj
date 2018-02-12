@@ -21,29 +21,29 @@
 		927E09EA1F743473009573FF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 927E09E81F743473009573FF /* Main.storyboard */; };
 		927E09EC1F743473009573FF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 927E09EB1F743473009573FF /* Assets.xcassets */; };
 		927E09EF1F743473009573FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 927E09ED1F743473009573FF /* LaunchScreen.storyboard */; };
-		92FCF74320324EB7001356BF /* TxRxManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FCF73A20324EB7001356BF /* TxRxManager.swift */; };
-		92FCF74420324EB7001356BF /* TxRxManagerErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FCF73B20324EB7001356BF /* TxRxManagerErrors.swift */; };
-		92FCF74520324EB7001356BF /* TxRxManagerTimeouts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FCF73C20324EB7001356BF /* TxRxManagerTimeouts.swift */; };
-		92FCF74620324EB7001356BF /* TxRxWatchDogTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FCF73D20324EB7001356BF /* TxRxWatchDogTimer.swift */; };
-		92FCF74720324EB7001356BF /* TxRxDeviceScanProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FCF73E20324EB7001356BF /* TxRxDeviceScanProtocol.swift */; };
-		92FCF74820324EB7001356BF /* TxRxDeviceDataProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FCF73F20324EB7001356BF /* TxRxDeviceDataProtocol.swift */; };
-		92FCF74920324EB7001356BF /* TxRxManagerPhases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FCF74020324EB7001356BF /* TxRxManagerPhases.swift */; };
-		92FCF74A20324EB7001356BF /* TxRxDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FCF74120324EB7001356BF /* TxRxDevice.swift */; };
-		92FCF74B20324EB7001356BF /* TxRxDeviceProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FCF74220324EB7001356BF /* TxRxDeviceProfile.swift */; };
-		92FCF74D20324EC2001356BF /* BleSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FCF74C20324EC2001356BF /* BleSettings.swift */; };
-		92FCF75220324ED6001356BF /* ISO15693_tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FCF74E20324ED6001356BF /* ISO15693_tag.swift */; };
-		92FCF75320324ED6001356BF /* EPC_tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FCF74F20324ED6001356BF /* EPC_tag.swift */; };
-		92FCF75420324ED6001356BF /* ISO14443A_tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FCF75020324ED6001356BF /* ISO14443A_tag.swift */; };
-		92FCF75520324ED6001356BF /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FCF75120324ED6001356BF /* Tag.swift */; };
-		92FCF75920324EE5001356BF /* AbstractScanListenerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FCF75620324EE5001356BF /* AbstractScanListenerProtocol.swift */; };
-		92FCF75A20324EE5001356BF /* Scanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FCF75720324EE5001356BF /* Scanner.swift */; };
-		92FCF75B20324EE5001356BF /* AbstractScanListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FCF75820324EE5001356BF /* AbstractScanListener.swift */; };
-		92FCF76220324EF7001356BF /* AbstractResponseListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FCF75C20324EF7001356BF /* AbstractResponseListener.swift */; };
-		92FCF76320324EF7001356BF /* PassiveReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FCF75D20324EF7001356BF /* PassiveReader.swift */; };
-		92FCF76420324EF7001356BF /* AbstractResponseListenerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FCF75E20324EF7001356BF /* AbstractResponseListenerProtocol.swift */; };
-		92FCF76520324EF7001356BF /* AbstractReaderListenerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FCF75F20324EF7001356BF /* AbstractReaderListenerProtocol.swift */; };
-		92FCF76620324EF7001356BF /* AbstractInventoryListenerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FCF76020324EF7001356BF /* AbstractInventoryListenerProtocol.swift */; };
-		92FCF76720324EF7001356BF /* AbstractReaderListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FCF76120324EF7001356BF /* AbstractReaderListener.swift */; };
+		928F1A5C203251DF008F4E3F /* TxRxDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928F1A53203251DE008F4E3F /* TxRxDevice.swift */; };
+		928F1A5D203251DF008F4E3F /* TxRxDeviceDataProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928F1A54203251DE008F4E3F /* TxRxDeviceDataProtocol.swift */; };
+		928F1A5E203251DF008F4E3F /* TxRxManagerPhases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928F1A55203251DE008F4E3F /* TxRxManagerPhases.swift */; };
+		928F1A5F203251DF008F4E3F /* TxRxManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928F1A56203251DE008F4E3F /* TxRxManager.swift */; };
+		928F1A60203251DF008F4E3F /* TxRxManagerTimeouts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928F1A57203251DE008F4E3F /* TxRxManagerTimeouts.swift */; };
+		928F1A61203251DF008F4E3F /* TxRxDeviceScanProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928F1A58203251DE008F4E3F /* TxRxDeviceScanProtocol.swift */; };
+		928F1A62203251DF008F4E3F /* TxRxWatchDogTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928F1A59203251DF008F4E3F /* TxRxWatchDogTimer.swift */; };
+		928F1A63203251DF008F4E3F /* TxRxDeviceProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928F1A5A203251DF008F4E3F /* TxRxDeviceProfile.swift */; };
+		928F1A64203251DF008F4E3F /* TxRxManagerErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928F1A5B203251DF008F4E3F /* TxRxManagerErrors.swift */; };
+		928F1A66203251EE008F4E3F /* BleSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928F1A65203251EE008F4E3F /* BleSettings.swift */; };
+		928F1A6A203251FE008F4E3F /* AbstractScanListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928F1A67203251FE008F4E3F /* AbstractScanListener.swift */; };
+		928F1A6B203251FE008F4E3F /* AbstractScanListenerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928F1A68203251FE008F4E3F /* AbstractScanListenerProtocol.swift */; };
+		928F1A6C203251FE008F4E3F /* Scanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928F1A69203251FE008F4E3F /* Scanner.swift */; };
+		928F1A722032520A008F4E3F /* PassiveReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928F1A6D2032520A008F4E3F /* PassiveReader.swift */; };
+		928F1A732032520A008F4E3F /* EPC_tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928F1A6E2032520A008F4E3F /* EPC_tag.swift */; };
+		928F1A742032520A008F4E3F /* ISO14443A_tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928F1A6F2032520A008F4E3F /* ISO14443A_tag.swift */; };
+		928F1A752032520A008F4E3F /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928F1A702032520A008F4E3F /* Tag.swift */; };
+		928F1A762032520A008F4E3F /* ISO15693_tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928F1A712032520A008F4E3F /* ISO15693_tag.swift */; };
+		928F1A7C20325215008F4E3F /* AbstractResponseListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928F1A7720325214008F4E3F /* AbstractResponseListener.swift */; };
+		928F1A7D20325215008F4E3F /* AbstractReaderListenerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928F1A7820325214008F4E3F /* AbstractReaderListenerProtocol.swift */; };
+		928F1A7E20325215008F4E3F /* AbstractReaderListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928F1A7920325215008F4E3F /* AbstractReaderListener.swift */; };
+		928F1A7F20325215008F4E3F /* AbstractInventoryListenerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928F1A7A20325215008F4E3F /* AbstractInventoryListenerProtocol.swift */; };
+		928F1A8020325215008F4E3F /* AbstractResponseListenerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928F1A7B20325215008F4E3F /* AbstractResponseListenerProtocol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -63,29 +63,29 @@
 		927E09E91F743473009573FF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		927E09EB1F743473009573FF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		927E09EE1F743473009573FF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		92FCF73A20324EB7001356BF /* TxRxManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TxRxManager.swift; path = "tt-txrx-lib-ios-swift/TxRxManager.swift"; sourceTree = SOURCE_ROOT; };
-		92FCF73B20324EB7001356BF /* TxRxManagerErrors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TxRxManagerErrors.swift; path = "tt-txrx-lib-ios-swift/TxRxManagerErrors.swift"; sourceTree = SOURCE_ROOT; };
-		92FCF73C20324EB7001356BF /* TxRxManagerTimeouts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TxRxManagerTimeouts.swift; path = "tt-txrx-lib-ios-swift/TxRxManagerTimeouts.swift"; sourceTree = SOURCE_ROOT; };
-		92FCF73D20324EB7001356BF /* TxRxWatchDogTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TxRxWatchDogTimer.swift; path = "tt-txrx-lib-ios-swift/TxRxWatchDogTimer.swift"; sourceTree = SOURCE_ROOT; };
-		92FCF73E20324EB7001356BF /* TxRxDeviceScanProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TxRxDeviceScanProtocol.swift; path = "tt-txrx-lib-ios-swift/TxRxDeviceScanProtocol.swift"; sourceTree = SOURCE_ROOT; };
-		92FCF73F20324EB7001356BF /* TxRxDeviceDataProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TxRxDeviceDataProtocol.swift; path = "tt-txrx-lib-ios-swift/TxRxDeviceDataProtocol.swift"; sourceTree = SOURCE_ROOT; };
-		92FCF74020324EB7001356BF /* TxRxManagerPhases.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TxRxManagerPhases.swift; path = "tt-txrx-lib-ios-swift/TxRxManagerPhases.swift"; sourceTree = SOURCE_ROOT; };
-		92FCF74120324EB7001356BF /* TxRxDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TxRxDevice.swift; path = "tt-txrx-lib-ios-swift/TxRxDevice.swift"; sourceTree = SOURCE_ROOT; };
-		92FCF74220324EB7001356BF /* TxRxDeviceProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TxRxDeviceProfile.swift; path = "tt-txrx-lib-ios-swift/TxRxDeviceProfile.swift"; sourceTree = SOURCE_ROOT; };
-		92FCF74C20324EC2001356BF /* BleSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BleSettings.swift; path = "tt-rfid-passive-api-lib-ios-swift/BleSettings.swift"; sourceTree = SOURCE_ROOT; };
-		92FCF74E20324ED6001356BF /* ISO15693_tag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ISO15693_tag.swift; path = "tt-rfid-passive-api-lib-ios-swift/ISO15693_tag.swift"; sourceTree = SOURCE_ROOT; };
-		92FCF74F20324ED6001356BF /* EPC_tag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EPC_tag.swift; path = "tt-rfid-passive-api-lib-ios-swift/EPC_tag.swift"; sourceTree = SOURCE_ROOT; };
-		92FCF75020324ED6001356BF /* ISO14443A_tag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ISO14443A_tag.swift; path = "tt-rfid-passive-api-lib-ios-swift/ISO14443A_tag.swift"; sourceTree = SOURCE_ROOT; };
-		92FCF75120324ED6001356BF /* Tag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Tag.swift; path = "tt-rfid-passive-api-lib-ios-swift/Tag.swift"; sourceTree = SOURCE_ROOT; };
-		92FCF75620324EE5001356BF /* AbstractScanListenerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AbstractScanListenerProtocol.swift; path = "tt-rfid-passive-api-lib-ios-swift/AbstractScanListenerProtocol.swift"; sourceTree = SOURCE_ROOT; };
-		92FCF75720324EE5001356BF /* Scanner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Scanner.swift; path = "tt-rfid-passive-api-lib-ios-swift/Scanner.swift"; sourceTree = SOURCE_ROOT; };
-		92FCF75820324EE5001356BF /* AbstractScanListener.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AbstractScanListener.swift; path = "tt-rfid-passive-api-lib-ios-swift/AbstractScanListener.swift"; sourceTree = SOURCE_ROOT; };
-		92FCF75C20324EF7001356BF /* AbstractResponseListener.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AbstractResponseListener.swift; path = "tt-rfid-passive-api-lib-ios-swift/AbstractResponseListener.swift"; sourceTree = SOURCE_ROOT; };
-		92FCF75D20324EF7001356BF /* PassiveReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PassiveReader.swift; path = "tt-rfid-passive-api-lib-ios-swift/PassiveReader.swift"; sourceTree = SOURCE_ROOT; };
-		92FCF75E20324EF7001356BF /* AbstractResponseListenerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AbstractResponseListenerProtocol.swift; path = "tt-rfid-passive-api-lib-ios-swift/AbstractResponseListenerProtocol.swift"; sourceTree = SOURCE_ROOT; };
-		92FCF75F20324EF7001356BF /* AbstractReaderListenerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AbstractReaderListenerProtocol.swift; path = "tt-rfid-passive-api-lib-ios-swift/AbstractReaderListenerProtocol.swift"; sourceTree = SOURCE_ROOT; };
-		92FCF76020324EF7001356BF /* AbstractInventoryListenerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AbstractInventoryListenerProtocol.swift; path = "tt-rfid-passive-api-lib-ios-swift/AbstractInventoryListenerProtocol.swift"; sourceTree = SOURCE_ROOT; };
-		92FCF76120324EF7001356BF /* AbstractReaderListener.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AbstractReaderListener.swift; path = "tt-rfid-passive-api-lib-ios-swift/AbstractReaderListener.swift"; sourceTree = SOURCE_ROOT; };
+		928F1A53203251DE008F4E3F /* TxRxDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TxRxDevice.swift; path = "tt-txrx-lib-ios-swift/TxRxLib/TxRxDevice.swift"; sourceTree = SOURCE_ROOT; };
+		928F1A54203251DE008F4E3F /* TxRxDeviceDataProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TxRxDeviceDataProtocol.swift; path = "tt-txrx-lib-ios-swift/TxRxLib/TxRxDeviceDataProtocol.swift"; sourceTree = SOURCE_ROOT; };
+		928F1A55203251DE008F4E3F /* TxRxManagerPhases.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TxRxManagerPhases.swift; path = "tt-txrx-lib-ios-swift/TxRxLib/TxRxManagerPhases.swift"; sourceTree = SOURCE_ROOT; };
+		928F1A56203251DE008F4E3F /* TxRxManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TxRxManager.swift; path = "tt-txrx-lib-ios-swift/TxRxLib/TxRxManager.swift"; sourceTree = SOURCE_ROOT; };
+		928F1A57203251DE008F4E3F /* TxRxManagerTimeouts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TxRxManagerTimeouts.swift; path = "tt-txrx-lib-ios-swift/TxRxLib/TxRxManagerTimeouts.swift"; sourceTree = SOURCE_ROOT; };
+		928F1A58203251DE008F4E3F /* TxRxDeviceScanProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TxRxDeviceScanProtocol.swift; path = "tt-txrx-lib-ios-swift/TxRxLib/TxRxDeviceScanProtocol.swift"; sourceTree = SOURCE_ROOT; };
+		928F1A59203251DF008F4E3F /* TxRxWatchDogTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TxRxWatchDogTimer.swift; path = "tt-txrx-lib-ios-swift/TxRxLib/TxRxWatchDogTimer.swift"; sourceTree = SOURCE_ROOT; };
+		928F1A5A203251DF008F4E3F /* TxRxDeviceProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TxRxDeviceProfile.swift; path = "tt-txrx-lib-ios-swift/TxRxLib/TxRxDeviceProfile.swift"; sourceTree = SOURCE_ROOT; };
+		928F1A5B203251DF008F4E3F /* TxRxManagerErrors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TxRxManagerErrors.swift; path = "tt-txrx-lib-ios-swift/TxRxLib/TxRxManagerErrors.swift"; sourceTree = SOURCE_ROOT; };
+		928F1A65203251EE008F4E3F /* BleSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BleSettings.swift; path = "tt-rfid-passive-api-lib-ios-swift/PassiveAPILib/BleSettings.swift"; sourceTree = SOURCE_ROOT; };
+		928F1A67203251FE008F4E3F /* AbstractScanListener.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AbstractScanListener.swift; path = "tt-rfid-passive-api-lib-ios-swift/PassiveAPILib/AbstractScanListener.swift"; sourceTree = SOURCE_ROOT; };
+		928F1A68203251FE008F4E3F /* AbstractScanListenerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AbstractScanListenerProtocol.swift; path = "tt-rfid-passive-api-lib-ios-swift/PassiveAPILib/AbstractScanListenerProtocol.swift"; sourceTree = SOURCE_ROOT; };
+		928F1A69203251FE008F4E3F /* Scanner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Scanner.swift; path = "tt-rfid-passive-api-lib-ios-swift/PassiveAPILib/Scanner.swift"; sourceTree = SOURCE_ROOT; };
+		928F1A6D2032520A008F4E3F /* PassiveReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PassiveReader.swift; path = "tt-rfid-passive-api-lib-ios-swift/PassiveAPILib/PassiveReader.swift"; sourceTree = SOURCE_ROOT; };
+		928F1A6E2032520A008F4E3F /* EPC_tag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EPC_tag.swift; path = "tt-rfid-passive-api-lib-ios-swift/PassiveAPILib/EPC_tag.swift"; sourceTree = SOURCE_ROOT; };
+		928F1A6F2032520A008F4E3F /* ISO14443A_tag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ISO14443A_tag.swift; path = "tt-rfid-passive-api-lib-ios-swift/PassiveAPILib/ISO14443A_tag.swift"; sourceTree = SOURCE_ROOT; };
+		928F1A702032520A008F4E3F /* Tag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Tag.swift; path = "tt-rfid-passive-api-lib-ios-swift/PassiveAPILib/Tag.swift"; sourceTree = SOURCE_ROOT; };
+		928F1A712032520A008F4E3F /* ISO15693_tag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ISO15693_tag.swift; path = "tt-rfid-passive-api-lib-ios-swift/PassiveAPILib/ISO15693_tag.swift"; sourceTree = SOURCE_ROOT; };
+		928F1A7720325214008F4E3F /* AbstractResponseListener.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AbstractResponseListener.swift; path = "tt-rfid-passive-api-lib-ios-swift/PassiveAPILib/AbstractResponseListener.swift"; sourceTree = SOURCE_ROOT; };
+		928F1A7820325214008F4E3F /* AbstractReaderListenerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AbstractReaderListenerProtocol.swift; path = "tt-rfid-passive-api-lib-ios-swift/PassiveAPILib/AbstractReaderListenerProtocol.swift"; sourceTree = SOURCE_ROOT; };
+		928F1A7920325215008F4E3F /* AbstractReaderListener.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AbstractReaderListener.swift; path = "tt-rfid-passive-api-lib-ios-swift/PassiveAPILib/AbstractReaderListener.swift"; sourceTree = SOURCE_ROOT; };
+		928F1A7A20325215008F4E3F /* AbstractInventoryListenerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AbstractInventoryListenerProtocol.swift; path = "tt-rfid-passive-api-lib-ios-swift/PassiveAPILib/AbstractInventoryListenerProtocol.swift"; sourceTree = SOURCE_ROOT; };
+		928F1A7B20325215008F4E3F /* AbstractResponseListenerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AbstractResponseListenerProtocol.swift; path = "tt-rfid-passive-api-lib-ios-swift/PassiveAPILib/AbstractResponseListenerProtocol.swift"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,10 +140,11 @@
 		7BBC0D511FE14D5A00239FE5 /* Tags */ = {
 			isa = PBXGroup;
 			children = (
-				92FCF74F20324ED6001356BF /* EPC_tag.swift */,
-				92FCF75020324ED6001356BF /* ISO14443A_tag.swift */,
-				92FCF74E20324ED6001356BF /* ISO15693_tag.swift */,
-				92FCF75120324ED6001356BF /* Tag.swift */,
+				928F1A6E2032520A008F4E3F /* EPC_tag.swift */,
+				928F1A6F2032520A008F4E3F /* ISO14443A_tag.swift */,
+				928F1A712032520A008F4E3F /* ISO15693_tag.swift */,
+				928F1A6D2032520A008F4E3F /* PassiveReader.swift */,
+				928F1A702032520A008F4E3F /* Tag.swift */,
 			);
 			name = Tags;
 			sourceTree = "<group>";
@@ -151,9 +152,9 @@
 		7BBC0D541FE1604200239FE5 /* Scanner */ = {
 			isa = PBXGroup;
 			children = (
-				92FCF75820324EE5001356BF /* AbstractScanListener.swift */,
-				92FCF75620324EE5001356BF /* AbstractScanListenerProtocol.swift */,
-				92FCF75720324EE5001356BF /* Scanner.swift */,
+				928F1A67203251FE008F4E3F /* AbstractScanListener.swift */,
+				928F1A68203251FE008F4E3F /* AbstractScanListenerProtocol.swift */,
+				928F1A69203251FE008F4E3F /* Scanner.swift */,
 			);
 			name = Scanner;
 			sourceTree = "<group>";
@@ -161,7 +162,7 @@
 		922BCF8D1FE1E6DE00AAE3AE /* BleSettings */ = {
 			isa = PBXGroup;
 			children = (
-				92FCF74C20324EC2001356BF /* BleSettings.swift */,
+				928F1A65203251EE008F4E3F /* BleSettings.swift */,
 			);
 			name = BleSettings;
 			sourceTree = "<group>";
@@ -200,15 +201,15 @@
 		927E09F61F7434A0009573FF /* TxRxLib */ = {
 			isa = PBXGroup;
 			children = (
-				92FCF74120324EB7001356BF /* TxRxDevice.swift */,
-				92FCF73F20324EB7001356BF /* TxRxDeviceDataProtocol.swift */,
-				92FCF74220324EB7001356BF /* TxRxDeviceProfile.swift */,
-				92FCF73E20324EB7001356BF /* TxRxDeviceScanProtocol.swift */,
-				92FCF73A20324EB7001356BF /* TxRxManager.swift */,
-				92FCF73B20324EB7001356BF /* TxRxManagerErrors.swift */,
-				92FCF74020324EB7001356BF /* TxRxManagerPhases.swift */,
-				92FCF73C20324EB7001356BF /* TxRxManagerTimeouts.swift */,
-				92FCF73D20324EB7001356BF /* TxRxWatchDogTimer.swift */,
+				928F1A53203251DE008F4E3F /* TxRxDevice.swift */,
+				928F1A54203251DE008F4E3F /* TxRxDeviceDataProtocol.swift */,
+				928F1A5A203251DF008F4E3F /* TxRxDeviceProfile.swift */,
+				928F1A58203251DE008F4E3F /* TxRxDeviceScanProtocol.swift */,
+				928F1A56203251DE008F4E3F /* TxRxManager.swift */,
+				928F1A5B203251DF008F4E3F /* TxRxManagerErrors.swift */,
+				928F1A55203251DE008F4E3F /* TxRxManagerPhases.swift */,
+				928F1A57203251DE008F4E3F /* TxRxManagerTimeouts.swift */,
+				928F1A59203251DF008F4E3F /* TxRxWatchDogTimer.swift */,
 			);
 			name = TxRxLib;
 			sourceTree = "<group>";
@@ -219,12 +220,11 @@
 				922BCF8D1FE1E6DE00AAE3AE /* BleSettings */,
 				7BBC0D541FE1604200239FE5 /* Scanner */,
 				7BBC0D511FE14D5A00239FE5 /* Tags */,
-				92FCF76020324EF7001356BF /* AbstractInventoryListenerProtocol.swift */,
-				92FCF76120324EF7001356BF /* AbstractReaderListener.swift */,
-				92FCF75F20324EF7001356BF /* AbstractReaderListenerProtocol.swift */,
-				92FCF75C20324EF7001356BF /* AbstractResponseListener.swift */,
-				92FCF75E20324EF7001356BF /* AbstractResponseListenerProtocol.swift */,
-				92FCF75D20324EF7001356BF /* PassiveReader.swift */,
+				928F1A7A20325215008F4E3F /* AbstractInventoryListenerProtocol.swift */,
+				928F1A7920325215008F4E3F /* AbstractReaderListener.swift */,
+				928F1A7820325214008F4E3F /* AbstractReaderListenerProtocol.swift */,
+				928F1A7720325214008F4E3F /* AbstractResponseListener.swift */,
+				928F1A7B20325215008F4E3F /* AbstractResponseListenerProtocol.swift */,
 			);
 			name = PassiveReaderAPI;
 			sourceTree = "<group>";
@@ -314,40 +314,40 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				92FCF75520324ED6001356BF /* Tag.swift in Sources */,
-				92FCF74620324EB7001356BF /* TxRxWatchDogTimer.swift in Sources */,
-				92FCF74420324EB7001356BF /* TxRxManagerErrors.swift in Sources */,
+				928F1A752032520A008F4E3F /* Tag.swift in Sources */,
+				928F1A5F203251DF008F4E3F /* TxRxManager.swift in Sources */,
+				928F1A64203251DF008F4E3F /* TxRxManagerErrors.swift in Sources */,
 				927E09E51F743473009573FF /* AppDelegate.swift in Sources */,
-				92FCF76720324EF7001356BF /* AbstractReaderListener.swift in Sources */,
-				92FCF74720324EB7001356BF /* TxRxDeviceScanProtocol.swift in Sources */,
-				92FCF76420324EF7001356BF /* AbstractResponseListenerProtocol.swift in Sources */,
-				92FCF75920324EE5001356BF /* AbstractScanListenerProtocol.swift in Sources */,
-				92FCF74920324EB7001356BF /* TxRxManagerPhases.swift in Sources */,
+				928F1A7E20325215008F4E3F /* AbstractReaderListener.swift in Sources */,
 				7B27EBD020176802005D738A /* ExtendedTagsTestsReadViewController.swift in Sources */,
-				92FCF74520324EB7001356BF /* TxRxManagerTimeouts.swift in Sources */,
-				92FCF74320324EB7001356BF /* TxRxManager.swift in Sources */,
-				92FCF75420324ED6001356BF /* ISO14443A_tag.swift in Sources */,
+				928F1A8020325215008F4E3F /* AbstractResponseListenerProtocol.swift in Sources */,
 				7B27EBCE20176802005D738A /* ExtendedTagTestsWriteViewController.swift in Sources */,
 				7B27EBC7201767F6005D738A /* BleTableViewDeviceCell.swift in Sources */,
+				928F1A5C203251DF008F4E3F /* TxRxDevice.swift in Sources */,
 				7B27EBCF20176802005D738A /* ExtendedTagTestsViewController.swift in Sources */,
-				92FCF76320324EF7001356BF /* PassiveReader.swift in Sources */,
-				92FCF74A20324EB7001356BF /* TxRxDevice.swift in Sources */,
 				7B27EBC8201767F6005D738A /* BleTableViewHeaderCell.swift in Sources */,
-				92FCF74B20324EB7001356BF /* TxRxDeviceProfile.swift in Sources */,
-				92FCF76620324EF7001356BF /* AbstractInventoryListenerProtocol.swift in Sources */,
+				928F1A742032520A008F4E3F /* ISO14443A_tag.swift in Sources */,
 				7B27EBC6201767F6005D738A /* ScanViewController.swift in Sources */,
-				92FCF75A20324EE5001356BF /* Scanner.swift in Sources */,
+				928F1A7C20325215008F4E3F /* AbstractResponseListener.swift in Sources */,
+				928F1A762032520A008F4E3F /* ISO15693_tag.swift in Sources */,
 				7B27EBCD20176802005D738A /* ExtendedTagTestsTagCell.swift in Sources */,
-				92FCF76220324EF7001356BF /* AbstractResponseListener.swift in Sources */,
+				928F1A722032520A008F4E3F /* PassiveReader.swift in Sources */,
 				7B27EBD22017680B005D738A /* DeviceDetailViewController.swift in Sources */,
+				928F1A66203251EE008F4E3F /* BleSettings.swift in Sources */,
+				928F1A7F20325215008F4E3F /* AbstractInventoryListenerProtocol.swift in Sources */,
 				7B27EBC2201767E4005D738A /* EventsForwarder.swift in Sources */,
 				7B27EBD420176820005D738A /* SettingsViewController.swift in Sources */,
-				92FCF75320324ED6001356BF /* EPC_tag.swift in Sources */,
-				92FCF74D20324EC2001356BF /* BleSettings.swift in Sources */,
-				92FCF74820324EB7001356BF /* TxRxDeviceDataProtocol.swift in Sources */,
-				92FCF75B20324EE5001356BF /* AbstractScanListener.swift in Sources */,
-				92FCF76520324EF7001356BF /* AbstractReaderListenerProtocol.swift in Sources */,
-				92FCF75220324ED6001356BF /* ISO15693_tag.swift in Sources */,
+				928F1A5D203251DF008F4E3F /* TxRxDeviceDataProtocol.swift in Sources */,
+				928F1A7D20325215008F4E3F /* AbstractReaderListenerProtocol.swift in Sources */,
+				928F1A62203251DF008F4E3F /* TxRxWatchDogTimer.swift in Sources */,
+				928F1A61203251DF008F4E3F /* TxRxDeviceScanProtocol.swift in Sources */,
+				928F1A6A203251FE008F4E3F /* AbstractScanListener.swift in Sources */,
+				928F1A63203251DF008F4E3F /* TxRxDeviceProfile.swift in Sources */,
+				928F1A732032520A008F4E3F /* EPC_tag.swift in Sources */,
+				928F1A5E203251DF008F4E3F /* TxRxManagerPhases.swift in Sources */,
+				928F1A60203251DF008F4E3F /* TxRxManagerTimeouts.swift in Sources */,
+				928F1A6C203251FE008F4E3F /* Scanner.swift in Sources */,
+				928F1A6B203251FE008F4E3F /* AbstractScanListenerProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
