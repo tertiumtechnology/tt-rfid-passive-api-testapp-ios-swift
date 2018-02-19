@@ -1,8 +1,0 @@
-[submodule "tt-txrx-lib-ios-swift"]
-	path = tt-txrx-lib-ios-swift
-	url = https://github.com/tertiumtechnology/tt-txrx-lib-ios-swift
-	branch = master
-[submodule "tt-rfid-passive-api-lib-ios-swift"]
-	path = tt-rfid-passive-api-lib-ios-swift
-	url = https://github.com/tertiumtechnology/tt-rfid-passive-api-lib-ios-swift
-	branch = master
