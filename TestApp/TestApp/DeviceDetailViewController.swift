@@ -22,6 +22,7 @@
  * THE SOFTWARE.
  */
 import UIKit
+import PassiveAPI
 
 class DeviceDetailViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, AbstractReaderListenerProtocol, AbstractResponseListenerProtocol, AbstractInventoryListenerProtocol {
     @IBOutlet weak var lblDevice: UILabel!

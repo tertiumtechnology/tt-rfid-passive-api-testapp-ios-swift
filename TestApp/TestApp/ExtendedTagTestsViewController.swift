@@ -22,6 +22,7 @@
  * THE SOFTWARE.
  */
 import UIKit
+import PassiveAPI
 
 class ExtendedTagTestsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, AbstractReaderListenerProtocol, AbstractResponseListenerProtocol, AbstractInventoryListenerProtocol {
     @IBOutlet weak var cntRead: UIView!

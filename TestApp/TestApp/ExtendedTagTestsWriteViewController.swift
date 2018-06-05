@@ -22,6 +22,7 @@
  * THE SOFTWARE.
  */
 import UIKit
+import PassiveAPI
 
 class ExtendedTagTestsWriteViewController: UIViewController {
     @IBOutlet weak var btnStartOperation: UIButton!

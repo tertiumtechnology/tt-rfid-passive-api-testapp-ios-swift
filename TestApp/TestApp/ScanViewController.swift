@@ -22,12 +22,13 @@
  * THE SOFTWARE.
  */
 import UIKit
+import PassiveAPI
 
 class ScanViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, AbstractScanListenerProtocol {
     @IBOutlet weak var devicesTableView: UITableView!
     var btnScan: UIButton?
     private var defaultColor: UIColor? = nil
-    private let _scanner = Scanner.getInstance()
+    private let _scanner = PassiveAPI.Scanner.getInstance()
     private var _scannedDevices = [String]()
 
     override func viewDidLoad() {

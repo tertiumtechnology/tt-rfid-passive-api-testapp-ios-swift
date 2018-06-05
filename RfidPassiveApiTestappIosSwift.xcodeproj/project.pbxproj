@@ -17,34 +17,61 @@
 		7B27EBD020176802005D738A /* ExtendedTagsTestsReadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B27EBCC20176802005D738A /* ExtendedTagsTestsReadViewController.swift */; };
 		7B27EBD22017680B005D738A /* DeviceDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B27EBD12017680B005D738A /* DeviceDetailViewController.swift */; };
 		7B27EBD420176820005D738A /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B27EBD320176820005D738A /* SettingsViewController.swift */; };
+		7B8A9F0620C6B5C2006F4336 /* PassiveAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B8A9EFB20C6B596006F4336 /* PassiveAPI.framework */; };
+		7B8A9F0720C6B5C2006F4336 /* PassiveAPI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7B8A9EFB20C6B596006F4336 /* PassiveAPI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		7B8A9F1620C6BC16006F4336 /* TxRxLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B8A9F1520C6BC0E006F4336 /* TxRxLib.framework */; };
+		7B8A9F1720C6BC16006F4336 /* TxRxLib.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7B8A9F1520C6BC0E006F4336 /* TxRxLib.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		927E09E51F743473009573FF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 927E09E41F743473009573FF /* AppDelegate.swift */; };
 		927E09EA1F743473009573FF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 927E09E81F743473009573FF /* Main.storyboard */; };
 		927E09EC1F743473009573FF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 927E09EB1F743473009573FF /* Assets.xcassets */; };
 		927E09EF1F743473009573FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 927E09ED1F743473009573FF /* LaunchScreen.storyboard */; };
-		928F1A5C203251DF008F4E3F /* TxRxDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928F1A53203251DE008F4E3F /* TxRxDevice.swift */; };
-		928F1A5D203251DF008F4E3F /* TxRxDeviceDataProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928F1A54203251DE008F4E3F /* TxRxDeviceDataProtocol.swift */; };
-		928F1A5E203251DF008F4E3F /* TxRxManagerPhases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928F1A55203251DE008F4E3F /* TxRxManagerPhases.swift */; };
-		928F1A5F203251DF008F4E3F /* TxRxManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928F1A56203251DE008F4E3F /* TxRxManager.swift */; };
-		928F1A60203251DF008F4E3F /* TxRxManagerTimeouts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928F1A57203251DE008F4E3F /* TxRxManagerTimeouts.swift */; };
-		928F1A61203251DF008F4E3F /* TxRxDeviceScanProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928F1A58203251DE008F4E3F /* TxRxDeviceScanProtocol.swift */; };
-		928F1A62203251DF008F4E3F /* TxRxWatchDogTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928F1A59203251DF008F4E3F /* TxRxWatchDogTimer.swift */; };
-		928F1A63203251DF008F4E3F /* TxRxDeviceProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928F1A5A203251DF008F4E3F /* TxRxDeviceProfile.swift */; };
-		928F1A64203251DF008F4E3F /* TxRxManagerErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928F1A5B203251DF008F4E3F /* TxRxManagerErrors.swift */; };
-		928F1A66203251EE008F4E3F /* BleSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928F1A65203251EE008F4E3F /* BleSettings.swift */; };
-		928F1A6A203251FE008F4E3F /* AbstractScanListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928F1A67203251FE008F4E3F /* AbstractScanListener.swift */; };
-		928F1A6B203251FE008F4E3F /* AbstractScanListenerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928F1A68203251FE008F4E3F /* AbstractScanListenerProtocol.swift */; };
-		928F1A6C203251FE008F4E3F /* Scanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928F1A69203251FE008F4E3F /* Scanner.swift */; };
-		928F1A722032520A008F4E3F /* PassiveReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928F1A6D2032520A008F4E3F /* PassiveReader.swift */; };
-		928F1A732032520A008F4E3F /* EPC_tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928F1A6E2032520A008F4E3F /* EPC_tag.swift */; };
-		928F1A742032520A008F4E3F /* ISO14443A_tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928F1A6F2032520A008F4E3F /* ISO14443A_tag.swift */; };
-		928F1A752032520A008F4E3F /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928F1A702032520A008F4E3F /* Tag.swift */; };
-		928F1A762032520A008F4E3F /* ISO15693_tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928F1A712032520A008F4E3F /* ISO15693_tag.swift */; };
-		928F1A7C20325215008F4E3F /* AbstractResponseListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928F1A7720325214008F4E3F /* AbstractResponseListener.swift */; };
-		928F1A7D20325215008F4E3F /* AbstractReaderListenerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928F1A7820325214008F4E3F /* AbstractReaderListenerProtocol.swift */; };
-		928F1A7E20325215008F4E3F /* AbstractReaderListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928F1A7920325215008F4E3F /* AbstractReaderListener.swift */; };
-		928F1A7F20325215008F4E3F /* AbstractInventoryListenerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928F1A7A20325215008F4E3F /* AbstractInventoryListenerProtocol.swift */; };
-		928F1A8020325215008F4E3F /* AbstractResponseListenerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928F1A7B20325215008F4E3F /* AbstractResponseListenerProtocol.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		7B8A9EFA20C6B596006F4336 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7B8A9EF520C6B595006F4336 /* PassiveAPI.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 7B8A9EC620C6B3B2006F4336;
+			remoteInfo = PassiveAPI;
+		};
+		7B8A9F0820C6B5C2006F4336 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7B8A9EF520C6B595006F4336 /* PassiveAPI.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 7B8A9EC520C6B3B2006F4336;
+			remoteInfo = PassiveAPI;
+		};
+		7B8A9F1420C6BC0E006F4336 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7B8A9F1020C6BC0E006F4336 /* TxRxLib.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 7B8A9E9420C6A697006F4336;
+			remoteInfo = TxRxLib;
+		};
+		7B8A9F1820C6BC16006F4336 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7B8A9F1020C6BC0E006F4336 /* TxRxLib.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 7B8A9E9320C6A697006F4336;
+			remoteInfo = TxRxLib;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		7B8A9F0A20C6B5C2006F4336 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				7B8A9F1720C6BC16006F4336 /* TxRxLib.framework in Embed Frameworks */,
+				7B8A9F0720C6B5C2006F4336 /* PassiveAPI.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		7B27EBC1201767E4005D738A /* EventsForwarder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EventsForwarder.swift; path = TestApp/EventsForwarder.swift; sourceTree = "<group>"; };
@@ -58,34 +85,13 @@
 		7B27EBD12017680B005D738A /* DeviceDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DeviceDetailViewController.swift; path = TestApp/DeviceDetailViewController.swift; sourceTree = "<group>"; };
 		7B27EBD320176820005D738A /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsViewController.swift; path = TestApp/SettingsViewController.swift; sourceTree = "<group>"; };
 		7B32F2D42016231900F15FB7 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7B8A9EF520C6B595006F4336 /* PassiveAPI.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = PassiveAPI.xcodeproj; path = "tt-rfid-passive-api-lib-ios-swift/PassiveAPI.xcodeproj"; sourceTree = "<group>"; };
+		7B8A9F1020C6BC0E006F4336 /* TxRxLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = TxRxLib.xcodeproj; path = "tt-txrx-lib-ios-swift/TxRxLib.xcodeproj"; sourceTree = "<group>"; };
 		927E09E11F743473009573FF /* RfidPassiveApiTestappIosSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RfidPassiveApiTestappIosSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		927E09E41F743473009573FF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		927E09E91F743473009573FF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		927E09EB1F743473009573FF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		927E09EE1F743473009573FF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		928F1A53203251DE008F4E3F /* TxRxDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TxRxDevice.swift; path = "tt-txrx-lib-ios-swift/TxRxLib/TxRxDevice.swift"; sourceTree = SOURCE_ROOT; };
-		928F1A54203251DE008F4E3F /* TxRxDeviceDataProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TxRxDeviceDataProtocol.swift; path = "tt-txrx-lib-ios-swift/TxRxLib/TxRxDeviceDataProtocol.swift"; sourceTree = SOURCE_ROOT; };
-		928F1A55203251DE008F4E3F /* TxRxManagerPhases.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TxRxManagerPhases.swift; path = "tt-txrx-lib-ios-swift/TxRxLib/TxRxManagerPhases.swift"; sourceTree = SOURCE_ROOT; };
-		928F1A56203251DE008F4E3F /* TxRxManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TxRxManager.swift; path = "tt-txrx-lib-ios-swift/TxRxLib/TxRxManager.swift"; sourceTree = SOURCE_ROOT; };
-		928F1A57203251DE008F4E3F /* TxRxManagerTimeouts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TxRxManagerTimeouts.swift; path = "tt-txrx-lib-ios-swift/TxRxLib/TxRxManagerTimeouts.swift"; sourceTree = SOURCE_ROOT; };
-		928F1A58203251DE008F4E3F /* TxRxDeviceScanProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TxRxDeviceScanProtocol.swift; path = "tt-txrx-lib-ios-swift/TxRxLib/TxRxDeviceScanProtocol.swift"; sourceTree = SOURCE_ROOT; };
-		928F1A59203251DF008F4E3F /* TxRxWatchDogTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TxRxWatchDogTimer.swift; path = "tt-txrx-lib-ios-swift/TxRxLib/TxRxWatchDogTimer.swift"; sourceTree = SOURCE_ROOT; };
-		928F1A5A203251DF008F4E3F /* TxRxDeviceProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TxRxDeviceProfile.swift; path = "tt-txrx-lib-ios-swift/TxRxLib/TxRxDeviceProfile.swift"; sourceTree = SOURCE_ROOT; };
-		928F1A5B203251DF008F4E3F /* TxRxManagerErrors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TxRxManagerErrors.swift; path = "tt-txrx-lib-ios-swift/TxRxLib/TxRxManagerErrors.swift"; sourceTree = SOURCE_ROOT; };
-		928F1A65203251EE008F4E3F /* BleSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BleSettings.swift; path = "tt-rfid-passive-api-lib-ios-swift/PassiveAPILib/BleSettings.swift"; sourceTree = SOURCE_ROOT; };
-		928F1A67203251FE008F4E3F /* AbstractScanListener.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AbstractScanListener.swift; path = "tt-rfid-passive-api-lib-ios-swift/PassiveAPILib/AbstractScanListener.swift"; sourceTree = SOURCE_ROOT; };
-		928F1A68203251FE008F4E3F /* AbstractScanListenerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AbstractScanListenerProtocol.swift; path = "tt-rfid-passive-api-lib-ios-swift/PassiveAPILib/AbstractScanListenerProtocol.swift"; sourceTree = SOURCE_ROOT; };
-		928F1A69203251FE008F4E3F /* Scanner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Scanner.swift; path = "tt-rfid-passive-api-lib-ios-swift/PassiveAPILib/Scanner.swift"; sourceTree = SOURCE_ROOT; };
-		928F1A6D2032520A008F4E3F /* PassiveReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PassiveReader.swift; path = "tt-rfid-passive-api-lib-ios-swift/PassiveAPILib/PassiveReader.swift"; sourceTree = SOURCE_ROOT; };
-		928F1A6E2032520A008F4E3F /* EPC_tag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EPC_tag.swift; path = "tt-rfid-passive-api-lib-ios-swift/PassiveAPILib/EPC_tag.swift"; sourceTree = SOURCE_ROOT; };
-		928F1A6F2032520A008F4E3F /* ISO14443A_tag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ISO14443A_tag.swift; path = "tt-rfid-passive-api-lib-ios-swift/PassiveAPILib/ISO14443A_tag.swift"; sourceTree = SOURCE_ROOT; };
-		928F1A702032520A008F4E3F /* Tag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Tag.swift; path = "tt-rfid-passive-api-lib-ios-swift/PassiveAPILib/Tag.swift"; sourceTree = SOURCE_ROOT; };
-		928F1A712032520A008F4E3F /* ISO15693_tag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ISO15693_tag.swift; path = "tt-rfid-passive-api-lib-ios-swift/PassiveAPILib/ISO15693_tag.swift"; sourceTree = SOURCE_ROOT; };
-		928F1A7720325214008F4E3F /* AbstractResponseListener.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AbstractResponseListener.swift; path = "tt-rfid-passive-api-lib-ios-swift/PassiveAPILib/AbstractResponseListener.swift"; sourceTree = SOURCE_ROOT; };
-		928F1A7820325214008F4E3F /* AbstractReaderListenerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AbstractReaderListenerProtocol.swift; path = "tt-rfid-passive-api-lib-ios-swift/PassiveAPILib/AbstractReaderListenerProtocol.swift"; sourceTree = SOURCE_ROOT; };
-		928F1A7920325215008F4E3F /* AbstractReaderListener.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AbstractReaderListener.swift; path = "tt-rfid-passive-api-lib-ios-swift/PassiveAPILib/AbstractReaderListener.swift"; sourceTree = SOURCE_ROOT; };
-		928F1A7A20325215008F4E3F /* AbstractInventoryListenerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AbstractInventoryListenerProtocol.swift; path = "tt-rfid-passive-api-lib-ios-swift/PassiveAPILib/AbstractInventoryListenerProtocol.swift"; sourceTree = SOURCE_ROOT; };
-		928F1A7B20325215008F4E3F /* AbstractResponseListenerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AbstractResponseListenerProtocol.swift; path = "tt-rfid-passive-api-lib-ios-swift/PassiveAPILib/AbstractResponseListenerProtocol.swift"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +99,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7B8A9F1620C6BC16006F4336 /* TxRxLib.framework in Frameworks */,
+				7B8A9F0620C6B5C2006F4336 /* PassiveAPI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -137,39 +145,27 @@
 			name = Settings;
 			sourceTree = "<group>";
 		};
-		7BBC0D511FE14D5A00239FE5 /* Tags */ = {
+		7B8A9EF620C6B595006F4336 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				928F1A6E2032520A008F4E3F /* EPC_tag.swift */,
-				928F1A6F2032520A008F4E3F /* ISO14443A_tag.swift */,
-				928F1A712032520A008F4E3F /* ISO15693_tag.swift */,
-				928F1A6D2032520A008F4E3F /* PassiveReader.swift */,
-				928F1A702032520A008F4E3F /* Tag.swift */,
+				7B8A9EFB20C6B596006F4336 /* PassiveAPI.framework */,
 			);
-			name = Tags;
+			name = Products;
 			sourceTree = "<group>";
 		};
-		7BBC0D541FE1604200239FE5 /* Scanner */ = {
+		7B8A9F1120C6BC0E006F4336 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				928F1A67203251FE008F4E3F /* AbstractScanListener.swift */,
-				928F1A68203251FE008F4E3F /* AbstractScanListenerProtocol.swift */,
-				928F1A69203251FE008F4E3F /* Scanner.swift */,
+				7B8A9F1520C6BC0E006F4336 /* TxRxLib.framework */,
 			);
-			name = Scanner;
-			sourceTree = "<group>";
-		};
-		922BCF8D1FE1E6DE00AAE3AE /* BleSettings */ = {
-			isa = PBXGroup;
-			children = (
-				928F1A65203251EE008F4E3F /* BleSettings.swift */,
-			);
-			name = BleSettings;
+			name = Products;
 			sourceTree = "<group>";
 		};
 		927E09D81F743473009573FF = {
 			isa = PBXGroup;
 			children = (
+				7B8A9F1020C6BC0E006F4336 /* TxRxLib.xcodeproj */,
+				7B8A9EF520C6B595006F4336 /* PassiveAPI.xcodeproj */,
 				927E09E31F743473009573FF /* TestApp */,
 				927E09E21F743473009573FF /* Products */,
 			);
@@ -186,8 +182,6 @@
 		927E09E31F743473009573FF /* TestApp */ = {
 			isa = PBXGroup;
 			children = (
-				927E09F61F7434A0009573FF /* TxRxLib */,
-				928D4DDF1FCDEA330037C11A /* PassiveReaderAPI */,
 				9295BBAF1F81A23B00D09B13 /* TestApp */,
 				927E09E41F743473009573FF /* AppDelegate.swift */,
 				927E09E81F743473009573FF /* Main.storyboard */,
@@ -196,37 +190,6 @@
 				7B32F2D42016231900F15FB7 /* Info.plist */,
 			);
 			path = TestApp;
-			sourceTree = "<group>";
-		};
-		927E09F61F7434A0009573FF /* TxRxLib */ = {
-			isa = PBXGroup;
-			children = (
-				928F1A53203251DE008F4E3F /* TxRxDevice.swift */,
-				928F1A54203251DE008F4E3F /* TxRxDeviceDataProtocol.swift */,
-				928F1A5A203251DF008F4E3F /* TxRxDeviceProfile.swift */,
-				928F1A58203251DE008F4E3F /* TxRxDeviceScanProtocol.swift */,
-				928F1A56203251DE008F4E3F /* TxRxManager.swift */,
-				928F1A5B203251DF008F4E3F /* TxRxManagerErrors.swift */,
-				928F1A55203251DE008F4E3F /* TxRxManagerPhases.swift */,
-				928F1A57203251DE008F4E3F /* TxRxManagerTimeouts.swift */,
-				928F1A59203251DF008F4E3F /* TxRxWatchDogTimer.swift */,
-			);
-			name = TxRxLib;
-			sourceTree = "<group>";
-		};
-		928D4DDF1FCDEA330037C11A /* PassiveReaderAPI */ = {
-			isa = PBXGroup;
-			children = (
-				922BCF8D1FE1E6DE00AAE3AE /* BleSettings */,
-				7BBC0D541FE1604200239FE5 /* Scanner */,
-				7BBC0D511FE14D5A00239FE5 /* Tags */,
-				928F1A7A20325215008F4E3F /* AbstractInventoryListenerProtocol.swift */,
-				928F1A7920325215008F4E3F /* AbstractReaderListener.swift */,
-				928F1A7820325214008F4E3F /* AbstractReaderListenerProtocol.swift */,
-				928F1A7720325214008F4E3F /* AbstractResponseListener.swift */,
-				928F1A7B20325215008F4E3F /* AbstractResponseListenerProtocol.swift */,
-			);
-			name = PassiveReaderAPI;
 			sourceTree = "<group>";
 		};
 		9295BBAF1F81A23B00D09B13 /* TestApp */ = {
@@ -250,10 +213,13 @@
 				927E09DD1F743473009573FF /* Sources */,
 				927E09DE1F743473009573FF /* Frameworks */,
 				927E09DF1F743473009573FF /* Resources */,
+				7B8A9F0A20C6B5C2006F4336 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				7B8A9F0920C6B5C2006F4336 /* PBXTargetDependency */,
+				7B8A9F1920C6BC16006F4336 /* PBXTargetDependency */,
 			);
 			name = RfidPassiveApiTestappIosSwift;
 			productName = TertiumBleScanSwift;
@@ -267,7 +233,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0830;
-				LastUpgradeCheck = 0900;
+				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = "Stefano Crosara";
 				TargetAttributes = {
 					927E09E01F743473009573FF = {
@@ -289,12 +255,39 @@
 			mainGroup = 927E09D81F743473009573FF;
 			productRefGroup = 927E09E21F743473009573FF /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 7B8A9EF620C6B595006F4336 /* Products */;
+					ProjectRef = 7B8A9EF520C6B595006F4336 /* PassiveAPI.xcodeproj */;
+				},
+				{
+					ProductGroup = 7B8A9F1120C6BC0E006F4336 /* Products */;
+					ProjectRef = 7B8A9F1020C6BC0E006F4336 /* TxRxLib.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				927E09E01F743473009573FF /* RfidPassiveApiTestappIosSwift */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		7B8A9EFB20C6B596006F4336 /* PassiveAPI.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = PassiveAPI.framework;
+			remoteRef = 7B8A9EFA20C6B596006F4336 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		7B8A9F1520C6BC0E006F4336 /* TxRxLib.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = TxRxLib.framework;
+			remoteRef = 7B8A9F1420C6BC0E006F4336 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		927E09DF1F743473009573FF /* Resources */ = {
@@ -314,44 +307,34 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				928F1A752032520A008F4E3F /* Tag.swift in Sources */,
-				928F1A5F203251DF008F4E3F /* TxRxManager.swift in Sources */,
-				928F1A64203251DF008F4E3F /* TxRxManagerErrors.swift in Sources */,
 				927E09E51F743473009573FF /* AppDelegate.swift in Sources */,
-				928F1A7E20325215008F4E3F /* AbstractReaderListener.swift in Sources */,
 				7B27EBD020176802005D738A /* ExtendedTagsTestsReadViewController.swift in Sources */,
-				928F1A8020325215008F4E3F /* AbstractResponseListenerProtocol.swift in Sources */,
 				7B27EBCE20176802005D738A /* ExtendedTagTestsWriteViewController.swift in Sources */,
 				7B27EBC7201767F6005D738A /* BleTableViewDeviceCell.swift in Sources */,
-				928F1A5C203251DF008F4E3F /* TxRxDevice.swift in Sources */,
 				7B27EBCF20176802005D738A /* ExtendedTagTestsViewController.swift in Sources */,
 				7B27EBC8201767F6005D738A /* BleTableViewHeaderCell.swift in Sources */,
-				928F1A742032520A008F4E3F /* ISO14443A_tag.swift in Sources */,
 				7B27EBC6201767F6005D738A /* ScanViewController.swift in Sources */,
-				928F1A7C20325215008F4E3F /* AbstractResponseListener.swift in Sources */,
-				928F1A762032520A008F4E3F /* ISO15693_tag.swift in Sources */,
 				7B27EBCD20176802005D738A /* ExtendedTagTestsTagCell.swift in Sources */,
-				928F1A722032520A008F4E3F /* PassiveReader.swift in Sources */,
 				7B27EBD22017680B005D738A /* DeviceDetailViewController.swift in Sources */,
-				928F1A66203251EE008F4E3F /* BleSettings.swift in Sources */,
-				928F1A7F20325215008F4E3F /* AbstractInventoryListenerProtocol.swift in Sources */,
 				7B27EBC2201767E4005D738A /* EventsForwarder.swift in Sources */,
 				7B27EBD420176820005D738A /* SettingsViewController.swift in Sources */,
-				928F1A5D203251DF008F4E3F /* TxRxDeviceDataProtocol.swift in Sources */,
-				928F1A7D20325215008F4E3F /* AbstractReaderListenerProtocol.swift in Sources */,
-				928F1A62203251DF008F4E3F /* TxRxWatchDogTimer.swift in Sources */,
-				928F1A61203251DF008F4E3F /* TxRxDeviceScanProtocol.swift in Sources */,
-				928F1A6A203251FE008F4E3F /* AbstractScanListener.swift in Sources */,
-				928F1A63203251DF008F4E3F /* TxRxDeviceProfile.swift in Sources */,
-				928F1A732032520A008F4E3F /* EPC_tag.swift in Sources */,
-				928F1A5E203251DF008F4E3F /* TxRxManagerPhases.swift in Sources */,
-				928F1A60203251DF008F4E3F /* TxRxManagerTimeouts.swift in Sources */,
-				928F1A6C203251FE008F4E3F /* Scanner.swift in Sources */,
-				928F1A6B203251FE008F4E3F /* AbstractScanListenerProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		7B8A9F0920C6B5C2006F4336 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = PassiveAPI;
+			targetProxy = 7B8A9F0820C6B5C2006F4336 /* PBXContainerItemProxy */;
+		};
+		7B8A9F1920C6BC16006F4336 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = TxRxLib;
+			targetProxy = 7B8A9F1820C6BC16006F4336 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		927E09E81F743473009573FF /* Main.storyboard */ = {
@@ -387,6 +370,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -394,6 +378,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -446,6 +431,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -453,6 +439,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -475,6 +462,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
@@ -487,6 +475,7 @@
 		927E09F41F743473009573FF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = X7JRCRW493;
@@ -503,6 +492,7 @@
 		927E09F51F743473009573FF /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = X7JRCRW493;
