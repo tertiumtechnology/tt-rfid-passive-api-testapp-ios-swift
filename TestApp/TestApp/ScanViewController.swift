@@ -22,13 +22,13 @@
  * THE SOFTWARE.
  */
 import UIKit
-import PassiveAPI
+import RfidPassiveAPILib
 
 class ScanViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, AbstractScanListenerProtocol {
     @IBOutlet weak var devicesTableView: UITableView!
     var btnScan: UIButton?
     private var defaultColor: UIColor? = nil
-    private let _scanner = PassiveAPI.Scanner.getInstance()
+    private let _scanner = RfidPassiveAPILib.Scanner.getInstance()
     private var _scannedDevices = [String]()
 
     override func viewDidLoad() {

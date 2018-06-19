@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 import UIKit
-import PassiveAPI
+import RfidPassiveAPILib
 
 class DeviceDetailViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, AbstractReaderListenerProtocol, AbstractResponseListenerProtocol, AbstractInventoryListenerProtocol {
     @IBOutlet weak var lblDevice: UILabel!

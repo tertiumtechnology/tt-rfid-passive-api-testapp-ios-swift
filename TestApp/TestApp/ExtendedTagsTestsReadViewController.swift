@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 import UIKit
-import PassiveAPI
+import RfidPassiveAPILib
 
 class ExtendedTagTestsReadViewController: UIViewController {
     @IBOutlet weak var txtAddress: UITextField!

@@ -23,7 +23,7 @@
  */
 import Foundation
 import UIKit
-import PassiveAPI
+import RfidPassiveAPILib
 
 class EventsForwarder: AbstractReaderListenerProtocol, AbstractResponseListenerProtocol, AbstractInventoryListenerProtocol
 {

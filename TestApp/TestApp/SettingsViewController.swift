@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 import UIKit
-import PassiveAPI
+import RfidPassiveAPILib
 
 class SettingsViewController: UIViewController {
     @IBOutlet weak var txtConnectTimeout: UITextField!
@@ -35,10 +35,10 @@ class SettingsViewController: UIViewController {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
-        txtConnectTimeout.text = String(format: "%u", _bleSettings.getTimeOutValue(timeOutType: PassiveAPI.Scanner.Timeouts.S_TERTIUM_TIMEOUT_CONNECT))
-        txtWriteTimeout.text = String(format: "%u", _bleSettings.getTimeOutValue(timeOutType: PassiveAPI.Scanner.Timeouts.S_TERTIUM_TIMEOUT_SEND_PACKET))
-        txtFirstReadTimeout.text = String(format: "%u", _bleSettings.getTimeOutValue(timeOutType: PassiveAPI.Scanner.Timeouts.S_TERITUM_TIMEOUT_RECEIVE_FIRST_PACKET))
-        txtLaterReadTimeout.text = String(format: "%u", _bleSettings.getTimeOutValue(timeOutType: PassiveAPI.Scanner.Timeouts.S_TERTIUM_TIMEOUT_RECEIVE_PACKETS))
+        txtConnectTimeout.text = String(format: "%u", _bleSettings.getTimeOutValue(timeOutType: RfidPassiveAPILib.Scanner.Timeouts.S_TERTIUM_TIMEOUT_CONNECT))
+        txtWriteTimeout.text = String(format: "%u", _bleSettings.getTimeOutValue(timeOutType: RfidPassiveAPILib.Scanner.Timeouts.S_TERTIUM_TIMEOUT_SEND_PACKET))
+        txtFirstReadTimeout.text = String(format: "%u", _bleSettings.getTimeOutValue(timeOutType: RfidPassiveAPILib.Scanner.Timeouts.S_TERITUM_TIMEOUT_RECEIVE_FIRST_PACKET))
+        txtLaterReadTimeout.text = String(format: "%u", _bleSettings.getTimeOutValue(timeOutType: RfidPassiveAPILib.Scanner.Timeouts.S_TERTIUM_TIMEOUT_RECEIVE_PACKETS))
     }
 
     override func didReceiveMemoryWarning() {
@@ -54,9 +54,9 @@ class SettingsViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
-        _bleSettings.setTimeOutValue(timeOutValue: UInt32(txtConnectTimeout.text!)!, timeOutType: PassiveAPI.Scanner.Timeouts.S_TERTIUM_TIMEOUT_CONNECT)
-        _bleSettings.setTimeOutValue(timeOutValue: UInt32(txtWriteTimeout.text!)!, timeOutType: PassiveAPI.Scanner.Timeouts.S_TERTIUM_TIMEOUT_SEND_PACKET)
-        _bleSettings.setTimeOutValue(timeOutValue: UInt32(txtFirstReadTimeout.text!)!, timeOutType: PassiveAPI.Scanner.Timeouts.S_TERITUM_TIMEOUT_RECEIVE_FIRST_PACKET)
-        _bleSettings.setTimeOutValue(timeOutValue: UInt32(txtLaterReadTimeout.text!)!, timeOutType: PassiveAPI.Scanner.Timeouts.S_TERTIUM_TIMEOUT_RECEIVE_PACKETS)
+        _bleSettings.setTimeOutValue(timeOutValue: UInt32(txtConnectTimeout.text!)!, timeOutType: RfidPassiveAPILib.Scanner.Timeouts.S_TERTIUM_TIMEOUT_CONNECT)
+        _bleSettings.setTimeOutValue(timeOutValue: UInt32(txtWriteTimeout.text!)!, timeOutType: RfidPassiveAPILib.Scanner.Timeouts.S_TERTIUM_TIMEOUT_SEND_PACKET)
+        _bleSettings.setTimeOutValue(timeOutValue: UInt32(txtFirstReadTimeout.text!)!, timeOutType: RfidPassiveAPILib.Scanner.Timeouts.S_TERITUM_TIMEOUT_RECEIVE_FIRST_PACKET)
+        _bleSettings.setTimeOutValue(timeOutValue: UInt32(txtLaterReadTimeout.text!)!, timeOutType: RfidPassiveAPILib.Scanner.Timeouts.S_TERTIUM_TIMEOUT_RECEIVE_PACKETS)
     }
 }
