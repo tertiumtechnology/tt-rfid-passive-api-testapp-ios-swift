@@ -55,11 +55,13 @@ class DeviceDetailViewController: UIViewController, UIPickerViewDelegate, UIPick
                       "Do Inventory",
                       "Clear inventory",
                       "Extended tag tests",
+                      "Write access password",
                       "Read first tag",
                       "Write first tag",
                       "Lock first tag",
                       "Read TID for first tag",
                       "Write ID for first tag",
+                      "Write kill password for selected tag",
                       "Kill first tag"
                     ]
     
@@ -115,6 +117,10 @@ class DeviceDetailViewController: UIViewController, UIPickerViewDelegate, UIPick
         txtCustomCommands.layer.borderWidth = 3.0
         updateBatteryLabel()
         enableStartButton(enabled: false)
+    }
+    
+    override var prefersStatusBarHidden: Bool {
+        return true
     }
     
     func reset() {
@@ -302,6 +308,7 @@ class DeviceDetailViewController: UIViewController, UIPickerViewDelegate, UIPick
             },
             
             {
+                // Extended tag tests
                 var extTestsVC: ExtendedTagTestsViewController?
                 
                 if self._tags.count != 0 {
@@ -317,6 +324,21 @@ class DeviceDetailViewController: UIViewController, UIPickerViewDelegate, UIPick
                     self.appendTextToBuffer(text: "Please do inventory first!", color: .red)
                 }
                 self.enableStartButton(enabled: true)
+            },
+            
+            {
+                // Write access password
+                if self._tags.count != 0 {
+                    if let tag = self._tags[0] as? EPC_tag? {
+                        //tag?.writeAccessPassword(accessPassword: , password: )
+                    } else {
+                        self.appendTextToBuffer(text: "Command is valid only on EPC tags!", color: .red)
+                        self.enableStartButton(enabled: true)
+                    }
+                } else {
+                    self.appendTextToBuffer(text: "Please do inventory first!", color: .red)
+                    self.enableStartButton(enabled: true)
+                }
             },
             
             {
@@ -433,6 +455,11 @@ class DeviceDetailViewController: UIViewController, UIPickerViewDelegate, UIPick
                     self.appendTextToBuffer(text: "Please do inventory first!", color: .red)
                     self.enableStartButton(enabled: true)
                 }
+            },
+            
+            {
+                    // Write kill password for selected tag
+                
             },
 
             {

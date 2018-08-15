@@ -25,6 +25,7 @@
 		927E09EA1F743473009573FF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 927E09E81F743473009573FF /* Main.storyboard */; };
 		927E09EC1F743473009573FF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 927E09EB1F743473009573FF /* Assets.xcassets */; };
 		927E09EF1F743473009573FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 927E09ED1F743473009573FF /* LaunchScreen.storyboard */; };
+		92E59D742124D03800964D64 /* PasswordDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E59D732124D03800964D64 /* PasswordDialog.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +79,7 @@
 		927E09E91F743473009573FF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		927E09EB1F743473009573FF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		927E09EE1F743473009573FF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		92E59D732124D03800964D64 /* PasswordDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PasswordDialog.swift; path = TestApp/PasswordDialog.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +119,7 @@
 		7B3FE9BE1FEBEA290030079B /* Testing */ = {
 			isa = PBXGroup;
 			children = (
+				92E59D732124D03800964D64 /* PasswordDialog.swift */,
 				7B27EBD12017680B005D738A /* DeviceDetailViewController.swift */,
 				7B3FE9BC1FEBE2540030079B /* ExtendedTagTests */,
 			);
@@ -279,6 +282,7 @@
 				7B27EBC7201767F6005D738A /* BleTableViewDeviceCell.swift in Sources */,
 				7B27EBCF20176802005D738A /* ExtendedTagTestsViewController.swift in Sources */,
 				7B27EBC8201767F6005D738A /* BleTableViewHeaderCell.swift in Sources */,
+				92E59D742124D03800964D64 /* PasswordDialog.swift in Sources */,
 				7B27EBC6201767F6005D738A /* ScanViewController.swift in Sources */,
 				7B27EBCD20176802005D738A /* ExtendedTagTestsTagCell.swift in Sources */,
 				7B27EBD22017680B005D738A /* DeviceDetailViewController.swift in Sources */,

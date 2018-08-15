@@ -28,6 +28,7 @@ class ExtendedTagTestsWriteViewController: UIViewController {
     @IBOutlet weak var btnStartOperation: UIButton!
     @IBOutlet weak var txtAddress: UITextField!
     @IBOutlet weak var txtData: UITextView!
+    @IBOutlet weak var txtPassword: UITextField!
     
     var _mainVC: ExtendedTagTestsViewController?
     private let _api = PassiveReader.getInstance()

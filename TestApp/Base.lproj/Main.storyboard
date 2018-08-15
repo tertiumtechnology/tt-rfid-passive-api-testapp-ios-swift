@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="tkg-kd-Nn9">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="tkg-kd-Nn9">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -13,7 +13,7 @@
         <!--Device Detail View Controller-->
         <scene sceneID="PqR-kW-aWO">
             <objects>
-                <viewController id="Vfm-K7-8jl" customClass="DeviceDetailViewController" customModule="RfidPassiveApiTestappIosObjC" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Vfm-K7-8jl" customClass="DeviceDetailViewController" customModule="RfidPassiveApiTestappIosSwift" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Sn1-JM-wLd"/>
                         <viewControllerLayoutGuide type="bottom" id="LNo-0T-ohv"/>
@@ -120,7 +120,7 @@
         <!--Extended Tag Tests View Controller-->
         <scene sceneID="IkA-YM-coS">
             <objects>
-                <viewController storyboardIdentifier="ExtendedTagTestsViewController" id="SRw-6Y-VTH" customClass="ExtendedTagTestsViewController" customModule="RfidPassiveApiTestappIosObjC" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ExtendedTagTestsViewController" id="SRw-6Y-VTH" customClass="ExtendedTagTestsViewController" customModule="RfidPassiveApiTestappIosSwift" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="AFd-Nc-D05"/>
                         <viewControllerLayoutGuide type="bottom" id="LSp-Bo-vEi"/>
@@ -153,7 +153,7 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="gray" indentationWidth="10" reuseIdentifier="ExtendedTagTestsTagCell" rowHeight="22" id="SjS-86-GnZ" customClass="ExtendedTagTestsTagCell" customModule="RfidPassiveApiTestappIosObjC" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="gray" indentationWidth="10" reuseIdentifier="ExtendedTagTestsTagCell" rowHeight="22" id="SjS-86-GnZ" customClass="ExtendedTagTestsTagCell" customModule="RfidPassiveApiTestappIosSwift" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="16" width="375" height="22"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="SjS-86-GnZ" id="qxX-v6-hxw">
@@ -232,7 +232,7 @@
         <!--Settings View Controller-->
         <scene sceneID="IWF-Dl-oQu">
             <objects>
-                <viewController id="zgX-EP-VrZ" customClass="SettingsViewController" customModule="RfidPassiveApiTestappIosObjC" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="zgX-EP-VrZ" customClass="SettingsViewController" customModule="RfidPassiveApiTestappIosSwift" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="uGu-Yw-XQe"/>
                         <viewControllerLayoutGuide type="bottom" id="PJS-j7-lSh"/>
@@ -390,7 +390,7 @@
         <!--Scan View Controller-->
         <scene sceneID="TRL-JF-GQ8">
             <objects>
-                <viewController id="MGL-eo-F7v" customClass="ScanViewController" customModule="RfidPassiveApiTestappIosObjC" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="MGL-eo-F7v" customClass="ScanViewController" customModule="RfidPassiveApiTestappIosSwift" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="J7M-Jb-hvf"/>
                         <viewControllerLayoutGuide type="bottom" id="MYa-2D-fCL"/>
@@ -403,7 +403,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="HeaderCell" id="nE0-FB-IrG" customClass="BleTableViewHeaderCell" customModule="RfidPassiveApiTestappIosObjC" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="HeaderCell" id="nE0-FB-IrG" customClass="BleTableViewHeaderCell" customModule="RfidPassiveApiTestappIosSwift" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nE0-FB-IrG" id="Bvt-2V-TWO">
@@ -453,7 +453,7 @@
                                             <outlet property="scanButton" destination="emS-Aa-VZL" id="gdH-FS-96v"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="DeviceCell" id="lEf-ft-BWc" customClass="BleTableViewDeviceCell" customModule="RfidPassiveApiTestappIosObjC" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="DeviceCell" id="lEf-ft-BWc" customClass="BleTableViewDeviceCell" customModule="RfidPassiveApiTestappIosSwift" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="72" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lEf-ft-BWc" id="dmw-gh-iec">
@@ -495,6 +495,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="M3N-zf-apV"/>
+                    <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="devicesTableView" destination="goE-YQ-ARJ" id="yHE-Ez-801"/>
                     </connections>
@@ -506,7 +507,7 @@
         <!--Extended Tag Tests Read View Controller-->
         <scene sceneID="ldd-OP-ccE">
             <objects>
-                <viewController id="aqZ-cx-nYO" customClass="ExtendedTagTestsReadViewController" customModule="RfidPassiveApiTestappIosObjC" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="aqZ-cx-nYO" customClass="ExtendedTagTestsReadViewController" customModule="RfidPassiveApiTestappIosSwift" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="znn-IY-oK6"/>
                         <viewControllerLayoutGuide type="bottom" id="aAJ-NL-xcV"/>
@@ -546,7 +547,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qrl-nH-Kd2">
-                                <rect key="frame" x="147" y="81" width="136" height="35"/>
+                                <rect key="frame" x="147" y="115" width="136" height="35"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                                 <color key="backgroundColor" red="0.33822062609999998" green="0.27833989260000003" blue="0.91242462400000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="READ">
@@ -559,6 +560,21 @@
                                     <action selector="btnStartClick:" destination="aqZ-cx-nYO" eventType="touchUpInside" id="VWF-sq-98Q"/>
                                 </connections>
                             </button>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PbY-tm-76s">
+                                <rect key="frame" x="147" y="82" width="136" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lgm-nx-Ap7">
+                                <rect key="frame" x="51" y="87" width="78" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.099178172649999993" green="0.029654249550000001" blue="0.087312735619999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.99628132579999995" green="0.98432749509999995" blue="0.9840566516" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.099178172647953033" green="0.029654249548912048" blue="0.087312735617160797" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
@@ -566,6 +582,7 @@
                         <outlet property="btnStartOperation" destination="qrl-nH-Kd2" id="hzq-Du-TUN"/>
                         <outlet property="txtAddress" destination="iTi-2y-vRu" id="KsW-Sg-vic"/>
                         <outlet property="txtBlocks" destination="gmB-ez-kEO" id="fFC-xQ-rYi"/>
+                        <outlet property="txtPassword" destination="PbY-tm-76s" id="gtG-kf-9l8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0FA-nv-jqG" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -575,7 +592,7 @@
         <!--Extended Tag Tests Write View Controller-->
         <scene sceneID="hR1-rg-Z5k">
             <objects>
-                <viewController id="NIi-MK-YaC" customClass="ExtendedTagTestsWriteViewController" customModule="RfidPassiveApiTestappIosObjC" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="NIi-MK-YaC" customClass="ExtendedTagTestsWriteViewController" customModule="RfidPassiveApiTestappIosSwift" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="sBq-5k-VX1"/>
                         <viewControllerLayoutGuide type="bottom" id="Biy-d6-S1E"/>
@@ -600,7 +617,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xlc-4n-fnh">
-                                <rect key="frame" x="158" y="105" width="136" height="35"/>
+                                <rect key="frame" x="158" y="141" width="136" height="35"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                                 <color key="backgroundColor" red="0.33822062609999998" green="0.27833989260000003" blue="0.91242462400000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="WRITE">
@@ -631,6 +648,21 @@
                                     <outlet property="delegate" destination="NIi-MK-YaC" id="gQf-1H-Jkf"/>
                                 </connections>
                             </textView>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AGc-k1-Wwr">
+                                <rect key="frame" x="112" y="108" width="247" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F4d-gJ-Gq0">
+                                <rect key="frame" x="16" y="111" width="78" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.099178172649999993" green="0.029654249550000001" blue="0.087312735619999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.99628132579999995" green="0.98432749509999995" blue="0.9840566516" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.099178172647953033" green="0.029654249548912048" blue="0.087312735617160797" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
@@ -638,6 +670,7 @@
                         <outlet property="btnStartOperation" destination="Xlc-4n-fnh" id="0dx-Vx-qpf"/>
                         <outlet property="txtAddress" destination="6GC-ad-RpW" id="7xo-4e-1FW"/>
                         <outlet property="txtData" destination="LnZ-mn-vnt" id="I2O-sQ-O6r"/>
+                        <outlet property="txtPassword" destination="AGc-k1-Wwr" id="za1-WZ-oyd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KHv-Md-i5X" userLabel="First Responder" sceneMemberID="firstResponder"/>

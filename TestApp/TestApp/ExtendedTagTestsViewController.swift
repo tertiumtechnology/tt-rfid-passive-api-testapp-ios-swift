@@ -61,6 +61,10 @@ class ExtendedTagTestsViewController: UIViewController, UITableViewDelegate, UIT
         tblTags.reloadData()
         tblTags.selectRow(at: IndexPath(row: 0, section: 0), animated: true, scrollPosition: .none)
     }
+  
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
