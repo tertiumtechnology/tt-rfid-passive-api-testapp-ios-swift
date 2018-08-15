@@ -458,8 +458,18 @@ class DeviceDetailViewController: UIViewController, UIPickerViewDelegate, UIPick
             },
             
             {
-                    // Write kill password for selected tag
-                
+                // Write kill password for selected tag
+                if self._tags.count != 0 {
+                    if let tag = self._tags[0] as? EPC_tag? {
+                        //tag?.writeAccessPassword(accessPassword: , password: )
+                    } else {
+                        self.appendTextToBuffer(text: "Command is valid only on EPC tags!", color: .red)
+                        self.enableStartButton(enabled: true)
+                    }
+                } else {
+                    self.appendTextToBuffer(text: "Please do inventory first!", color: .red)
+                    self.enableStartButton(enabled: true)
+                }
             },
 
             {
