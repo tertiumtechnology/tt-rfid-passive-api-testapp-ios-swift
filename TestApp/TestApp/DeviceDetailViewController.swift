@@ -24,7 +24,7 @@
 import UIKit
 import RfidPassiveAPILib
 
-class DeviceDetailViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, AbstractReaderListenerProtocol, AbstractResponseListenerProtocol, AbstractInventoryListenerProtocol {
+class DeviceDetailViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITableViewDelegate, UITableViewDataSource, AbstractReaderListenerProtocol, AbstractResponseListenerProtocol, AbstractInventoryListenerProtocol {
     @IBOutlet weak var lblDevice: UILabel!
     @IBOutlet weak var btnConnect: UIButton!
     @IBOutlet weak var lblBatteryStatus: UILabel!
@@ -32,6 +32,7 @@ class DeviceDetailViewController: UIViewController, UIPickerViewDelegate, UIPick
     @IBOutlet weak var pikSelectCommand: UIPickerView!
     @IBOutlet weak var txtCustomCommands: UITextView!
     @IBOutlet weak var btnStartOperation: UIButton!
+    @IBOutlet weak var tblTags: UITableView!
     
     let operations = ["Select Operation",
                       "Test Availability",
@@ -56,13 +57,13 @@ class DeviceDetailViewController: UIViewController, UIPickerViewDelegate, UIPick
                       "Clear inventory",
                       "Extended tag tests",
                       "Write access password",
-                      "Read first tag",
-                      "Write first tag",
-                      "Lock first tag",
-                      "Read TID for first tag",
-                      "Write ID for first tag",
+                      "Read selected tag",
+                      "Write selected tag",
+                      "Lock selected tag",
+                      "Read TID for selected tag",
+                      "Write ID for selected tag",
                       "Write kill password for selected tag",
-                      "Kill first tag"
+                      "Kill selected tag"
                     ]
     
     private let _api = PassiveReader.getInstance()
@@ -84,6 +85,7 @@ class DeviceDetailViewController: UIViewController, UIPickerViewDelegate, UIPick
     private var _inExtendedView: Bool = false
     private var _lastRepeatingCommand: Int = 0
     private var _alertController: UIAlertController?
+    private var _selectedTag: Int = 0
     
     enum CommandType: Int {
         case noCommand = 0
@@ -330,7 +332,7 @@ class DeviceDetailViewController: UIViewController, UIPickerViewDelegate, UIPick
             {
                 // Write access password
                 if self._tags.count != 0 {
-                    if let tag = self._tags[0] as? EPC_tag? {
+                    if let tag = self._tags[self._selectedTag] as? EPC_tag? {
                         self.showAccessPasswordAlertView(showOldPassword: true, actionHandler: { (action: UIAlertAction) in
                             if let textFields = self._alertController?.textFields {
                                 let passwordField = textFields[0]
@@ -349,15 +351,25 @@ class DeviceDetailViewController: UIViewController, UIPickerViewDelegate, UIPick
             },
             
             {
-                // Read first tag
+                // Read selected tag
                 if self._tags.count != 0 {
-                    if let tag = self._tags[0] as? ISO15693_tag? {
+                    if let tag = self._tags[self._selectedTag] as? ISO15693_tag? {
                         tag?.setTimeout(timeout: 2000)
                         tag?.read(address: 0, blocks: 2)
-                    //} else if let tag = self._tags[0] as? ISO14443A_tag? {
+                    //} else if let tag = self._tags[self._selectedTag] as? ISO14443A_tag? {
                     //    self.enableStartButton(enabled: true)
-                    } else if let tag = self._tags[0] as? EPC_tag? {
-                        tag?.read(address: 8, blocks: 4, password: nil)
+                    } else if let tag = self._tags[self._selectedTag] as? EPC_tag? {
+                        //tag?.read(address: 8, blocks: 4, password: nil)
+                        self.showAccessPasswordAlertView(showOldPassword: false, actionHandler: { (action: UIAlertAction) in
+                            if let textFields = self._alertController?.textFields {
+                                let passwordField = textFields[0]
+                                if passwordField.text!.count != 0 {
+                                    tag?.read(address: 8, blocks: 4, password: PassiveReader.hexStringToByte(hex: passwordField.text!))
+                                } else {
+                                    tag?.read(address: 8, blocks: 4, password: nil)
+                                }
+                            }
+                        })
                     }
                 } else {
                     self.appendTextToBuffer(text: "Please do inventory first!", color: .red)
@@ -371,7 +383,7 @@ class DeviceDetailViewController: UIViewController, UIPickerViewDelegate, UIPick
                 let calendar = Calendar.current
                 let minutes = calendar.component(.minute, from: date)
                 
-                // Write first tag
+                // Write selected tag
                 let data = [
                             UInt8(minutes),
                             UInt8(minutes+1),
@@ -384,13 +396,23 @@ class DeviceDetailViewController: UIViewController, UIPickerViewDelegate, UIPick
                           ]
                 
                 if self._tags.count != 0 {
-                    if let tag = self._tags[0] as? ISO15693_tag? {
+                    if let tag = self._tags[self._selectedTag] as? ISO15693_tag? {
                         tag?.setTimeout(timeout: 2000)
                         tag?.write(address: 0, data: data)
-                    //} else if let tag = self._tags[0] as? ISO14443A_tag? {
+                    //} else if let tag = self._tags[self._selectedTag] as? ISO14443A_tag? {
                     //    self.enableStartButton(enabled: true)
-                    } else if let tag = self._tags[0] as? EPC_tag? {
-                        tag?.write(address: 8, data: data, password: nil)
+                    } else if let tag = self._tags[self._selectedTag] as? EPC_tag? {
+                        //tag?.write(address: 8, data: data, password: nil)
+                        self.showAccessPasswordAlertView(showOldPassword: false, actionHandler: { (action: UIAlertAction) in
+                            if let textFields = self._alertController?.textFields {
+                                let passwordField = textFields[0]
+                                if passwordField.text!.count != 0 {
+                                    tag?.write(address: 8, data: data, password: PassiveReader.hexStringToByte(hex: passwordField.text!))
+                                } else {
+                                    tag?.write(address: 8, data: data, password: nil)
+                                }
+                            }
+                        })
                     }
                 } else {
                     self.appendTextToBuffer(text: "Please do inventory first!", color: .red)
@@ -401,13 +423,23 @@ class DeviceDetailViewController: UIViewController, UIPickerViewDelegate, UIPick
             {
                 // Lock first tag
                 if self._tags.count != 0 {
-                    if let tag = self._tags[0] as? ISO15693_tag? {
+                    if let tag = self._tags[self._selectedTag] as? ISO15693_tag? {
                         tag?.setTimeout(timeout: 2000)
                         tag?.lock(address: 0, blocks: 2)
-                    //} else if let tag = self._tags[0] as? ISO14443A_tag? {
+                    //} else if let tag = self._tags[self._selectedTag] as? ISO14443A_tag? {
                     //    self.enableStartButton(enabled: true)
-                    } else if let tag = self._tags[0] as? EPC_tag? {
-                        tag?.lock(lock_type: EPC_tag.MEMORY_NOTWRITABLE, password: nil)
+                    } else if let tag = self._tags[self._selectedTag] as? EPC_tag? {
+                        //tag?.lock(lock_type: EPC_tag.MEMORY_NOTWRITABLE, password: nil)
+                        self.showAccessPasswordAlertView(showOldPassword: false, actionHandler: { (action: UIAlertAction) in
+                            if let textFields = self._alertController?.textFields {
+                                let passwordField = textFields[0]
+                                if passwordField.text!.count != 0 {
+                                    tag?.lock(lock_type: EPC_tag.MEMORY_NOTWRITABLE, password: PassiveReader.hexStringToByte(hex: passwordField.text!))
+                                } else {
+                                    tag?.lock(lock_type: EPC_tag.MEMORY_NOTWRITABLE, password: nil)
+                                }
+                            }
+                        })
                     }
                 } else {
                     self.appendTextToBuffer(text: "Please do inventory first!", color: .red)
@@ -418,8 +450,18 @@ class DeviceDetailViewController: UIViewController, UIPickerViewDelegate, UIPick
             {
                 if self._tags.count != 0 {
                     // Read TID for first tag
-                    if let tag = self._tags[0] as? EPC_tag? {
-                        tag?.readTID(length: 8, password: nil)
+                    if let tag = self._tags[self._selectedTag] as? EPC_tag? {
+                        //tag?.readTID(length: 8, password: nil)
+                        self.showAccessPasswordAlertView(showOldPassword: false, actionHandler: { (action: UIAlertAction) in
+                            if let textFields = self._alertController?.textFields {
+                                let passwordField = textFields[0]
+                                if passwordField.text!.count != 0 {
+                                    tag?.readTID(length: 8, password: PassiveReader.hexStringToByte(hex: passwordField.text!))
+                                } else {
+                                    tag?.readTID(length: 8, password: nil)
+                                }
+                            }
+                        })
                     } else {
                         self.appendTextToBuffer(text: "Command unavailable on this tag", color: .red)
                         self.enableStartButton(enabled: true)
@@ -452,7 +494,7 @@ class DeviceDetailViewController: UIViewController, UIPickerViewDelegate, UIPick
                 ]
                 
                 if self._tags.count != 0 {
-                    if let tag = self._tags[0] as? EPC_tag? {
+                    if let tag = self._tags[self._selectedTag] as? EPC_tag? {
                         tag?.writeID(ID: ID, NSI: 0)
                     } else {
                         self.appendTextToBuffer(text: "Command unavailable on this tag", color: .red)
@@ -467,8 +509,19 @@ class DeviceDetailViewController: UIViewController, UIPickerViewDelegate, UIPick
             {
                 // Write kill password for selected tag
                 if self._tags.count != 0 {
-                    if let tag = self._tags[0] as? EPC_tag? {
+                    if let tag = self._tags[self._selectedTag] as? EPC_tag? {
                         //tag?.writeAccessPassword(accessPassword: , password: )
+                        self.showAccessPasswordAlertView(showOldPassword: true, actionHandler: { (action: UIAlertAction) in
+                            if let textFields = self._alertController?.textFields {
+                                let killPassword = textFields[0]
+                                let accessPassword = textFields[1]
+                                if accessPassword.text!.count != 0 {
+                                    tag?.writeKillPassword(kill_password: PassiveReader.hexStringToByte(hex: killPassword.text!), password: PassiveReader.hexStringToByte(hex: accessPassword.text!))
+                                } else {
+                                    tag?.writeKillPassword(kill_password: PassiveReader.hexStringToByte(hex: killPassword.text!), password: nil)
+                                }
+                            }
+                        })
                     } else {
                         self.appendTextToBuffer(text: "Command is valid only on EPC tags!", color: .red)
                         self.enableStartButton(enabled: true)
@@ -478,12 +531,22 @@ class DeviceDetailViewController: UIViewController, UIPickerViewDelegate, UIPick
                     self.enableStartButton(enabled: true)
                 }
             },
-
+            
             {
-                // Kill first tag
+                // Kill selected tag
                 if self._tags.count != 0 {
-                    if let tag = self._tags[0] as? EPC_tag? {
-                        tag?.kill(password: [UInt8(0), 0, 0, 0])
+                    if let tag = self._tags[self._selectedTag] as? EPC_tag? {
+                        //tag?.kill(password: [UInt8(0), 0, 0, 0])
+                        self.showAccessPasswordAlertView(showOldPassword: false, actionHandler: { (action: UIAlertAction) in
+                            if let textFields = self._alertController?.textFields {
+                                let passwordField = textFields[0]
+                                if passwordField.text!.count != 0 {
+                                    tag?.kill(password: PassiveReader.hexStringToByte(hex: passwordField.text!))
+                                } else {
+                                    tag?.kill(password: [UInt8(0), 0, 0, 0])
+                                }
+                            }
+                        })
                     } else {
                         self.appendTextToBuffer(text: "Command unavailable on this tag", color: .red)
                         self.enableStartButton(enabled: true)
@@ -524,6 +587,25 @@ class DeviceDetailViewController: UIViewController, UIPickerViewDelegate, UIPick
         }
     }
     
+    // GUI Code
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return _tags.count;
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell: ExtendedTagTestsTagCell = tableView.dequeueReusableCell(withIdentifier: "ExtendedTagTestsTagCell") as! ExtendedTagTestsTagCell
+        if let tag = _tags[indexPath.row]! as? EPC_tag {
+            cell.lblTagID.text = _tags[indexPath.row]!.toString() + " RSSI: " + String(tag.getRSSI())
+        } else {
+            cell.lblTagID.text = _tags[indexPath.row]!.toString()
+        }
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        _selectedTag = indexPath.row
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -540,7 +622,6 @@ class DeviceDetailViewController: UIViewController, UIPickerViewDelegate, UIPick
         }
     }
     
-    //
     @IBAction func btnStartOperationPressed(_ sender: Any) {
         callCustomOperation(method: _selectedRow)
     }
@@ -684,7 +765,14 @@ class DeviceDetailViewController: UIViewController, UIPickerViewDelegate, UIPick
     func inventoryEvent(tag: Tag) {
         enableStartButton(enabled: true)
         _tags.append(tag)
-        appendTextToBuffer(text: "inventoryEvent tag: " + tag.toString(), color: .white)
+        if let tag = self._tags[self._selectedTag] as? EPC_tag {
+            appendTextToBuffer(text: "inventoryEvent tag: " + tag.toString() + " RSSI: " + String(tag.getRSSI()), color: .white)
+        } else {
+            appendTextToBuffer(text: "inventoryEvent tag: " + tag.toString(), color: .white)
+        }
+        
+        tblTags.reloadData()
+        _selectedTag = 0
     }
     
     // AbstractReaderListenerProtocol implementation

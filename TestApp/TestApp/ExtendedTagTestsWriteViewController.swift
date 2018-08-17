@@ -123,8 +123,14 @@ class ExtendedTagTestsWriteViewController: UIViewController {
                 } else if let tag = (tag as? EPC_tag) {
                     if (data.count / 2) % 2 == 0 {
                         _mainVC?.enableStartButton(enabled: false)
-                        tag.write(address: address, data: hexStringToData(string: data), password: nil)
-                        _mainVC?.appendText(text: String(format: "Writing %d blocks at address %d to tag %@", data.count / 4, address, tag.toString()), color: .yellow)
+                        if txtPassword.text!.count > 0 {
+                            _mainVC?.appendText(text: String(format: "Writing %d blocks at address %d to tag %@ (WITH PASSWORD)", data.count / 4, address, tag.toString()), color: .yellow)
+                            tag.write(address: address, data: hexStringToData(string: data), password: PassiveReader.hexStringToByte(hex: txtPassword.text!))
+                        } else {
+                            _mainVC?.appendText(text: String(format: "Writing %d blocks at address %d to tag %@", data.count / 4, address, tag.toString()), color: .yellow)
+                            tag.write(address: address, data: hexStringToData(string: data), password: nil)
+                            // PassiveReader.hexStringToByte(hex: txtPassword.text!)
+                        }
                     } else {
                         _mainVC?.appendText(text: String(format: "Error, data length must be multiple of two bytes", data.count / 4, address), color: .red)
                     }

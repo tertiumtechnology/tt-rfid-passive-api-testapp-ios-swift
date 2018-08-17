@@ -62,8 +62,13 @@ class ExtendedTagTestsReadViewController: UIViewController {
                     _mainVC?.appendText(text: "Tag id: " + tag.toString(), color: UIColor.white)
                 } else if let tag = (tag as? EPC_tag) {
                     _mainVC?.enableStartButton(enabled: false)
-                    _mainVC?.appendText(text: String(format: "Reading %d blocks at address %d from tag %@", blocks, address, tag.toString()), color: .yellow)
-                    tag.read(address: address, blocks: blocks, password: nil)
+                    if txtPassword.text!.count > 0 {
+                        _mainVC?.appendText(text: String(format: "Reading %d blocks at address %d from tag %@ (WITH PASSWORD)", blocks, address, tag.toString()), color: .yellow)
+                        tag.read(address: address, blocks: blocks, password: PassiveReader.hexStringToByte(hex: txtPassword.text!))
+                    } else {
+                        _mainVC?.appendText(text: String(format: "Reading %d blocks at address %d from tag %@", blocks, address, tag.toString()), color: .yellow)
+                        tag.read(address: address, blocks: blocks, password: nil)
+                    }
                 }
             }
         }
