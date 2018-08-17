@@ -83,6 +83,7 @@ class DeviceDetailViewController: UIViewController, UIPickerViewDelegate, UIPick
     private var _connected: Bool = false
     private var _inExtendedView: Bool = false
     private var _lastRepeatingCommand: Int = 0
+    private var _alertController: UIAlertController?
     
     enum CommandType: Int {
         case noCommand = 0
@@ -330,7 +331,13 @@ class DeviceDetailViewController: UIViewController, UIPickerViewDelegate, UIPick
                 // Write access password
                 if self._tags.count != 0 {
                     if let tag = self._tags[0] as? EPC_tag? {
-                        //tag?.writeAccessPassword(accessPassword: , password: )
+                        self.showAccessPasswordAlertView(showOldPassword: true, actionHandler: { (action: UIAlertAction) in
+                            if let textFields = self._alertController?.textFields {
+                                let passwordField = textFields[0]
+                                let oldPasswordField = textFields[1]
+                                tag?.writeAccessPassword(accessPassword: PassiveReader.hexStringToByte(hex: passwordField.text!), password: PassiveReader.hexStringToByte(hex: oldPasswordField.text!))
+                            }
+                        })
                     } else {
                         self.appendTextToBuffer(text: "Command is valid only on EPC tags!", color: .red)
                         self.enableStartButton(enabled: true)
@@ -770,6 +777,30 @@ class DeviceDetailViewController: UIViewController, UIPickerViewDelegate, UIPick
     func tunnelEvent(data: [UInt8]?) {
         let tunnelEvent = String(format: "tunnelEvent: data = %s", data!)
         appendTextToBuffer(text: tunnelEvent, color: .white)
+    }
+    
+    func showAccessPasswordAlertView(showOldPassword: Bool, actionHandler: ((UIAlertAction) -> Swift.Void)?) {
+        _alertController = UIAlertController(title: "Password", message: "Enter access password", preferredStyle: .alert)
+        _alertController!.addTextField { (field: UITextField) in
+            if showOldPassword {
+                field.placeholder = "old password"
+            } else {
+                field.placeholder = "password"
+            }
+            field.textColor = .blue
+            field.clearButtonMode = .whileEditing
+            field.borderStyle = .roundedRect
+        }
+        if showOldPassword {
+            _alertController!.addTextField { (field: UITextField) in
+                field.placeholder = "new password"
+                field.textColor = .blue
+                field.clearButtonMode = .whileEditing
+                field.borderStyle = .roundedRect
+            }
+        }
+        _alertController!.addAction(UIAlertAction(title: "OK", style: .default, handler: actionHandler))
+        present(_alertController!, animated: true, completion: nil)
     }
     
     // MARK: - Navigation
