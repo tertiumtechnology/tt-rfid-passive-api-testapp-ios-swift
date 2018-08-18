@@ -335,9 +335,20 @@ class DeviceDetailViewController: UIViewController, UIPickerViewDelegate, UIPick
                     if let tag = self._tags[self._selectedTag] as? EPC_tag? {
                         self.showAccessPasswordAlertView(showOldPassword: true, actionHandler: { (action: UIAlertAction) in
                             if let textFields = self._alertController?.textFields {
-                                let passwordField = textFields[0]
-                                let oldPasswordField = textFields[1]
-                                tag?.writeAccessPassword(accessPassword: PassiveReader.hexStringToByte(hex: passwordField.text!), password: PassiveReader.hexStringToByte(hex: oldPasswordField.text!))
+                                let passwordField = textFields[1]
+                                let oldPasswordField = textFields[0]
+                                
+                                if passwordField.text!.count == 0 {
+                                    self.appendTextToBuffer(text: "Access password is mandatory!", color: .red)
+                                    self.enableStartButton(enabled: true)
+                                    return
+                                }
+                                
+                                if oldPasswordField.text!.count != 0 {
+                                    tag?.writeAccessPassword(accessPassword: PassiveReader.hexStringToByte(hex: passwordField.text!), password: PassiveReader.hexStringToByte(hex: oldPasswordField.text!))
+                                } else {
+                                    tag?.writeAccessPassword(accessPassword: PassiveReader.hexStringToByte(hex: passwordField.text!), password: nil)
+                                }
                             }
                         })
                     } else {
@@ -359,17 +370,7 @@ class DeviceDetailViewController: UIViewController, UIPickerViewDelegate, UIPick
                     //} else if let tag = self._tags[self._selectedTag] as? ISO14443A_tag? {
                     //    self.enableStartButton(enabled: true)
                     } else if let tag = self._tags[self._selectedTag] as? EPC_tag? {
-                        //tag?.read(address: 8, blocks: 4, password: nil)
-                        self.showAccessPasswordAlertView(showOldPassword: false, actionHandler: { (action: UIAlertAction) in
-                            if let textFields = self._alertController?.textFields {
-                                let passwordField = textFields[0]
-                                if passwordField.text!.count != 0 {
-                                    tag?.read(address: 8, blocks: 4, password: PassiveReader.hexStringToByte(hex: passwordField.text!))
-                                } else {
-                                    tag?.read(address: 8, blocks: 4, password: nil)
-                                }
-                            }
-                        })
+                        tag?.read(address: 0, blocks: 4, password: nil)
                     }
                 } else {
                     self.appendTextToBuffer(text: "Please do inventory first!", color: .red)
@@ -402,17 +403,7 @@ class DeviceDetailViewController: UIViewController, UIPickerViewDelegate, UIPick
                     //} else if let tag = self._tags[self._selectedTag] as? ISO14443A_tag? {
                     //    self.enableStartButton(enabled: true)
                     } else if let tag = self._tags[self._selectedTag] as? EPC_tag? {
-                        //tag?.write(address: 8, data: data, password: nil)
-                        self.showAccessPasswordAlertView(showOldPassword: false, actionHandler: { (action: UIAlertAction) in
-                            if let textFields = self._alertController?.textFields {
-                                let passwordField = textFields[0]
-                                if passwordField.text!.count != 0 {
-                                    tag?.write(address: 8, data: data, password: PassiveReader.hexStringToByte(hex: passwordField.text!))
-                                } else {
-                                    tag?.write(address: 8, data: data, password: nil)
-                                }
-                            }
-                        })
+                        tag?.write(address: 0, data: data, password: nil)
                     }
                 } else {
                     self.appendTextToBuffer(text: "Please do inventory first!", color: .red)
@@ -421,7 +412,7 @@ class DeviceDetailViewController: UIViewController, UIPickerViewDelegate, UIPick
             },
             
             {
-                // Lock first tag
+                // Lock selected tag
                 if self._tags.count != 0 {
                     if let tag = self._tags[self._selectedTag] as? ISO15693_tag? {
                         tag?.setTimeout(timeout: 2000)
@@ -513,8 +504,15 @@ class DeviceDetailViewController: UIViewController, UIPickerViewDelegate, UIPick
                         //tag?.writeAccessPassword(accessPassword: , password: )
                         self.showAccessPasswordAlertView(showOldPassword: true, actionHandler: { (action: UIAlertAction) in
                             if let textFields = self._alertController?.textFields {
-                                let killPassword = textFields[0]
-                                let accessPassword = textFields[1]
+                                let killPassword = textFields[1]
+                                let accessPassword = textFields[0]
+                                
+                                if killPassword.text!.count == 0 {
+                                    self.appendTextToBuffer(text: "Kill password is mandatory!", color: .red)
+                                    self.enableStartButton(enabled: true)
+                                    return
+                                }
+
                                 if accessPassword.text!.count != 0 {
                                     tag?.writeKillPassword(kill_password: PassiveReader.hexStringToByte(hex: killPassword.text!), password: PassiveReader.hexStringToByte(hex: accessPassword.text!))
                                 } else {
