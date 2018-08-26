@@ -66,6 +66,24 @@ class DeviceDetailViewController: UIViewController, UIPickerViewDelegate, UIPick
                       "Kill selected tag"
                     ]
     
+    let lockoperationslabels = ["Memory write protected",
+                          "Memory write forbidden",
+                          "ID write forbidden",
+                          "Access-password protected",
+                          "Kill-password protected",
+                          "Access-password rewrite forbidden",
+                          "Kill-password rewrite forbidden"
+                          ]
+    let lockoperationsvalues = [
+        EPC_tag.MEMORY_PASSWORD_WRITABLE,
+        EPC_tag.MEMORY_NOTWRITABLE,
+        EPC_tag.ID_NOTWRITABLE,
+        EPC_tag.ACCESSPASSWORD_PASSWORD_READABLE_WRITABLE,
+        EPC_tag.KILLPASSWORD_PASSWORD_READABLE_WRITABLE,
+        EPC_tag.ACCESSPASSWORD_UNREADABLE_UNWRITABLE,
+        EPC_tag.KILLPASSWORD_UNREADABLE_UNWRITABLE
+    ]
+    
     private let _api = PassiveReader.getInstance()
     private let _eventsForwarder = EventsForwarder.getInstance()
     private var _timer: Timer = Timer()
@@ -79,6 +97,7 @@ class DeviceDetailViewController: UIViewController, UIPickerViewDelegate, UIPick
     private var _currentInitialOperation: Int = 0
     private var _maxInitialOperations: Int = 1
     private var _selectedRow: Int = 0
+    private var _selectedLockOperation: Int = 0
     private var _repeatingCommandIndex: Int = 0
     private var _lastCommandType: CommandType = .initialCommands
     private var _connected: Bool = false
@@ -304,6 +323,7 @@ class DeviceDetailViewController: UIViewController, UIPickerViewDelegate, UIPick
             {
                 // Clear inventory
                 self._tags.removeAll()
+                self.tblTags.reloadData()
                 
                 // IMPORTANT! force no command sent, inventory doesn't notify back!
                 self.enableStartButton(enabled: true)
@@ -333,7 +353,7 @@ class DeviceDetailViewController: UIViewController, UIPickerViewDelegate, UIPick
                 // Write access password
                 if self._tags.count != 0 {
                     if let tag = self._tags[self._selectedTag] as? EPC_tag? {
-                        self.showAccessPasswordAlertView(showOldPassword: true, actionHandler: { (action: UIAlertAction) in
+                        self.showAccessPasswordAlertView(showOldPassword: true, showLockParameters: false, actionHandler: { (action: UIAlertAction) in
                             if let textFields = self._alertController?.textFields {
                                 let passwordField = textFields[1]
                                 let oldPasswordField = textFields[0]
@@ -370,7 +390,7 @@ class DeviceDetailViewController: UIViewController, UIPickerViewDelegate, UIPick
                     //} else if let tag = self._tags[self._selectedTag] as? ISO14443A_tag? {
                     //    self.enableStartButton(enabled: true)
                     } else if let tag = self._tags[self._selectedTag] as? EPC_tag? {
-                        tag?.read(address: 0, blocks: 4, password: nil)
+                        tag?.read(address: 0, blocks: 4)
                     }
                 } else {
                     self.appendTextToBuffer(text: "Please do inventory first!", color: .red)
@@ -421,13 +441,13 @@ class DeviceDetailViewController: UIViewController, UIPickerViewDelegate, UIPick
                     //    self.enableStartButton(enabled: true)
                     } else if let tag = self._tags[self._selectedTag] as? EPC_tag? {
                         //tag?.lock(lock_type: EPC_tag.MEMORY_NOTWRITABLE, password: nil)
-                        self.showAccessPasswordAlertView(showOldPassword: false, actionHandler: { (action: UIAlertAction) in
+                        self.showAccessPasswordAlertView(showOldPassword: false, showLockParameters: true, actionHandler: { (action: UIAlertAction) in
                             if let textFields = self._alertController?.textFields {
                                 let passwordField = textFields[0]
                                 if passwordField.text!.count != 0 {
-                                    tag?.lock(lock_type: EPC_tag.MEMORY_NOTWRITABLE, password: PassiveReader.hexStringToByte(hex: passwordField.text!))
+                                    tag?.lock(lock_type: self.lockoperationsvalues[self._selectedLockOperation], password: PassiveReader.hexStringToByte(hex: passwordField.text!))
                                 } else {
-                                    tag?.lock(lock_type: EPC_tag.MEMORY_NOTWRITABLE, password: nil)
+                                    tag?.lock(lock_type: self.lockoperationsvalues[self._selectedLockOperation], password: nil)
                                 }
                             }
                         })
@@ -443,7 +463,7 @@ class DeviceDetailViewController: UIViewController, UIPickerViewDelegate, UIPick
                     // Read TID for first tag
                     if let tag = self._tags[self._selectedTag] as? EPC_tag? {
                         //tag?.readTID(length: 8, password: nil)
-                        self.showAccessPasswordAlertView(showOldPassword: false, actionHandler: { (action: UIAlertAction) in
+                        self.showAccessPasswordAlertView(showOldPassword: false, showLockParameters: false, actionHandler: { (action: UIAlertAction) in
                             if let textFields = self._alertController?.textFields {
                                 let passwordField = textFields[0]
                                 if passwordField.text!.count != 0 {
@@ -502,7 +522,7 @@ class DeviceDetailViewController: UIViewController, UIPickerViewDelegate, UIPick
                 if self._tags.count != 0 {
                     if let tag = self._tags[self._selectedTag] as? EPC_tag? {
                         //tag?.writeAccessPassword(accessPassword: , password: )
-                        self.showAccessPasswordAlertView(showOldPassword: true, actionHandler: { (action: UIAlertAction) in
+                        self.showAccessPasswordAlertView(showOldPassword: true, showLockParameters: false, actionHandler: { (action: UIAlertAction) in
                             if let textFields = self._alertController?.textFields {
                                 let killPassword = textFields[1]
                                 let accessPassword = textFields[0]
@@ -535,7 +555,7 @@ class DeviceDetailViewController: UIViewController, UIPickerViewDelegate, UIPick
                 if self._tags.count != 0 {
                     if let tag = self._tags[self._selectedTag] as? EPC_tag? {
                         //tag?.kill(password: [UInt8(0), 0, 0, 0])
-                        self.showAccessPasswordAlertView(showOldPassword: false, actionHandler: { (action: UIAlertAction) in
+                        self.showAccessPasswordAlertView(showOldPassword: false, showLockParameters: false, actionHandler: { (action: UIAlertAction) in
                             if let textFields = self._alertController?.textFields {
                                 let passwordField = textFields[0]
                                 if passwordField.text!.count != 0 {
@@ -684,16 +704,29 @@ class DeviceDetailViewController: UIViewController, UIPickerViewDelegate, UIPick
     
     // UIPickerView
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
-        var pickerLabel: UILabel? = (view as? UILabel)
-        if pickerLabel == nil {
-            pickerLabel = UILabel()
-            pickerLabel?.font = UIFont(name: "System", size: 10)
-            pickerLabel?.textAlignment = .left
+        if pickerView == pikSelectCommand {
+            var pickerLabel: UILabel? = (view as? UILabel)
+            if pickerLabel == nil {
+                pickerLabel = UILabel()
+                pickerLabel?.font = UIFont(name: "System", size: 10)
+                pickerLabel?.textAlignment = .left
+            }
+            
+            pickerLabel?.text = operations[row]
+            pickerLabel?.textColor = .black
+            return pickerLabel!
+        } else {
+            var pickerLabel: UILabel? = (view as? UILabel)
+            if pickerLabel == nil {
+                pickerLabel = UILabel()
+                pickerLabel?.font = UIFont(name: "System", size: 10)
+                pickerLabel?.textAlignment = .left
+            }
+            
+            pickerLabel?.text = lockoperationslabels[row]
+            pickerLabel?.textColor = .black
+            return pickerLabel!
         }
-        
-        pickerLabel?.text = operations[row]
-        pickerLabel?.textColor = .black
-        return pickerLabel!
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -701,15 +734,27 @@ class DeviceDetailViewController: UIViewController, UIPickerViewDelegate, UIPick
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return operations[row]
+        if pickerView == pikSelectCommand {
+            return operations[row]
+        } else {
+            return "Kill op";
+        }
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return operations.count
+        if pickerView == pikSelectCommand {
+            return operations.count
+        } else {
+            return lockoperationslabels.count;
+        }
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        _selectedRow = row
+        if pickerView == pikSelectCommand {
+            _selectedRow = row
+        } else {
+            _selectedLockOperation = row
+        }
     }
     
     func updateBatteryLabel() {
@@ -865,7 +910,7 @@ class DeviceDetailViewController: UIViewController, UIPickerViewDelegate, UIPick
         appendTextToBuffer(text: tunnelEvent, color: .white)
     }
     
-    func showAccessPasswordAlertView(showOldPassword: Bool, actionHandler: ((UIAlertAction) -> Swift.Void)?) {
+    func showAccessPasswordAlertView(showOldPassword: Bool, showLockParameters: Bool, actionHandler: ((UIAlertAction) -> Swift.Void)?) {
         _alertController = UIAlertController(title: "Password", message: "Enter access password", preferredStyle: .alert)
         _alertController!.addTextField { (field: UITextField) in
             if showOldPassword {
@@ -877,6 +922,7 @@ class DeviceDetailViewController: UIViewController, UIPickerViewDelegate, UIPick
             field.clearButtonMode = .whileEditing
             field.borderStyle = .roundedRect
         }
+        
         if showOldPassword {
             _alertController!.addTextField { (field: UITextField) in
                 field.placeholder = "new password"
@@ -885,7 +931,24 @@ class DeviceDetailViewController: UIViewController, UIPickerViewDelegate, UIPick
                 field.borderStyle = .roundedRect
             }
         }
+        
+        _selectedLockOperation = 0
+        if showLockParameters {
+            var pik: UIPickerView
+            
+            let vc = UIViewController()
+            vc.preferredContentSize = CGSize(width: 250, height: 300)
+            pik = UIPickerView()
+            pik.delegate = self
+            pik.dataSource = self
+            pik.frame = CGRect(x: 0, y: 0, width: _alertController!.view.frame.width, height: 300)
+            vc.view.addSubview(pik)
+            _alertController?.setValue(vc, forKey: "contentViewController")
+        }
         _alertController!.addAction(UIAlertAction(title: "OK", style: .default, handler: actionHandler))
+        _alertController!.addAction(UIAlertAction(title: "Cancel", style: .destructive, handler:  { (action: UIAlertAction) in
+            self.enableStartButton(enabled: true)
+        }))
         present(_alertController!, animated: true, completion: nil)
     }
     

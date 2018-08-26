@@ -28,7 +28,6 @@ class ExtendedTagTestsReadViewController: UIViewController {
     @IBOutlet weak var txtAddress: UITextField!
     @IBOutlet weak var txtBlocks: UITextField!
     @IBOutlet weak var btnStartOperation: UIButton!
-    @IBOutlet weak var txtPassword: UITextField!
     
     var _mainVC: ExtendedTagTestsViewController?
     private let _api = PassiveReader.getInstance()
@@ -62,13 +61,8 @@ class ExtendedTagTestsReadViewController: UIViewController {
                     _mainVC?.appendText(text: "Tag id: " + tag.toString(), color: UIColor.white)
                 } else if let tag = (tag as? EPC_tag) {
                     _mainVC?.enableStartButton(enabled: false)
-                    if txtPassword.text!.count > 0 {
-                        _mainVC?.appendText(text: String(format: "Reading %d blocks at address %d from tag %@ (WITH PASSWORD)", blocks, address, tag.toString()), color: .yellow)
-                        tag.read(address: address, blocks: blocks, password: PassiveReader.hexStringToByte(hex: txtPassword.text!))
-                    } else {
-                        _mainVC?.appendText(text: String(format: "Reading %d blocks at address %d from tag %@", blocks, address, tag.toString()), color: .yellow)
-                        tag.read(address: address, blocks: blocks, password: nil)
-                    }
+                    _mainVC?.appendText(text: String(format: "Reading %d blocks at address %d from tag %@", blocks, address, tag.toString()), color: .yellow)
+                    tag.read(address: address, blocks: blocks)
                 }
             }
         }
