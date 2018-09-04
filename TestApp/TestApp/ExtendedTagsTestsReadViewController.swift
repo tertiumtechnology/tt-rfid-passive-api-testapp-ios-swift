@@ -54,7 +54,6 @@ class ExtendedTagTestsReadViewController: UIViewController {
             if let blocks = Int(txtBlocks.text!) {
                 if let tag = (tag as? ISO15693_tag) {
                     _mainVC?.enableStartButton(enabled: false)
-                    tag.setTimeout(timeout: 2000)
                     _mainVC?.appendText(text: String(format: "Reading %d blocks at address %d from tag %@", blocks, address, tag.toString()), color: .yellow)
                     tag.read(address: address, blocks: blocks)
                 } else if let tag = (tag as? ISO14443A_tag) {

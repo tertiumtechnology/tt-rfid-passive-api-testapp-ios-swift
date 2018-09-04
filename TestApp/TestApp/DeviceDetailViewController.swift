@@ -324,6 +324,7 @@ class DeviceDetailViewController: UIViewController, UIPickerViewDelegate, UIPick
                 // Clear inventory
                 self._tags.removeAll()
                 self.tblTags.reloadData()
+                self._selectedTag = 0
                 
                 // IMPORTANT! force no command sent, inventory doesn't notify back!
                 self.enableStartButton(enabled: true)
@@ -385,7 +386,6 @@ class DeviceDetailViewController: UIViewController, UIPickerViewDelegate, UIPick
                 // Read selected tag
                 if self._tags.count != 0 {
                     if let tag = self._tags[self._selectedTag] as? ISO15693_tag? {
-                        tag?.setTimeout(timeout: 2000)
                         tag?.read(address: 0, blocks: 2)
                     //} else if let tag = self._tags[self._selectedTag] as? ISO14443A_tag? {
                     //    self.enableStartButton(enabled: true)
@@ -418,7 +418,6 @@ class DeviceDetailViewController: UIViewController, UIPickerViewDelegate, UIPick
                 
                 if self._tags.count != 0 {
                     if let tag = self._tags[self._selectedTag] as? ISO15693_tag? {
-                        tag?.setTimeout(timeout: 2000)
                         tag?.write(address: 0, data: data)
                     //} else if let tag = self._tags[self._selectedTag] as? ISO14443A_tag? {
                     //    self.enableStartButton(enabled: true)
@@ -435,7 +434,6 @@ class DeviceDetailViewController: UIViewController, UIPickerViewDelegate, UIPick
                 // Lock selected tag
                 if self._tags.count != 0 {
                     if let tag = self._tags[self._selectedTag] as? ISO15693_tag? {
-                        tag?.setTimeout(timeout: 2000)
                         tag?.lock(address: 0, blocks: 2)
                     //} else if let tag = self._tags[self._selectedTag] as? ISO14443A_tag? {
                     //    self.enableStartButton(enabled: true)
@@ -814,8 +812,10 @@ class DeviceDetailViewController: UIViewController, UIPickerViewDelegate, UIPick
             appendTextToBuffer(text: "inventoryEvent tag: " + tag.toString(), color: .white)
         }
         
+        tag.setTimeout(timeout: 2000)
         tblTags.reloadData()
         _selectedTag = 0
+        tblTags.selectRow(at: IndexPath(row: 0, section: 0), animated: false, scrollPosition: .top)
     }
     
     // AbstractReaderListenerProtocol implementation
@@ -935,8 +935,8 @@ class DeviceDetailViewController: UIViewController, UIPickerViewDelegate, UIPick
         _selectedLockOperation = 0
         if showLockParameters {
             var pik: UIPickerView
-            
             let vc = UIViewController()
+            
             vc.preferredContentSize = CGSize(width: 250, height: 300)
             pik = UIPickerView()
             pik.delegate = self

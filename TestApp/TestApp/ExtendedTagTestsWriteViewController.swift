@@ -111,7 +111,6 @@ class ExtendedTagTestsWriteViewController: UIViewController {
             if let address = Int(txtAddress.text!) {
                 if let tag = (tag as? ISO15693_tag) {
                     if (data.count / 2) % 4 == 0 {
-                        tag.setTimeout(timeout: 2000)
                         _mainVC?.enableStartButton(enabled: false)
                         tag.write(address: address, data: hexStringToData(string: data))
                         _mainVC?.appendText(text: String(format: "Writing %d blocks at address %d to tag %@", data.count / 8, address, tag.toString()), color: .yellow)
