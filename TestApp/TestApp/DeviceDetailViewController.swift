@@ -661,13 +661,13 @@ class DeviceDetailViewController: UIViewController, UIPickerViewDelegate, UIPick
     }
     
     func appendInitialCommandsBuffer(text: String, color: UIColor) {
-        initialCommandsBuffer.append(NSAttributedString(string: text, attributes: [NSAttributedStringKey.foregroundColor: color]))
+        initialCommandsBuffer.append(NSAttributedString(string: text, attributes: [NSAttributedString.Key.foregroundColor: color]))
         txtInitialCommands.attributedText = initialCommandsBuffer.copy() as! NSAttributedString
         scrollDown(textView: txtInitialCommands)
     }
     
     func appendCustomCommandsBuffer(text: String, color: UIColor) {
-        customCommandsBuffer.append(NSAttributedString(string: text, attributes: [NSAttributedStringKey.foregroundColor: color]))
+        customCommandsBuffer.append(NSAttributedString(string: text, attributes: [NSAttributedString.Key.foregroundColor: color]))
         txtCustomCommands.attributedText = customCommandsBuffer.copy() as! NSAttributedString
         scrollDown(textView: txtCustomCommands)
     }
@@ -963,7 +963,7 @@ class DeviceDetailViewController: UIViewController, UIPickerViewDelegate, UIPick
         }
     }
     
-    override func unwind(for unwindSegue: UIStoryboardSegue, towardsViewController subsequentVC: UIViewController) {
+    override func unwind(for unwindSegue: UIStoryboardSegue, towards subsequentVC: UIViewController) {
         _timer.invalidate()
         _api.disconnect()
         
