@@ -49,6 +49,9 @@ class DeviceDetailViewController: UIViewController, UIPickerViewDelegate, UIPick
                       "Get ISO15693 Extension Flag(Only HF)",
                       "Set ISO15693 Bitrate(Only HF)",
                       "Get ISO15693 Bitrate(Only HF)",
+                      "Get RF tunnel config(Ony HF)",
+                      "Set RF tunnel config(Ony HF)",
+                      "Tunnel command",
                       "Set EPC Frequency (only UHF)",
                       "Get EPC Frequency (only UHF)",
                       "setScanOnInput",
@@ -104,6 +107,7 @@ class DeviceDetailViewController: UIViewController, UIPickerViewDelegate, UIPick
     private var _inExtendedView: Bool = false
     private var _lastRepeatingCommand: Int = 0
     private var _alertController: UIAlertController?
+    private var _customController: UIAlertController?
     private var _selectedTag: Int = 0
     
     enum CommandType: Int {
@@ -289,6 +293,74 @@ class DeviceDetailViewController: UIViewController, UIPickerViewDelegate, UIPick
                 self._api.getISO15693bitrate()
             },
             
+            {
+                // getRFforISO15693tunnel
+                self._api.getRFforISO15693tunnel()
+            },
+            
+            {
+                // setRFforISO15693tunnel
+                self._inExtendedView = true
+                self.showTunnellingSettingsAlertView(actionHandler: { (action: UIAlertAction) in
+                    if let textFields = self._customController?.textFields {
+                        let delayField = textFields[0]
+                        let timeOutField = textFields[1]
+
+                        if (delayField.text == nil || delayField.text?.count == 0) {
+                            self.appendTextToBuffer(text: "Delay is mandatory!", color: UIColor.red)
+                            self.enableStartButton(enabled: true)
+                            self._inExtendedView = false
+                            return;
+                        }
+                        
+                        if (timeOutField.text == nil || timeOutField.text?.count == 0) {
+                            self.appendTextToBuffer(text: "timeout is mandatory!", color: UIColor.red)
+                            self.enableStartButton(enabled: true)
+                            self._inExtendedView = false
+                            return;
+                        }
+                        
+                        self._inExtendedView = false
+                        self._api.setRFforISO15693tunnel(delay: Int(NSString(string: delayField.text!).intValue), timeout: Int(NSString(string: timeOutField.text!).intValue))
+                    }
+                })
+            },
+            
+            {
+                // Tunnel command
+                self.showTunnellingAlertView(encrypted: false, actionHandler: { (action: UIAlertAction) in
+                    if let textFields = self._customController?.textFields {
+                        let commandField = textFields[0]
+                        var flagField: UITextField?
+                        
+                        if (textFields.count > 1) {
+                            flagField = textFields[1]
+                        }
+                        
+                        if (commandField.text == nil || commandField.text?.count == 0) {
+                            self.appendTextToBuffer(text: "Comamand is mandatory!", color: UIColor.red)
+                            self.enableStartButton(enabled: true)
+                            self._inExtendedView = false
+                            return;
+                        }
+                        
+                        if (flagField != nil) {
+                            if (flagField!.text == nil || flagField!.text?.count == 0) {
+                                self.appendTextToBuffer(text: "Flag is mandatory!", color: UIColor.red)
+                                self.enableStartButton(enabled: true)
+                                self._inExtendedView = false
+                                return;
+                            }
+                            self._inExtendedView = false
+                            self._api.ISO15693encryptedTunnel(flag: PassiveReader.hexStringToByte(hex: flagField!.text!)[0], command: PassiveReader.hexStringToByte(hex: commandField.text!))
+                        } else {
+                            self._inExtendedView = false
+                            self._api.ISO15693tunnel(command: PassiveReader.hexStringToByte(hex: commandField.text!))
+                        }
+                    }
+                })
+            },
+
             {
                 // GetEPCfrequency
                 self._api.setEPCfrequency(frequency: PassiveReader.RF_CARRIER_866_9_MHZ)
@@ -906,8 +978,9 @@ class DeviceDetailViewController: UIViewController, UIPickerViewDelegate, UIPick
     }
     
     func tunnelEvent(data: [UInt8]?) {
-        let tunnelEvent = String(format: "tunnelEvent: data = %s", data!)
+        let tunnelEvent = String(format: "tunnelEvent: data = %@", PassiveReader.bytesToString(bytes: data!))
         appendTextToBuffer(text: tunnelEvent, color: .white)
+        enableStartButton(enabled: true)
     }
     
     func showAccessPasswordAlertView(showOldPassword: Bool, showLockParameters: Bool, actionHandler: ((UIAlertAction) -> Swift.Void)?) {
@@ -952,6 +1025,68 @@ class DeviceDetailViewController: UIViewController, UIPickerViewDelegate, UIPick
         present(_alertController!, animated: true, completion: nil)
     }
     
+    func showTunnellingSettingsAlertView(actionHandler: ((UIAlertAction) -> Swift.Void)?) {
+        _customController = UIAlertController(title: "Tunnelling", message: "Enter tunneling parameter", preferredStyle: .alert)
+        _customController!.addTextField { (field: UITextField) in
+            field.placeholder = "delay"
+            field.textColor = .blue
+            field.clearButtonMode = .whileEditing
+            field.borderStyle = .roundedRect
+        }
+        
+        _customController!.addTextField { (field: UITextField) in
+            field.placeholder = "timeout"
+            field.textColor = .blue
+            field.clearButtonMode = .whileEditing
+            field.borderStyle = .roundedRect
+        }
+        
+        _customController!.addAction(UIAlertAction(title: "OK", style: .default, handler: actionHandler))
+        _customController!.addAction(UIAlertAction(title: "Cancel", style: .destructive, handler: { (action: UIAlertAction) in
+            self.enableStartButton(enabled: true)
+        }))
+        present(_customController!, animated: true, completion: nil)
+    }
+
+    func showTunnellingAlertView(encrypted: Bool, actionHandler: ((UIAlertAction) -> Swift.Void)?) {
+        if(encrypted == true) {
+            _customController = UIAlertController(title: "Tunnelling", message: "Enter tunnel command (encrypted)", preferredStyle: .alert)
+        } else {
+            _customController = UIAlertController(title: "Tunnelling", message: "Enter tunnel command (not encrypted)", preferredStyle: .alert)
+        }
+        
+        _customController!.addTextField { (field: UITextField) in
+            field.placeholder = "command"
+            field.textColor = .blue
+            field.clearButtonMode = .whileEditing
+            field.borderStyle = .roundedRect
+        }
+        
+        if (encrypted == true) {
+            _customController!.addTextField { (field: UITextField) in
+                field.placeholder = "flag"
+                field.textColor = .blue
+                field.clearButtonMode = .whileEditing
+                field.borderStyle = .roundedRect
+            }
+            let action = UIAlertAction(title: "UNENCRYPTED", style: .default, handler: { (action: UIAlertAction) in
+                self.showTunnellingAlertView(encrypted: false, actionHandler: actionHandler)
+            })
+            _customController!.addAction(action)
+        } else {
+            let action = UIAlertAction(title: "ENCRYPTED", style: .default, handler: { (action: UIAlertAction) in
+                self.showTunnellingAlertView(encrypted: true, actionHandler: actionHandler)
+            })
+            _customController!.addAction(action)
+        }
+        
+        _customController!.addAction(UIAlertAction(title: "OK", style: .default, handler: actionHandler))
+        _customController!.addAction(UIAlertAction(title: "Cancel", style: .destructive, handler:  { (action: UIAlertAction) in
+            self.enableStartButton(enabled: true)
+        }))
+        present(_customController!, animated: true, completion: nil)
+    }
+
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation

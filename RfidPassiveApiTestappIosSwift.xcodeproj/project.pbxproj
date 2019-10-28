@@ -17,14 +17,14 @@
 		7B27EBD020176802005D738A /* ExtendedTagsTestsReadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B27EBCC20176802005D738A /* ExtendedTagsTestsReadViewController.swift */; };
 		7B27EBD22017680B005D738A /* DeviceDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B27EBD12017680B005D738A /* DeviceDetailViewController.swift */; };
 		7B27EBD420176820005D738A /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B27EBD320176820005D738A /* SettingsViewController.swift */; };
-		7B9D7E9020D931AB004E7034 /* TxRxLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B9D7E8F20D931AB004E7034 /* TxRxLib.framework */; };
-		7B9D7E9120D931AB004E7034 /* TxRxLib.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7B9D7E8F20D931AB004E7034 /* TxRxLib.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7BFDF1A820D92DF000810566 /* RfidPassiveAPILib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BFDF1A720D92DCD00810566 /* RfidPassiveAPILib.framework */; };
 		7BFDF1A920D92DF000810566 /* RfidPassiveAPILib.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7BFDF1A720D92DCD00810566 /* RfidPassiveAPILib.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		927E09E51F743473009573FF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 927E09E41F743473009573FF /* AppDelegate.swift */; };
 		927E09EA1F743473009573FF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 927E09E81F743473009573FF /* Main.storyboard */; };
 		927E09EC1F743473009573FF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 927E09EB1F743473009573FF /* Assets.xcassets */; };
 		927E09EF1F743473009573FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 927E09ED1F743473009573FF /* LaunchScreen.storyboard */; };
+		928E17C42361BBD000FB1F35 /* TxRxLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 928E17C32361BBD000FB1F35 /* TxRxLib.framework */; };
+		928E17C52361BBD000FB1F35 /* TxRxLib.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 928E17C32361BBD000FB1F35 /* TxRxLib.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,7 +51,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				7B9D7E9120D931AB004E7034 /* TxRxLib.framework in Embed Frameworks */,
+				928E17C52361BBD000FB1F35 /* TxRxLib.framework in Embed Frameworks */,
 				7BFDF1A920D92DF000810566 /* RfidPassiveAPILib.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -71,13 +71,13 @@
 		7B27EBD12017680B005D738A /* DeviceDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DeviceDetailViewController.swift; path = TestApp/DeviceDetailViewController.swift; sourceTree = "<group>"; };
 		7B27EBD320176820005D738A /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsViewController.swift; path = TestApp/SettingsViewController.swift; sourceTree = "<group>"; };
 		7B32F2D42016231900F15FB7 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		7B9D7E8F20D931AB004E7034 /* TxRxLib.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = TxRxLib.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7BFDF1A120D92DCD00810566 /* RfidPassiveAPILib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RfidPassiveAPILib.xcodeproj; path = "tt-rfid-passive-api-lib-ios-swift/RfidPassiveAPILib.xcodeproj"; sourceTree = "<group>"; };
 		927E09E11F743473009573FF /* RfidPassiveApiTestappIosSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RfidPassiveApiTestappIosSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		927E09E41F743473009573FF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		927E09E91F743473009573FF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		927E09EB1F743473009573FF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		927E09EE1F743473009573FF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		928E17C32361BBD000FB1F35 /* TxRxLib.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = TxRxLib.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,7 +85,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7B9D7E9020D931AB004E7034 /* TxRxLib.framework in Frameworks */,
+				928E17C42361BBD000FB1F35 /* TxRxLib.framework in Frameworks */,
 				7BFDF1A820D92DF000810566 /* RfidPassiveAPILib.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -142,10 +142,10 @@
 		927E09D81F743473009573FF = {
 			isa = PBXGroup;
 			children = (
-				7B9D7E8F20D931AB004E7034 /* TxRxLib.framework */,
 				7BFDF1A120D92DCD00810566 /* RfidPassiveAPILib.xcodeproj */,
 				927E09E31F743473009573FF /* TestApp */,
 				927E09E21F743473009573FF /* Products */,
+				928E17C22361BBD000FB1F35 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -168,6 +168,14 @@
 				7B32F2D42016231900F15FB7 /* Info.plist */,
 			);
 			path = TestApp;
+			sourceTree = "<group>";
+		};
+		928E17C22361BBD000FB1F35 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				928E17C32361BBD000FB1F35 /* TxRxLib.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		9295BBAF1F81A23B00D09B13 /* TestApp */ = {
