@@ -142,5 +142,8 @@ class EventsForwarder: AbstractReaderListenerProtocol, AbstractResponseListenerP
     func tunnelEvent(data: [UInt8]?) {
         readerListenerDelegate?.tunnelEvent(data: data)
     }
+    
+    func securityLevelEvent(level: Int) {
+        readerListenerDelegate?.securityLevelEvent(level: level)
+    }
 }
-

@@ -25,6 +25,7 @@ import UIKit
 import RfidPassiveAPILib
 
 class ExtendedTagTestsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, AbstractReaderListenerProtocol, AbstractResponseListenerProtocol, AbstractInventoryListenerProtocol {
+    
     @IBOutlet weak var cntRead: UIView!
     @IBOutlet weak var cntWrite: UIView!
     @IBOutlet weak var tblTags: UITableView!
@@ -112,7 +113,7 @@ class ExtendedTagTestsViewController: UIViewController, UITableViewDelegate, UIT
     
     func appendText(text: String, color: UIColor) {
         _resultsBuffer.append(NSAttributedString(string: text + "\r\n", attributes: [NSAttributedString.Key.foregroundColor: color]))
-        txtResult.attributedText = _resultsBuffer.copy() as! NSAttributedString
+        txtResult.attributedText = _resultsBuffer.copy() as? NSAttributedString
         scrollDown(textView: txtResult)
     }
     
@@ -234,6 +235,10 @@ class ExtendedTagTestsViewController: UIViewController, UITableViewDelegate, UIT
     }
     
     func tunnelEvent(data: [UInt8]?) {
+        
+    }
+
+    func securityLevelEvent(level: Int) {
         
     }
 

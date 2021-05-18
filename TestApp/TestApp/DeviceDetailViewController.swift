@@ -25,6 +25,7 @@ import UIKit
 import RfidPassiveAPILib
 
 class DeviceDetailViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITableViewDelegate, UITableViewDataSource, AbstractReaderListenerProtocol, AbstractResponseListenerProtocol, AbstractInventoryListenerProtocol {
+
     @IBOutlet weak var lblDevice: UILabel!
     @IBOutlet weak var btnConnect: UIButton!
     @IBOutlet weak var lblBatteryStatus: UILabel!
@@ -34,39 +35,43 @@ class DeviceDetailViewController: UIViewController, UIPickerViewDelegate, UIPick
     @IBOutlet weak var btnStartOperation: UIButton!
     @IBOutlet weak var tblTags: UITableView!
     
-    let operations = ["Select Operation",
-                      "Test Availability",
-                      "Sound",
-                      "Light",
-                      "Stop Light",
-                      "Set Shutdown Time (300)",
-                      "Get Shutdown Time",
-                      "Set RF Power",
-                      "Get RF Power",
-                      "Set ISO15693 Option Bits (Only HF)",
-                      "Get ISO15693 Option Bits (Only HF)",
-                      "Set ISO15693 Extension Flag(Only HF)",
-                      "Get ISO15693 Extension Flag(Only HF)",
-                      "Set ISO15693 Bitrate(Only HF)",
-                      "Get ISO15693 Bitrate(Only HF)",
-                      "Get RF tunnel config(Ony HF)",
-                      "Set RF tunnel config(Ony HF)",
-                      "Tunnel command",
-                      "Set EPC Frequency (only UHF)",
-                      "Get EPC Frequency (only UHF)",
-                      "setScanOnInput",
-                      "setNormalScan",
-                      "Do Inventory",
-                      "Clear inventory",
-                      "Extended tag tests",
-                      "Write access password",
-                      "Read selected tag",
-                      "Write selected tag",
-                      "Lock selected tag",
-                      "Read TID for selected tag",
-                      "Write ID for selected tag",
-                      "Write kill password for selected tag",
-                      "Kill selected tag"
+    let operations = ["  Select Operation",
+                      "  Test Availability",
+                      "  Sound",
+                      "  Light",
+                      "  Stop Light",
+                      "  Set Shutdown Time (300)",
+                      "  Get Shutdown Time",
+                      "  Set RF Power",
+                      "  Get RF Power",
+                      "  Set ISO15693 Option Bits (Only HF)",
+                      "  Get ISO15693 Option Bits (Only HF)",
+                      "  Set ISO15693 Extension Flag(Only HF)",
+                      "  Get ISO15693 Extension Flag(Only HF)",
+                      "  Set ISO15693 Bitrate(Only HF)",
+                      "  Get ISO15693 Bitrate(Only HF)",
+                      "  Get RF tunnel config(Ony HF)",
+                      "  Set RF tunnel config(Ony HF)",
+                      "  Set EPC Frequency (only UHF)",
+                      "  Get EPC Frequency (only UHF)",
+                      "  Get Security Level",
+                      "  Set Security Level: NONE",
+                      "  Set Security Level: LEGACY",
+                      "  Set Security Level: LESC",
+                      "  Start Tunnel",
+                      "  setScanOnInput",
+                      "  setNormalScan",
+                      "  Do Inventory",
+                      "  Clear inventory",
+                      "  Extended tag tests",
+                      "  Write access password",
+                      "  Read selected tag",
+                      "  Write selected tag",
+                      "  Lock selected tag",
+                      "  Read TID for selected tag",
+                      "  Write ID for selected tag",
+                      "  Write kill password for selected tag",
+                      "  Kill selected tag"
                     ]
     
     let lockoperationslabels = ["Memory write protected",
@@ -327,6 +332,36 @@ class DeviceDetailViewController: UIViewController, UIPickerViewDelegate, UIPick
             },
             
             {
+                // GetEPCfrequency
+                self._api.setEPCfrequency(frequency: PassiveReader.RF_CARRIER_866_9_MHZ)
+            },
+            
+            {
+                // GetEPCFrequency
+                self._api.getEPCfrequency()
+            },
+            
+            {
+                // Get Security level
+                self._api.getSecurityLevel()
+            },
+            
+            {
+                // Set Security level: NONE
+                self._api.setSecurityLevel(level: 0)
+            },
+
+            {
+                // Set Security level: LEGACY
+                self._api.setSecurityLevel(level: 1)
+            },
+
+            {
+                // Set Security level: LESC
+                self._api.setSecurityLevel(level: 2)
+            },
+
+            {
                 // Tunnel command
                 self.showTunnellingAlertView(encrypted: false, actionHandler: { (action: UIAlertAction) in
                     if let textFields = self._customController?.textFields {
@@ -361,16 +396,6 @@ class DeviceDetailViewController: UIViewController, UIPickerViewDelegate, UIPick
                 })
             },
 
-            {
-                // GetEPCfrequency
-                self._api.setEPCfrequency(frequency: PassiveReader.RF_CARRIER_866_9_MHZ)
-            },
-            
-            {
-                // GetEPCFrequency
-                self._api.getEPCfrequency()
-            },
-            
             {
                 // setScanOnInput
                 self._api.setInventoryMode(mode: PassiveReader.SCAN_ON_INPUT_MODE)
@@ -734,13 +759,13 @@ class DeviceDetailViewController: UIViewController, UIPickerViewDelegate, UIPick
     
     func appendInitialCommandsBuffer(text: String, color: UIColor) {
         initialCommandsBuffer.append(NSAttributedString(string: text, attributes: [NSAttributedString.Key.foregroundColor: color]))
-        txtInitialCommands.attributedText = initialCommandsBuffer.copy() as! NSAttributedString
+        txtInitialCommands.attributedText = initialCommandsBuffer.copy() as? NSAttributedString
         scrollDown(textView: txtInitialCommands)
     }
     
     func appendCustomCommandsBuffer(text: String, color: UIColor) {
         customCommandsBuffer.append(NSAttributedString(string: text, attributes: [NSAttributedString.Key.foregroundColor: color]))
-        txtCustomCommands.attributedText = customCommandsBuffer.copy() as! NSAttributedString
+        txtCustomCommands.attributedText = customCommandsBuffer.copy() as? NSAttributedString
         scrollDown(textView: txtCustomCommands)
     }
     
@@ -878,12 +903,11 @@ class DeviceDetailViewController: UIViewController, UIPickerViewDelegate, UIPick
     func inventoryEvent(tag: Tag) {
         enableStartButton(enabled: true)
         _tags.append(tag)
-        if let tag = self._tags[self._selectedTag] as? EPC_tag {
+        if let tag = tag as? EPC_tag {
             appendTextToBuffer(text: "inventoryEvent tag: " + tag.toString() + " RSSI: " + String(tag.getRSSI()), color: .white)
         } else {
             appendTextToBuffer(text: "inventoryEvent tag: " + tag.toString(), color: .white)
         }
-        
         tag.setTimeout(timeout: 2000)
         tblTags.reloadData()
         _selectedTag = 0
@@ -980,6 +1004,12 @@ class DeviceDetailViewController: UIViewController, UIPickerViewDelegate, UIPick
     func tunnelEvent(data: [UInt8]?) {
         let tunnelEvent = String(format: "tunnelEvent: data = %@", PassiveReader.bytesToString(bytes: data!))
         appendTextToBuffer(text: tunnelEvent, color: .white)
+        enableStartButton(enabled: true)
+    }
+    
+    func securityLevelEvent(level: Int) {
+        let securityEvent = String(format: "Security level: %d", level);
+        appendTextToBuffer(text: securityEvent, color: .white)
         enableStartButton(enabled: true)
     }
     
