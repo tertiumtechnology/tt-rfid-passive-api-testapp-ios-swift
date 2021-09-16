@@ -25,6 +25,46 @@ import UIKit
 import RfidPassiveAPILib
 
 class ExtendedTagTestsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, AbstractReaderListenerProtocol, AbstractResponseListenerProtocol, AbstractInventoryListenerProtocol {
+    // TODO: implement new methods
+    func nameEvent(device_name: String) {
+        
+    }
+    
+    func advertisingIntervalEvent(advertising_interval: Int) {
+        
+    }
+    
+    func BLEpowerEvent(BLE_power: Int) {
+        
+    }
+    
+    func connectionIntervalEvent(min_interval: Float, max_interval: Float) {
+        
+    }
+    
+    func connectionIntervalAndMTUevent(connection_interval: Float, MTU: Int) {
+        
+    }
+    
+    func MACaddressEvent(MAC_address: [UInt8]?) {
+        
+    }
+    
+    func slaveLatencyEvent(slave_latency: Int) {
+        
+    }
+    
+    func supervisionTimeoutEvent(supervision_timeout: Int) {
+        
+    }
+    
+    func BLEfirmwareVersionEvent(major: Int, minor: Int) {
+        
+    }
+    
+    func userMemoryEvent(data_block: [UInt8]?) {
+        
+    }
     
     @IBOutlet weak var cntRead: UIView!
     @IBOutlet weak var cntWrite: UIView!
@@ -169,8 +209,8 @@ class ExtendedTagTestsViewController: UIViewController, UITableViewDelegate, UIT
     }
     
     // AbstractReaderListenerProtocol implementation
-    func connectionFailureEvent(error: Int) {
-        deviceDetailVC?.connectionFailureEvent(error: error)
+    func connectionFailedEvent(error: Int) {
+        deviceDetailVC?.connectionFailedEvent(error: error)
         performSegue(withIdentifier: "ExtendedTagTestsUnwindSegue", sender: self)
     }
     

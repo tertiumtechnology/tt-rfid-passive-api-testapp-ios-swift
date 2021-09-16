@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="tkg-kd-Nn9">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="tkg-kd-Nn9">
     <device id="retina5_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -64,7 +64,7 @@
                                 <color key="separatorColor" red="0.099178172647953033" green="0.029654249548912048" blue="0.087312735617160797" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="gray" indentationWidth="10" reuseIdentifier="ExtendedTagTestsTagCell" rowHeight="22" id="Ia2-G7-WO2" customClass="ExtendedTagTestsTagCell" customModule="RfidPassiveApiTestappIosSwift" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="22"/>
+                                        <rect key="frame" x="0.0" y="24.333333969116211" width="414" height="22"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Ia2-G7-WO2" id="hb2-Fa-UeK">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="22"/>
@@ -90,8 +90,17 @@
                                     <outlet property="delegate" destination="Vfm-K7-8jl" id="Wwb-M0-eTV"/>
                                 </connections>
                             </tableView>
+                            <pickerView contentMode="scaleToFill" id="89s-TV-QHw" userLabel="Pk Select Category">
+                                <rect key="frame" x="0.0" y="384" width="414" height="48"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="Vfm-K7-8jl" id="2uq-Zq-rMj"/>
+                                    <outlet property="delegate" destination="Vfm-K7-8jl" id="ADC-cS-u1N"/>
+                                </connections>
+                            </pickerView>
                             <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Pse-zq-XHE">
-                                <rect key="frame" x="0.0" y="382" width="414" height="48"/>
+                                <rect key="frame" x="0.0" y="432" width="414" height="48"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
@@ -100,7 +109,7 @@
                                 </connections>
                             </pickerView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G8p-QC-bsp">
-                                <rect key="frame" x="0.0" y="429" width="414" height="35"/>
+                                <rect key="frame" x="0.0" y="480" width="414" height="35"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <state key="normal" title="START OPERATION">
@@ -114,7 +123,7 @@
                                 </connections>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rSQ-Tw-0FR">
-                                <rect key="frame" x="0.0" y="464" width="414" height="243"/>
+                                <rect key="frame" x="0.0" y="518" width="414" height="189"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -136,6 +145,7 @@
                         <outlet property="btnStartOperation" destination="G8p-QC-bsp" id="0mj-qv-DwZ"/>
                         <outlet property="lblBatteryStatus" destination="KHn-ec-UI0" id="7vT-h4-YgF"/>
                         <outlet property="lblDevice" destination="8v7-fT-GFq" id="WDu-Zc-jNf"/>
+                        <outlet property="pikSelectCategory" destination="89s-TV-QHw" id="5PT-29-D4c"/>
                         <outlet property="pikSelectCommand" destination="Pse-zq-XHE" id="6U4-Py-LPg"/>
                         <outlet property="tblTags" destination="3Hd-Ma-zrH" id="N9g-RD-SvG"/>
                         <outlet property="txtCustomCommands" destination="rSQ-Tw-0FR" id="kGv-2Q-jcM"/>
@@ -185,7 +195,7 @@
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="gray" indentationWidth="10" reuseIdentifier="ExtendedTagTestsTagCell" rowHeight="22" id="SjS-86-GnZ" customClass="ExtendedTagTestsTagCell" customModule="RfidPassiveApiTestappIosSwift" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="22"/>
+                                        <rect key="frame" x="0.0" y="24.333333969116211" width="414" height="22"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="SjS-86-GnZ" id="qxX-v6-hxw">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="22"/>
@@ -431,7 +441,7 @@
                                 <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="HeaderCell" id="nE0-FB-IrG" customClass="BleTableViewHeaderCell" customModule="RfidPassiveApiTestappIosSwift" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="24.333333969116211" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nE0-FB-IrG" id="Bvt-2V-TWO">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
@@ -481,7 +491,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="DeviceCell" id="lEf-ft-BWc" customClass="BleTableViewDeviceCell" customModule="RfidPassiveApiTestappIosSwift" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="72" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="68.333333969116211" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lEf-ft-BWc" id="dmw-gh-iec">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
