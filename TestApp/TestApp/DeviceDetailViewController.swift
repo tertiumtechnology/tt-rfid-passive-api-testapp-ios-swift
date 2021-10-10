@@ -263,6 +263,8 @@ class DeviceDetailViewController: UIViewController, UIPickerViewDelegate, UIPick
     private var _customController: UIAlertController?
     private var _selectedTag: Int = 0
     
+    private var _sentCommand: Bool = false
+    
     enum CommandType: Int {
         case noCommand = 0
         case initialCommands
@@ -292,6 +294,7 @@ class DeviceDetailViewController: UIViewController, UIPickerViewDelegate, UIPick
         _eventsForwarder.inventoryListenerDelegate = self
         _eventsForwarder.responseListenerDelegate = self
         _eventsForwarder.zhagaListenerDelegate = self
+        _sentCommand = false
         
         //
         txtInitialCommands.layer.borderColor = UIColor.blue.cgColor
@@ -1109,6 +1112,7 @@ class DeviceDetailViewController: UIViewController, UIPickerViewDelegate, UIPick
         _batteryLevel = 0
         _batteryStatus = 0
         _deviceAvailable = false
+        _sentCommand = false
         _tags.removeAll()
     }
     
@@ -1148,6 +1152,10 @@ class DeviceDetailViewController: UIViewController, UIPickerViewDelegate, UIPick
             return
         }
         
+        if _sentCommand == true {
+            return
+        }
+        
         _lastCommandType = .initialCommands
         _maxInitialOperations = initialCommandsMap.count
         enableStartButton(enabled: false)
@@ -1157,6 +1165,7 @@ class DeviceDetailViewController: UIViewController, UIPickerViewDelegate, UIPick
             enableStartButton(enabled: false)
             initialCommandsMap[_currentInitialOperation]()
             _currentInitialOperation = _currentInitialOperation + 1
+            _sentCommand = true
         }
     }
     
@@ -1835,7 +1844,7 @@ class DeviceDetailViewController: UIViewController, UIPickerViewDelegate, UIPick
     //
     func pushCommands() {
         // REMOVE
-        print("pushCommands()")
+        //print("pushCommands()")
         if _currentInitialOperation < _maxInitialOperations {
             callNextInitialOperation()
         }
@@ -1951,7 +1960,7 @@ class DeviceDetailViewController: UIViewController, UIPickerViewDelegate, UIPick
         let errStr = (error == 0 ? "NO error": String(format: "Error %d", error))
         let result = String(format: "Result command = %d %@", command, errStr)
         appendTextToBuffer(text: result, color: (error == 0 ? .white : .red))
-        
+        _sentCommand = false;
         DispatchQueue.main.async {
             self.pushCommands()
         }
