@@ -1830,6 +1830,7 @@ class DeviceDetailViewController: UIViewController, UIPickerViewDelegate, UIPick
             _currentOperations = _opertions[row]
             _selectedCommandRow = 0
             pikSelectCommand.reloadAllComponents()
+            pikSelectCommand.selectRow(0, inComponent: 0, animated: true)
         } else if pickerView == pikSelectCommand {
             _selectedCommandRow = row
         } else {
