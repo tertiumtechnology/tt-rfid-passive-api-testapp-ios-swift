@@ -25,7 +25,7 @@ import UIKit
 import RfidPassiveAPILib
 
 class DeviceDetailViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITableViewDelegate, UITableViewDataSource, AbstractReaderListenerProtocol, AbstractResponseListenerProtocol, AbstractInventoryListenerProtocol, AbstractZhagaListenerProtocol {
-
+    
     @IBOutlet weak var lblDevice: UILabel!
     @IBOutlet weak var btnConnect: UIButton!
     @IBOutlet weak var txtInitialCommands: UITextView!
@@ -36,186 +36,145 @@ class DeviceDetailViewController: UIViewController, UIPickerViewDelegate, UIPick
     @IBOutlet weak var txtCustomCommands: UITextView!
     @IBOutlet weak var lblBatteryStatus: UILabel!
     
-    let categoriesLabels = [
-                      "  Common" ,
-                      "  BLE",
-                      "  Memory",
-                      "  Tertium",
-                      "  Tag",
-                      "  Zhaga",
+    static let categoriesLabels = [
+        "  Common" ,
+        "  BLE",
+        "  Memory",
+        "  Tertium",
+        "  Tag",
+        "  Zhaga",
     ]
     
-    let commonOperationsLabels = [
-                        "  Get Security Level",
-                        "  Set Security Level: NONE",
-                        "  Set Security Level: LEGACY",
-                        "  Set Security Level: LESC",
-                        "  Get Name",
-                        "  Set Name",
-                        "  Default BLE Configuration",
+    static let commonOperationsLabels = [
+        "  Get Security Level",
+        "  Set Security Level: NONE",
+        "  Set Security Level: LEGACY",
+        "  Set Security Level: LESC",
+        "  Get Name",
+        "  Set Name",
+        "  Default BLE Configuration",
     ]
     
-    let BLEOperationsLabels = [
-                         "  Set Advertising Interval",
-                         "  Set BLE Power",
-                         "  Set Connection Interval",
-                         "  Set Slave Latency",
-                         "  Set Supervision Timeout",
-                         "  Get Advertising Interval",
-                         "  Get BLE Power",
-                         "  Get Connection Interval",
-                         "  Get Connection Interval and MTU",
-                         "  Get MAC Address",
-                         "  Get Slave Latency",
-                         "  Get Supervision Timeout",
-                         "  Get BLE Firmware Version",
+    static let BLEOperationsLabels = [
+        "  Set Advertising Interval",
+        "  Set BLE Power",
+        "  Set Connection Interval",
+        "  Set Slave Latency",
+        "  Set Supervision Timeout",
+        "  Get Advertising Interval",
+        "  Get BLE Power",
+        "  Get Connection Interval",
+        "  Get Connection Interval and MTU",
+        "  Get MAC Address",
+        "  Get Slave Latency",
+        "  Get Supervision Timeout",
+        "  Get BLE Firmware Version",
     ]
     
-    let memoryOperationsLabels = [
-                        "  Read User Memory (0)",
-                        "  Read User Memory (1)",
-                        "  Write User Memory"
+    static let memoryOperationsLabels = [
+        "  Read User Memory (0)",
+        "  Read User Memory (1)",
+        "  Write User Memory"
     ]
     
-    let tertiumOperationsLabels = [
-                             "  Reset",
-                             "  Default Setup",
-                             "  IsHF",
-                             "  IsUHF",
-                             "  Test Availability",
-                             "  Get Battery Status",
-                             "  Get Firmware Version",
-                             "  Get Shutdown Time",
-                             "  Get RF Power",
-                             "  Do Inventory",
-                             "  Clear inventory",
-                             "  Get Battery Level",
-                             "  Get ISO15693 Option Bits (Only HF)",
-                             "  Get ISO15693 Extension Flag(Only HF)",
-                             "  Get ISO15693 Bitrate(Only HF)",
-                             "  Get EPC Frequency (only UHF)",
-                             "  Sound",
-                             "  Light",
-                             "  Stop Light",
-                             "  Set Shutdown Time (300)",
-                             "  Set Inventory Parameters",
-                             "  Set RF Power",
-                             "  Set ISO15693 Option Bits (Only HF)",
-                             "  Set ISO15693 Extension Flag(Only HF)",
-                             "  Set ISO15693 Bitrate(Only HF)",
-                             "  Set EPC Frequency (only UHF)",
-                             "  setScanOnInput",
-                             "  setNormalScan",
-                             "  ISO15693tunnel w/encrypted",
+    static let tertiumOperationsLabels = [
+        "  Reset",
+        "  Default Setup",
+        "  IsHF",
+        "  IsUHF",
+        "  Test Availability",
+        "  Get Battery Status",
+        "  Get Firmware Version",
+        "  Get Shutdown Time",
+        "  Get RF Power",
+        "  Do Inventory",
+        "  Clear inventory",
+        "  Get Battery Level",
+        "  Get ISO15693 Option Bits (Only HF)",
+        "  Get ISO15693 Extension Flag(Only HF)",
+        "  Get ISO15693 Bitrate(Only HF)",
+        "  Get EPC Frequency (only UHF)",
+        "  Sound",
+        "  Light",
+        "  Stop Light",
+        "  Set Shutdown Time (300)",
+        "  Set Inventory Parameters",
+        "  Set RF Power",
+        "  Set ISO15693 Option Bits (Only HF)",
+        "  Set ISO15693 Extension Flag(Only HF)",
+        "  Set ISO15693 Bitrate(Only HF)",
+        "  Set EPC Frequency (only UHF)",
+        "  setScanOnInput",
+        "  setNormalScan",
+        "  ISO15693tunnel w/encrypted",
     ]
     
-    let tagOperationsLabels = [
-                             "  Read/Write selected tag",
-                             "  Lock selected tag",
-                             "  Write access password",
-                             "  Write kill password for selected tag",
-                             "  Kill selected tag",
-                             "  Read TID for selected tag",
-                             "  Write ID for selected tag",
+    static let tagOperationsLabels = [
+        "  Read/Write selected tag",
+        "  Lock selected tag",
+        "  Write access password",
+        "  Write kill password for selected tag",
+        "  Kill selected tag",
+        "  Read TID for selected tag",
+        "  Write ID for selected tag",
     ]
     
-    let zhagaOperationsLabels = [
-                            "  Reboot",
-                            "  Off",
-                            "  Get HMI Support",
-                            "  Get Sound for Inventory",
-                            "  Get Sound for Command",
-                            "  Get Sound for Error",
-                            "  Get Led for Inventory",
-                            "  Get Led for Command",
-                            "  Get Led for Error",
-                            "  Get Vibration for Inventory",
-                            "  Get Vibration for Command",
-                            "  Get Vibration for Error",
-                            "  Get Activated Button",
-                            "  Get RF OnOff",
-                            "  Get AutoOnOff",
-                            "  Default Configuration",
-                            "  GetRF",
-                            "  SetRF",
-                            "  SetHMI",
-                            "  Set Sound for Inventory",
-                            "  Set Sound for Command",
-                            "  Set Sound for Error",
-                            "  Set Led for Inventory",
-                            "  Set Led for Command",
-                            "  Set Led for Error",
-                            "  Set Vibration for Inventory",
-                            "  Set Vibration for Command",
-                            "  Set Vibration for Error",
-                            "  Activate Button",
-                            "  Set RF OnOff",
-                            "  Set Auto Off",
-                            "  Transparent"
+    static let zhagaOperationsLabels = [
+        "  Reboot",
+        "  Off",
+        "  Get HMI Support",
+        "  Get Sound for Inventory",
+        "  Get Sound for Command",
+        "  Get Sound for Error",
+        "  Get Led for Inventory",
+        "  Get Led for Command",
+        "  Get Led for Error",
+        "  Get Vibration for Inventory",
+        "  Get Vibration for Command",
+        "  Get Vibration for Error",
+        "  Get Activated Button",
+        "  Get RF OnOff",
+        "  Get AutoOnOff",
+        "  Default Configuration",
+        "  GetRF",
+        "  SetRF",
+        "  SetHMI",
+        "  Set Sound for Inventory",
+        "  Set Sound for Command",
+        "  Set Sound for Error",
+        "  Set Led for Inventory",
+        "  Set Led for Command",
+        "  Set Led for Error",
+        "  Set Vibration for Inventory",
+        "  Set Vibration for Command",
+        "  Set Vibration for Error",
+        "  Activate Button",
+        "  Set RF OnOff",
+        "  Set Auto Off",
+        "  Transparent"
     ]
-        
-    let operationsUnused = [
-                      "  Select Operation",
-                      "  Get RF tunnel config(Ony HF)",
-                      "  Set RF tunnel config(Ony HF)",
-                      "  Start Tunnel",
-                      "  setScanOnInput",
-                      "  setNormalScan",
-                      "  Extended tag tests",
-                    ]
     
-    /*
-    let operations = ["  Select Operation",
-                      "  Test Availability",
-                      "  Sound",
-                      "  Light",
-                      "  Stop Light",
-                      "  Set Shutdown Time (300)",
-                      "  Get Shutdown Time",
-                      "  Set RF Power",
-                      "  Get RF Power",
-                      "  Set ISO15693 Option Bits (Only HF)",
-                      "  Get ISO15693 Option Bits (Only HF)",
-                      "  Set ISO15693 Extension Flag(Only HF)",
-                      "  Get ISO15693 Extension Flag(Only HF)",
-                      "  Set ISO15693 Bitrate(Only HF)",
-                      "  Get ISO15693 Bitrate(Only HF)",
-                      "  Get RF tunnel config(Ony HF)",
-                      "  Set RF tunnel config(Ony HF)",
-                      "  Set EPC Frequency (only UHF)",
-                      "  Get EPC Frequency (only UHF)",
-                      "  Get Security Level",
-                      "  Set Security Level: NONE",
-                      "  Set Security Level: LEGACY",
-                      "  Set Security Level: LESC",
-                      "  Start Tunnel",
-                      "  setScanOnInput",
-                      "  setNormalScan",
-                      "  Do Inventory",
-                      "  Clear inventory",
-                      "  Extended tag tests",
-                      "  Write access password",
-                      "  Read selected tag",
-                      "  Write selected tag",
-                      "  Lock selected tag",
-                      "  Read TID for selected tag",
-                      "  Write ID for selected tag",
-                      "  Write kill password for selected tag",
-                      "  Kill selected tag"
-                    ]
-    */
+    static let operationsUnused = [
+        "  Select Operation",
+        "  Get RF tunnel config(Ony HF)",
+        "  Set RF tunnel config(Ony HF)",
+        "  Start Tunnel",
+        "  setScanOnInput",
+        "  setNormalScan",
+        "  Extended tag tests",
+    ]
     
-    let lockoperationslabels = [
-                          "Memory write protected",
-                          "Memory write forbidden",
-                          "ID write forbidden",
-                          "Access-password protected",
-                          "Kill-password protected",
-                          "Access-password rewrite forbidden",
-                          "Kill-password rewrite forbidden"
-                          ]
+    static let lockoperationslabels = [
+        "Memory write protected",
+        "Memory write forbidden",
+        "ID write forbidden",
+        "Access-password protected",
+        "Kill-password protected",
+        "Access-password rewrite forbidden",
+        "Kill-password rewrite forbidden"
+    ]
     
-    let lockoperationsvalues = [
+    static let lockoperationsvalues = [
         EPC_tag.MEMORY_PASSWORD_WRITABLE,
         EPC_tag.MEMORY_NOTWRITABLE,
         EPC_tag.ID_NOTWRITABLE,
@@ -225,7 +184,6 @@ class DeviceDetailViewController: UIViewController, UIPickerViewDelegate, UIPick
         EPC_tag.KILLPASSWORD_UNREADABLE_UNWRITABLE
     ]
     
-    var _operationCategoriesLabels: [[String]] = [];
     var _currentOperationsLabels: [String]  = [];
     
     //
@@ -305,19 +263,24 @@ class DeviceDetailViewController: UIViewController, UIPickerViewDelegate, UIPick
         enableStartButton(enabled: false)
     }
     
+    static let _operationCategoriesLabels: [[String]] = [
+        commonOperationsLabels,
+        BLEOperationsLabels,
+        memoryOperationsLabels,
+        tertiumOperationsLabels,
+        tagOperationsLabels,
+        zhagaOperationsLabels
+    ];
+    
+    func OpenAlertView(title: String?, message: String?, delegate: Any?, cancelButtonTitle: String?) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: cancelButtonTitle, style: .default) { _ in })
+        self.present(alert, animated: true){}
+    }
+    
     func InitOperationsArrays() {
         //
-        _operationCategoriesLabels = [
-            commonOperationsLabels,
-            BLEOperationsLabels,
-            memoryOperationsLabels,
-            tertiumOperationsLabels,
-            tagOperationsLabels,
-            zhagaOperationsLabels
-        ]
-        
-        //
-        _currentOperationsLabels = _operationCategoriesLabels[0];
+        _currentOperationsLabels = DeviceDetailViewController._operationCategoriesLabels[0];
         
         //
         _commonOperations = [
@@ -749,9 +712,9 @@ class DeviceDetailViewController: UIViewController, UIPickerViewDelegate, UIPick
                             if let textFields = self._alertController?.textFields {
                                 let passwordField = textFields[0]
                                 if passwordField.text!.count != 0 {
-                                    tag?.lock(lock_type: self.lockoperationsvalues[self._selectedLockOperation], password: PassiveReader.hexStringToByte(hex: passwordField.text!))
+                                    tag?.lock(lock_type: DeviceDetailViewController.lockoperationsvalues[self._selectedLockOperation], password: PassiveReader.hexStringToByte(hex: passwordField.text!))
                                 } else {
-                                    tag?.lock(lock_type: self.lockoperationsvalues[self._selectedLockOperation], password: nil)
+                                    tag?.lock(lock_type: DeviceDetailViewController.lockoperationsvalues[self._selectedLockOperation], password: nil)
                                 }
                             }
                         })
@@ -1174,461 +1137,9 @@ class DeviceDetailViewController: UIViewController, UIPickerViewDelegate, UIPick
             return
         }
         
-        /*
-        let commandMap = [
-            {
-                self.enableStartButton(enabled: true)
-            },
-            
-            {
-                // Test Availability
-                self._api.testAvailability()
-            },
-            
-            {
-                // Sound
-                self._api.sound(frequency: 1000, step: 1000, duration: 1000, interval: 500, repetition: 3)
-            },
-
-            {
-                // Light
-                self._api.light(ledStatus: true, ledBlinking: 500)
-            },
-
-            {
-                // Light off
-                self._api.light(ledStatus: false, ledBlinking: 0)
-            },
-
-            {
-                // Set Shutdown Time (300)
-                self._api.setShutdownTime(time: 300)
-            },
-
-            {
-                // Get Shutdown Time
-                self._api.getShutdownTime()
-            },
-
-            {
-                // Set RF Power
-                if self._api.isHF() {
-                    self._api.setRFpower(level: PassiveReader.HF_RF_FULL_POWER, mode: PassiveReader.HF_RF_AUTOMATIC_POWER)
-                } else {
-                    self._api.setRFpower(level: PassiveReader.UHF_RF_POWER_0_DB, mode: PassiveReader.UHF_RF_POWER_AUTOMATIC_MODE)
-                }
-            },
-            
-            {
-                // Get RF Power
-                self._api.getRFpower()
-            },
-            
-            {
-                // SetISO15693optionBits
-                self._api.setISO15693optionBits(optionBits: PassiveReader.ISO15693_OPTION_BITS_NONE)
-            },
-            
-            {
-                // GetISO15693optionBits
-                self._api.getISO15693optionBits()
-            },
-            
-            {
-                // SetISO15693extensionFlag
-                self._api.setISO15693extensionFlag(flag: true, permanent: false)
-            },
-            
-            {
-                // GetISO15693extensionFlag
-                self._api.getISO15693extensionFlag()
-            },
-            
-            {
-                // SetISO15693bitrate
-                self._api.setISO15693bitrate(bitrate: PassiveReader.ISO15693_HIGH_BITRATE, permanent: false)
-            },
-            
-            {
-                // GetISO15693bitrate
-                self._api.getISO15693bitrate()
-            },
-            
-            {
-                // getRFforISO15693tunnel
-                self._api.getRFforISO15693tunnel()
-            },
-            
-            {
-                // setRFforISO15693tunnel
-                self._inExtendedView = true
-                self.showTunnellingSettingsAlertView(actionHandler: { (action: UIAlertAction) in
-                    if let textFields = self._customController?.textFields {
-                        let delayField = textFields[0]
-                        let timeOutField = textFields[1]
-
-                        if (delayField.text == nil || delayField.text?.count == 0) {
-                            self.appendTextToBuffer(text: "Delay is mandatory!", color: UIColor.red)
-                            self.enableStartButton(enabled: true)
-                            self._inExtendedView = false
-                            return;
-                        }
-                        
-                        if (timeOutField.text == nil || timeOutField.text?.count == 0) {
-                            self.appendTextToBuffer(text: "timeout is mandatory!", color: UIColor.red)
-                            self.enableStartButton(enabled: true)
-                            self._inExtendedView = false
-                            return;
-                        }
-                        
-                        self._inExtendedView = false
-                        self._api.setRFforISO15693tunnel(delay: Int(NSString(string: delayField.text!).intValue), timeout: Int(NSString(string: timeOutField.text!).intValue))
-                    }
-                })
-            },
-            
-            {
-                // SetEPCfrequency
-                self._api.setEPCfrequency(frequency: PassiveReader.RF_CARRIER_866_9_MHZ)
-            },
-            
-            {
-                // GetEPCFrequency
-                self._api.getEPCfrequency()
-            },
-            
-            {
-                // Get Security level
-                self._api.getSecurityLevel()
-            },
-            
-            {
-                // Set Security level: NONE
-                self._api.setSecurityLevel(level: 0)
-            },
-
-            {
-                // Set Security level: LEGACY
-                self._api.setSecurityLevel(level: 1)
-            },
-
-            {
-                // Set Security level: LESC
-                self._api.setSecurityLevel(level: 2)
-            },
-
-            {
-                // Tunnel command
-                self.showTunnellingAlertView(encrypted: false, actionHandler: { (action: UIAlertAction) in
-                    if let textFields = self._customController?.textFields {
-                        let commandField = textFields[0]
-                        var flagField: UITextField?
-                        
-                        if (textFields.count > 1) {
-                            flagField = textFields[1]
-                        }
-                        
-                        if (commandField.text == nil || commandField.text?.count == 0) {
-                            self.appendTextToBuffer(text: "Comamand is mandatory!", color: UIColor.red)
-                            self.enableStartButton(enabled: true)
-                            self._inExtendedView = false
-                            return;
-                        }
-                        
-                        if (flagField != nil) {
-                            if (flagField!.text == nil || flagField!.text?.count == 0) {
-                                self.appendTextToBuffer(text: "Flag is mandatory!", color: UIColor.red)
-                                self.enableStartButton(enabled: true)
-                                self._inExtendedView = false
-                                return;
-                            }
-                            self._inExtendedView = false
-                            self._api.ISO15693encryptedTunnel(flag: PassiveReader.hexStringToByte(hex: flagField!.text!)[0], command: PassiveReader.hexStringToByte(hex: commandField.text!))
-                        } else {
-                            self._inExtendedView = false
-                            self._api.ISO15693tunnel(command: PassiveReader.hexStringToByte(hex: commandField.text!))
-                        }
-                    }
-                })
-            },
-
-            {
-                // setScanOnInput
-                self._api.setInventoryMode(mode: PassiveReader.SCAN_ON_INPUT_MODE)
-            },
-            
-            {
-                // setNormalScan
-                self._api.setInventoryMode(mode: PassiveReader.NORMAL_MODE)
-            },
-            
-            {
-                //
-                self._tags.removeAll()
-                
-                // Do inventoy
-                self._api.doInventory()
-                
-                // IMPORTANT! force no command sent, inventory doesn't notify back!
-                self.enableStartButton(enabled: true)
-            },
-            
-            {
-                // Clear inventory
-                self._tags.removeAll()
-                self.tblTags.reloadData()
-                self._selectedTag = 0
-                
-                // IMPORTANT! force no command sent, inventory doesn't notify back!
-                self.enableStartButton(enabled: true)
-                self.appendTextToBuffer(text: "Tag list cleared", color: .white)
-            },
-            
-            {
-                // Extended tag tests
-                var extTestsVC: ExtendedTagTestsViewController?
-                
-                if self._tags.count != 0 {
-                    extTestsVC = (self.storyboard?.instantiateViewController(withIdentifier: "ExtendedTagTestsViewController") as? ExtendedTagTestsViewController?)!
-                    if let view = extTestsVC {
-                        view._tags = self._tags as! [Tag]
-                        view.deviceDetailVC = self
-                        view.deviceName = self.deviceName
-                        self._inExtendedView = true
-                        self.navigationController?.pushViewController(view, animated: true)
-                    }
-                } else {
-                    self.appendTextToBuffer(text: "Please do inventory first!", color: .red)
-                }
-                self.enableStartButton(enabled: true)
-            },
-            
-            {
-                // Write access password
-                if self._tags.count != 0 {
-                    if let tag = self._tags[self._selectedTag] as? EPC_tag? {
-                        self.showAccessPasswordAlertView(showOldPassword: true, showLockParameters: false, actionHandler: { (action: UIAlertAction) in
-                            if let textFields = self._alertController?.textFields {
-                                let passwordField = textFields[1]
-                                let oldPasswordField = textFields[0]
-                                
-                                if passwordField.text!.count == 0 {
-                                    self.appendTextToBuffer(text: "Access password is mandatory!", color: .red)
-                                    self.enableStartButton(enabled: true)
-                                    return
-                                }
-                                
-                                if oldPasswordField.text!.count != 0 {
-                                    tag?.writeAccessPassword(accessPassword: PassiveReader.hexStringToByte(hex: passwordField.text!), password: PassiveReader.hexStringToByte(hex: oldPasswordField.text!))
-                                } else {
-                                    tag?.writeAccessPassword(accessPassword: PassiveReader.hexStringToByte(hex: passwordField.text!), password: nil)
-                                }
-                            }
-                        })
-                    } else {
-                        self.appendTextToBuffer(text: "Command is valid only on EPC tags!", color: .red)
-                        self.enableStartButton(enabled: true)
-                    }
-                } else {
-                    self.appendTextToBuffer(text: "Please do inventory first!", color: .red)
-                    self.enableStartButton(enabled: true)
-                }
-            },
-            
-            {
-                // Read selected tag
-                if self._tags.count != 0 {
-                    if let tag = self._tags[self._selectedTag] as? ISO15693_tag? {
-                        tag?.read(address: 0, blocks: 2)
-                    //} else if let tag = self._tags[self._selectedTag] as? ISO14443A_tag? {
-                    //    self.enableStartButton(enabled: true)
-                    } else if let tag = self._tags[self._selectedTag] as? EPC_tag? {
-                        tag?.read(address: 0, blocks: 4)
-                    }
-                } else {
-                    self.appendTextToBuffer(text: "Please do inventory first!", color: .red)
-                    self.enableStartButton(enabled: true)
-                }
-            },
-            
-            {
-                // Write selected tag
-                let date: Date = Date()
-                let calendar = Calendar.current
-                let minutes = calendar.component(.minute, from: date)
-                
-                let data = [
-                            UInt8(minutes),
-                            UInt8(minutes+1),
-                            UInt8(minutes+2),
-                            UInt8(minutes+3),
-                            UInt8(minutes+4),
-                            UInt8(minutes+5),
-                            UInt8(minutes+6),
-                            UInt8(minutes+7)
-                          ]
-                
-                if self._tags.count != 0 {
-                    if let tag = self._tags[self._selectedTag] as? ISO15693_tag? {
-                        tag?.write(address: 0, data: data)
-                    //} else if let tag = self._tags[self._selectedTag] as? ISO14443A_tag? {
-                    //    self.enableStartButton(enabled: true)
-                    } else if let tag = self._tags[self._selectedTag] as? EPC_tag? {
-                        tag?.write(address: 0, data: data, password: nil)
-                    }
-                } else {
-                    self.appendTextToBuffer(text: "Please do inventory first!", color: .red)
-                    self.enableStartButton(enabled: true)
-                }
-            },
-            
-            {
-                // Lock selected tag
-                if self._tags.count != 0 {
-                    if let tag = self._tags[self._selectedTag] as? ISO15693_tag? {
-                        tag?.lock(address: 0, blocks: 2)
-                    //} else if let tag = self._tags[self._selectedTag] as? ISO14443A_tag? {
-                    //    self.enableStartButton(enabled: true)
-                    } else if let tag = self._tags[self._selectedTag] as? EPC_tag? {
-                        //tag?.lock(lock_type: EPC_tag.MEMORY_NOTWRITABLE, password: nil)
-                        self.showAccessPasswordAlertView(showOldPassword: false, showLockParameters: true, actionHandler: { (action: UIAlertAction) in
-                            if let textFields = self._alertController?.textFields {
-                                let passwordField = textFields[0]
-                                if passwordField.text!.count != 0 {
-                                    tag?.lock(lock_type: self.lockoperationsvalues[self._selectedLockOperation], password: PassiveReader.hexStringToByte(hex: passwordField.text!))
-                                } else {
-                                    tag?.lock(lock_type: self.lockoperationsvalues[self._selectedLockOperation], password: nil)
-                                }
-                            }
-                        })
-                    }
-                } else {
-                    self.appendTextToBuffer(text: "Please do inventory first!", color: .red)
-                    self.enableStartButton(enabled: true)
-                }
-            },
-            
-            {
-                if self._tags.count != 0 {
-                    // Read TID for first tag
-                    if let tag = self._tags[self._selectedTag] as? EPC_tag? {
-                        //tag?.readTID(length: 8, password: nil)
-                        self.showAccessPasswordAlertView(showOldPassword: false, showLockParameters: false, actionHandler: { (action: UIAlertAction) in
-                            if let textFields = self._alertController?.textFields {
-                                let passwordField = textFields[0]
-                                if passwordField.text!.count != 0 {
-                                    tag?.readTID(length: 8, password: PassiveReader.hexStringToByte(hex: passwordField.text!))
-                                } else {
-                                    tag?.readTID(length: 8, password: nil)
-                                }
-                            }
-                        })
-                    } else {
-                        self.appendTextToBuffer(text: "Command unavailable on this tag", color: .red)
-                        self.enableStartButton(enabled: true)
-                    }
-                } else {
-                    self.appendTextToBuffer(text: "Please do inventory first!", color: .red)
-                    self.enableStartButton(enabled: true)
-                }
-            },
-            
-            {
-                // Write ID for first tag
-                let ID = [
-                    UInt8(0x00),
-                    0x01,
-                    0x02,
-                    0x03,
-                    0x04,
-                    0x05,
-                    0x06,
-                    0x07,
-                    0x08,
-                    0x09,
-                    0x0A,
-                    0x0B,
-                    0x0C,
-                    0x0D,
-                    0x0E,
-                    0x0F
-                ]
-                
-                if self._tags.count != 0 {
-                    if let tag = self._tags[self._selectedTag] as? EPC_tag? {
-                        tag?.writeID(ID: ID, NSI: 0)
-                    } else {
-                        self.appendTextToBuffer(text: "Command unavailable on this tag", color: .red)
-                        self.enableStartButton(enabled: true)
-                    }
-                } else {
-                    self.appendTextToBuffer(text: "Please do inventory first!", color: .red)
-                    self.enableStartButton(enabled: true)
-                }
-            },
-            
-            {
-                // Write kill password for selected tag
-                if self._tags.count != 0 {
-                    if let tag = self._tags[self._selectedTag] as? EPC_tag? {
-                        //tag?.writeAccessPassword(accessPassword: , password: )
-                        self.showAccessPasswordAlertView(showOldPassword: true, showLockParameters: false, actionHandler: { (action: UIAlertAction) in
-                            if let textFields = self._alertController?.textFields {
-                                let killPassword = textFields[1]
-                                let accessPassword = textFields[0]
-                                
-                                if killPassword.text!.count == 0 {
-                                    self.appendTextToBuffer(text: "Kill password is mandatory!", color: .red)
-                                    self.enableStartButton(enabled: true)
-                                    return
-                                }
-
-                                if accessPassword.text!.count != 0 {
-                                    tag?.writeKillPassword(kill_password: PassiveReader.hexStringToByte(hex: killPassword.text!), password: PassiveReader.hexStringToByte(hex: accessPassword.text!))
-                                } else {
-                                    tag?.writeKillPassword(kill_password: PassiveReader.hexStringToByte(hex: killPassword.text!), password: nil)
-                                }
-                            }
-                        })
-                    } else {
-                        self.appendTextToBuffer(text: "Command is valid only on EPC tags!", color: .red)
-                        self.enableStartButton(enabled: true)
-                    }
-                } else {
-                    self.appendTextToBuffer(text: "Please do inventory first!", color: .red)
-                    self.enableStartButton(enabled: true)
-                }
-            },
-            
-            {
-                // Kill selected tag
-                if self._tags.count != 0 {
-                    if let tag = self._tags[self._selectedTag] as? EPC_tag? {
-                        //tag?.kill(password: [UInt8(0), 0, 0, 0])
-                        self.showAccessPasswordAlertView(showOldPassword: false, showLockParameters: false, actionHandler: { (action: UIAlertAction) in
-                            if let textFields = self._alertController?.textFields {
-                                let passwordField = textFields[0]
-                                if passwordField.text!.count != 0 {
-                                    tag?.kill(password: PassiveReader.hexStringToByte(hex: passwordField.text!))
-                                } else {
-                                    tag?.kill(password: [UInt8(0), 0, 0, 0])
-                                }
-                            }
-                        })
-                    } else {
-                        self.appendTextToBuffer(text: "Command unavailable on this tag", color: .red)
-                        self.enableStartButton(enabled: true)
-                    }
-                } else {
-                    self.appendTextToBuffer(text: "Please do inventory first!", color: .red)
-                    self.enableStartButton(enabled: true)
-                }
-            }
-        ]
-         */
-        
         _lastCommandType = .customCommand
         enableStartButton(enabled: false)
+        self.appendTextToBuffer(text: _currentOperationsLabels[method].trimmingCharacters(in: .whitespacesAndNewlines), color: .yellow)
         _currentOperations[method]()
     }
     
@@ -1715,8 +1226,10 @@ class DeviceDetailViewController: UIViewController, UIPickerViewDelegate, UIPick
     
     //
     func scrollDown(textView: UITextView) {
-        let range = NSRange(location: textView.text.count - 1, length: 0)
+        let range = NSRange(location: textView.text.count, length: 0)
         textView.scrollRangeToVisible(range)
+        textView.isScrollEnabled = false;
+        textView.isScrollEnabled = true;
     }
     
     func appendInitialCommandsBuffer(text: String, color: UIColor) {
@@ -1771,7 +1284,7 @@ class DeviceDetailViewController: UIViewController, UIPickerViewDelegate, UIPick
                 pickerLabel?.textAlignment = .left
             }
             
-            pickerLabel?.text = categoriesLabels[row]
+            pickerLabel?.text = DeviceDetailViewController.categoriesLabels[row]
             pickerLabel?.textColor = .black
             return pickerLabel!
         } else if pickerView == pikSelectCommand {
@@ -1793,7 +1306,7 @@ class DeviceDetailViewController: UIViewController, UIPickerViewDelegate, UIPick
                 pickerLabel?.textAlignment = .left
             }
             
-            pickerLabel?.text = lockoperationslabels[row]
+            pickerLabel?.text = DeviceDetailViewController.lockoperationslabels[row]
             pickerLabel?.textColor = .black
             return pickerLabel!
         }
@@ -1805,7 +1318,7 @@ class DeviceDetailViewController: UIViewController, UIPickerViewDelegate, UIPick
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         if pickerView == pikSelectCategory {
-            return categoriesLabels[row]
+            return DeviceDetailViewController.categoriesLabels[row]
         } else if pickerView == pikSelectCommand {
             return _currentOperationsLabels[row]
         } else {
@@ -1815,18 +1328,18 @@ class DeviceDetailViewController: UIViewController, UIPickerViewDelegate, UIPick
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         if pickerView == pikSelectCategory {
-            return categoriesLabels.count
+            return DeviceDetailViewController.categoriesLabels.count
         } else if pickerView == pikSelectCommand {
             return _currentOperationsLabels.count
         } else {
-            return lockoperationslabels.count;
+            return DeviceDetailViewController.lockoperationslabels.count;
         }
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if pickerView == pikSelectCategory {
             _selectedCategoryRow = row;
-            _currentOperationsLabels = _operationCategoriesLabels[row];
+            _currentOperationsLabels = DeviceDetailViewController._operationCategoriesLabels[row];
             _currentOperations = _opertions[row]
             _selectedCommandRow = 0
             pikSelectCommand.reloadAllComponents()
@@ -1906,8 +1419,9 @@ class DeviceDetailViewController: UIViewController, UIPickerViewDelegate, UIPick
     func connectionFailedEvent(error: Int) {
         let temp = String(format: "error %d", error)
         _connected = false
-        let alertView = UIAlertView(title: "Connection failed!", message: temp, delegate: nil, cancelButtonTitle: "OK")
-        alertView.show()
+        //let alertView = UIAlertView(title: "Connection failed!", message: temp, delegate: nil, cancelButtonTitle: "OK")
+        //alertView.show()
+        OpenAlertView(title: "Connection failed!", message: temp, delegate: nil, cancelButtonTitle: "OK")
     }
     
     func connectionSuccessEvent() {

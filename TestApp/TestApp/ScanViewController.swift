@@ -33,7 +33,7 @@ class ScanViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        _scanner.delegate = self
+        _scanner.delegate = self        
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -49,6 +49,12 @@ class ScanViewController: UIViewController, UITableViewDataSource, UITableViewDe
         // Dispose of any resources that can be recreated.
     }
     
+    func OpenAlertView(title: String?, message: String?, delegate: Any?, cancelButtonTitle: String?) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default) { _ in })
+        self.present(alert, animated: true){}
+    }
+
     func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
@@ -86,6 +92,8 @@ class ScanViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }
     }
     
+    // 
+    
     // AbstractScanListenerProtocol implementation
     func deviceFoundEvent(deviceName: String) {
         _scannedDevices.append(deviceName)
@@ -93,8 +101,9 @@ class ScanViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func deviceScanErrorEvent(error: Int) {
-        let alertView = UIAlertView(title: "Device scan error", message: "error", delegate: nil, cancelButtonTitle: "OK")
-        alertView.show()
+        //let alertView = UIAlertView(title: "Device scan error", message: "error", delegate: nil, cancelButtonTitle: "OK")
+        //alertView.show()
+        OpenAlertView(title: "Device scan error", message: "error", delegate: nil, cancelButtonTitle: "OK")
     }
     
     func deviceScanBeganEvent() {
