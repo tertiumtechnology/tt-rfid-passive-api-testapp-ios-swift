@@ -99,6 +99,7 @@ class DeviceDetailViewController: UIViewController, UIPickerViewDelegate, UIPick
         "  Stop Light",
         "  Set Shutdown Time (300)",
         "  Set Inventory Parameters",
+        "  Set Inventory Format",
         "  Set RF Power",
         "  Set ISO15693 Option Bits (Only HF)",
         "  Set ISO15693 Extension Flag(Only HF)",
@@ -110,6 +111,7 @@ class DeviceDetailViewController: UIViewController, UIPickerViewDelegate, UIPick
     ]
     
     static let tagOperationsLabels = [
+        "  Do Inventory",
         "  Read/Write selected tag",
         "  Lock selected tag",
         "  Write access password",
@@ -237,7 +239,7 @@ class DeviceDetailViewController: UIViewController, UIPickerViewDelegate, UIPick
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+                
         //
         InitOperationsArrays()
         
@@ -262,7 +264,7 @@ class DeviceDetailViewController: UIViewController, UIPickerViewDelegate, UIPick
         updateBatteryLabel()
         enableStartButton(enabled: false)
     }
-    
+
     static let _operationCategoriesLabels: [[String]] = [
         commonOperationsLabels,
         BLEOperationsLabels,
@@ -556,6 +558,17 @@ class DeviceDetailViewController: UIViewController, UIPickerViewDelegate, UIPick
             },
             
             {
+                // Set Inventory Format
+                self.showSetInventoryFormatAlertView(epcOnlyActionHandler: { (action: UIAlertAction) in
+                    self._api.setInventoryFormat(format: PassiveReader.EPC_ONLY_FORMAT)
+                    self.enableStartButton(enabled: true)
+                }, pcAndEpcActionHandler: { (action: UIAlertAction) in
+                    self._api.setInventoryFormat(format: PassiveReader.EPC_AND_PC_FORMAT)
+                    self.enableStartButton(enabled: true)
+                })
+            },
+
+            {
                 // Set RF Power
                 if self._api.isHF() {
                     self._api.setRFpower(level: PassiveReader.HF_RF_FULL_POWER, mode: PassiveReader.HF_RF_AUTOMATIC_POWER)
@@ -632,6 +645,17 @@ class DeviceDetailViewController: UIViewController, UIPickerViewDelegate, UIPick
         
         //
         _tagOperations = [
+            {
+                // Do Inventory
+                self._tags.removeAll()
+                
+                // Do inventoy
+                self._api.doInventory()
+                
+                // IMPORTANT! force no command sent, inventory doesn't notify back!
+                self.enableStartButton(enabled: true)
+            },
+
             /*
             {
                 // Read selected tag
@@ -841,7 +865,29 @@ class DeviceDetailViewController: UIViewController, UIPickerViewDelegate, UIPick
             },
             
             {
-                // Write ID for first tag
+                // Write ID for selected tag, with hex, or ascii, or SGTIN format
+                self.showSetTagIDAlertView(hexInputHandler: { (action: UIAlertAction) in
+                    self.showSetTagIDTextInputAlertView(inputMode: 0, confirmHandler: { (action: UIAlertAction) in
+                        if let textFields = self._alertController?.textFields {
+                            self.writeIDToSelectedTag(inputMode: 0, ID: textFields[0].text!, NSI: textFields[1].text!)
+                        }
+                    })
+                }, asciiInputHandler: { (action: UIAlertAction) in
+                    self.showSetTagIDTextInputAlertView(inputMode: 1, confirmHandler: { (action: UIAlertAction) in
+                        if let textFields = self._alertController?.textFields {
+                            self.writeIDToSelectedTag(inputMode: 1, ID: textFields[0].text!, NSI: textFields[1].text!)
+                        }
+                    })
+                }, sgtinInputHandler: { (action: UIAlertAction) in
+                    self.showSetTagIDTextInputAlertView(inputMode: 2, confirmHandler: { (action: UIAlertAction) in
+                        if let textFields = self._alertController?.textFields {
+                            self.writeIDToSelectedTag(inputMode: 2, ID: textFields[0].text!, NSI: textFields[1].text!)
+                        }
+                    })
+                })
+                
+                /*
+                // Write ID for selected tag
                 let ID = [
                     UInt8(0x00),
                     0x01,
@@ -872,6 +918,7 @@ class DeviceDetailViewController: UIViewController, UIPickerViewDelegate, UIPick
                     self.appendTextToBuffer(text: "Please do inventory first!", color: .red)
                     self.enableStartButton(enabled: true)
                 }
+                 */
             },
         ]
         
@@ -1572,6 +1619,62 @@ class DeviceDetailViewController: UIViewController, UIPickerViewDelegate, UIPick
         present(_alertController!, animated: true, completion: nil)
     }
     
+    func showSetInventoryFormatAlertView(epcOnlyActionHandler: ((UIAlertAction) -> Swift.Void)?, pcAndEpcActionHandler: ((UIAlertAction) -> Swift.Void)?) {
+        _alertController = UIAlertController(title: "Set inventory mode", message: "Choose inventory mode", preferredStyle: .alert)
+        
+        _alertController!.addAction(UIAlertAction(title: "EPC ONLY", style: .default, handler: epcOnlyActionHandler))
+        _alertController!.addAction(UIAlertAction(title: "PC & EPC", style: .default, handler: pcAndEpcActionHandler))
+        _alertController!.addAction(UIAlertAction(title: "Cancel", style: .destructive, handler:  { (action: UIAlertAction) in
+            self.enableStartButton(enabled: true)
+        }))
+        present(_alertController!, animated: true, completion: nil)
+    }
+    
+    func showSetTagIDAlertView(hexInputHandler: ((UIAlertAction) -> Swift.Void)?, asciiInputHandler: ((UIAlertAction) -> Swift.Void)?, sgtinInputHandler: ((UIAlertAction) -> Swift.Void)?) {
+        _alertController = UIAlertController(title: "Set tag ID", message: "Choose tag ID input mode", preferredStyle: .alert)
+        
+        _alertController!.addAction(UIAlertAction(title: "HEX", style: .default, handler: hexInputHandler))
+        _alertController!.addAction(UIAlertAction(title: "ASCII", style: .default, handler: asciiInputHandler))
+        _alertController!.addAction(UIAlertAction(title: "SGTIN", style: .default, handler: sgtinInputHandler))
+        _alertController!.addAction(UIAlertAction(title: "Cancel", style: .destructive, handler:  { (action: UIAlertAction) in
+            self.enableStartButton(enabled: true)
+        }))
+        present(_alertController!, animated: true, completion: nil)
+    }
+    
+    func showSetTagIDTextInputAlertView(inputMode: Int, confirmHandler: ((UIAlertAction) -> Swift.Void)?)
+    {
+        var modeString: String = ""
+        
+        if inputMode == 0 {
+            modeString = "in Hex characters"
+        } else if inputMode == 1 {
+            modeString = "in Ascii characters"
+        } else if inputMode == 2 {
+            modeString = "in SGTIN format"
+        }
+        
+        _alertController = UIAlertController(title: "Enter tag id and NSI", message: modeString, preferredStyle: .alert)
+        _alertController!.addTextField { (field: UITextField) in
+            field.textColor = .blue
+            field.clearButtonMode = .whileEditing
+            field.borderStyle = .roundedRect
+        }
+        
+        _alertController!.addTextField { (field: UITextField) in
+            field.textColor = .blue
+            field.clearButtonMode = .whileEditing
+            field.borderStyle = .roundedRect
+            field.placeholder = "0"
+        }
+
+        _alertController!.addAction(UIAlertAction(title: "OK", style: .default, handler: confirmHandler))
+        _alertController!.addAction(UIAlertAction(title: "Cancel", style: .destructive, handler:  { (action: UIAlertAction) in
+            self.enableStartButton(enabled: true)
+        }))
+        present(_alertController!, animated: true, completion: nil)
+    }
+
     func showAccessPasswordAlertView(showOldPassword: Bool, showLockParameters: Bool, actionHandler: ((UIAlertAction) -> Swift.Void)?) {
         _alertController = UIAlertController(title: "Password", message: "Enter access password", preferredStyle: .alert)
         _alertController!.addTextField { (field: UITextField) in
@@ -1674,6 +1777,224 @@ class DeviceDetailViewController: UIViewController, UIPickerViewDelegate, UIPick
             self.enableStartButton(enabled: true)
         }))
         present(_customController!, animated: true, completion: nil)
+    }
+    
+    public func SGTIN96toEPC(sgtin96: String) -> [UInt8]? {
+        var EPC = [UInt8](repeating: 0, count: 12)
+        
+        EPC[0] = 0x30
+        var dot1 = sgtin96.firstIndex(of: ".")
+        if dot1 == nil {
+            return nil
+        }
+
+        let filter: String = String(sgtin96.prefix(upTo: dot1!))
+        if filter.utf8.count != 1 {
+            return nil
+        }
+        // EPC[1] = (byte)((Byte.parseByte(filter) << 5) & 0xE0); // 3 bit
+        if let value = UInt8(filter) {
+            EPC[1] = (value << 5) & 0xE0
+        } else {
+            return nil
+        }
+        
+        dot1 = sgtin96.index(after: dot1!)  // dot1+1
+        var dot2 = sgtin96[dot1!...].firstIndex(of: ".")
+        if dot2 == nil {
+            return nil
+        }
+        
+        let company: String = String(sgtin96[dot1!..<dot2!])
+        if company.utf8.count == 0 {
+            return nil
+        }
+        var digits = company.utf8.count
+        if digits < 6 || digits > 12 {
+            return nil
+        }
+        
+        let partition: UInt8 = UInt8(12 - digits)
+        EPC[1] |= (partition << 2) & 0x1C; // 3 bit
+        dot2 = sgtin96.index(after: dot2!)  // dot2+1
+        var dot3 = sgtin96[dot2!...].firstIndex(of: ".")
+        if dot3 == nil {
+            return nil
+        }
+        
+        let item: String = String(sgtin96[dot2!..<dot3!])
+        if item.utf8.count == 0 {
+            return nil
+        }
+        digits = item.utf8.count
+        if digits > partition + 1 {
+            return nil
+        }
+        let company_bin = Int64(company)
+        if company_bin == nil {
+            return nil
+        }
+        let item_bin = Int32(item)
+        if item_bin == nil {
+            return nil
+        }
+        let unsigned_company_bin = UInt64(company_bin!)
+        let unsigned_item_bin = UInt32(item_bin!)
+        switch(partition) {
+        case 0: // 40 bits for company + 4 bits for item
+            EPC[1] |= UInt8((unsigned_company_bin >> 38) & 0x03) // 2 bit
+            EPC[2] =  UInt8((unsigned_company_bin >> 30) & 0xFF) // 8 bit
+            EPC[3] =  UInt8((unsigned_company_bin >> 22) & 0xFF) // 8 bit
+            EPC[4] =  UInt8((unsigned_company_bin >> 14) & 0xFF) // 8 bit
+            EPC[5] =  UInt8((unsigned_company_bin >> 6) & 0xFF) // 8 bit
+            EPC[6] =  UInt8((company_bin! << 2) & 0xFC) // 6 bit
+            EPC[6] |= UInt8((unsigned_item_bin >> 2) & 0x03) // 2 bit
+            EPC[7] =  UInt8((item_bin! << 6) & 0xC0) // 2 bit
+
+        case 1: // 37 bits for company + 7 bits for item
+            EPC[1] |= UInt8((unsigned_company_bin >> 35) & 0x03) // 2 bit
+            EPC[2] =  UInt8((unsigned_company_bin >> 27) & 0xFF) // 8 bit
+            EPC[3] =  UInt8((unsigned_company_bin >> 19) & 0xFF) // 8 bit
+            EPC[4] =  UInt8((unsigned_company_bin >> 11) & 0xFF) // 8 bit
+            EPC[5] =  UInt8((unsigned_company_bin >> 6) & 0xFF) // 8 bit
+            EPC[6] =  UInt8((company_bin! << 5) & 0xE0) // 3 bit
+            EPC[6] |= UInt8((unsigned_item_bin >> 2) & 0x1F); // 5 bit
+            EPC[7] =  UInt8((item_bin! << 6) & 0xC0) // 2 bit
+
+        case 2: // 34 bits for company + 10 bits for item
+            EPC[1] |= UInt8((unsigned_company_bin >> 32) & 0x03) // 2 bit
+            EPC[2] =  UInt8((unsigned_company_bin >> 24) & 0xFF) // 8 bit
+            EPC[3] =  UInt8((unsigned_company_bin >> 16) & 0xFF) // 8 bit
+            EPC[4] =  UInt8((unsigned_company_bin >> 8) & 0xFF) // 8 bit
+            EPC[5] =  UInt8(company_bin! & 0xFF) // 8 bit
+            EPC[6] =  UInt8((unsigned_item_bin >> 2) & 0xFF) // 8 bit
+            EPC[7] =  UInt8((item_bin! << 6) & 0xC0) // 2 bit
+
+        case 3: // 30 bits for company + 14 bits for item
+            EPC[1] |= UInt8((unsigned_company_bin >> 28) & 0x03) // 2 bit
+            EPC[2] =  UInt8((unsigned_company_bin >> 20) & 0xFF) // 8 bit
+            EPC[3] =  UInt8((unsigned_company_bin >> 12) & 0xFF) // 8 bit
+            EPC[4] =  UInt8((unsigned_company_bin >> 4) & 0xFF) // 8 bit
+            EPC[5] =  UInt8((company_bin! << 4) & 0xF0) // 4 bit
+            EPC[5] |= UInt8((unsigned_item_bin >> 10) & 0x0F) // 4 bit
+            EPC[6] =  UInt8((unsigned_item_bin >> 2) & 0xFF) // 8 bit
+            EPC[7] =  UInt8((item_bin! << 6) & 0xC0) // 2 bit
+
+        case 4: // 27 bits for company + 17 bits for item
+            EPC[1] |= UInt8((unsigned_company_bin >> 25) & 0x03) // 2 bit
+            EPC[2] =  UInt8((unsigned_company_bin >> 17) & 0xFF) // 8 bit
+            EPC[3] =  UInt8((unsigned_company_bin >> 9) & 0xFF) // 8 bit
+            EPC[4] =  UInt8((unsigned_company_bin >> 1) & 0xFF) // 8 bit
+            EPC[5] =  UInt8((company_bin! << 7) & 0x80) // 1 bit
+            EPC[5] |= UInt8((unsigned_item_bin >> 10) & 0x7F) // 7 bit
+            EPC[6] =  UInt8((unsigned_item_bin >> 2) & 0xFF) // 8 bit
+            EPC[7] =  UInt8((item_bin! << 6) & 0xC0) // 2 bit
+
+        case 5: // 24 bits for company + 20 bits for item
+            EPC[1] |= UInt8((unsigned_company_bin >> 22) & 0x03) // 2 bit
+            EPC[2] =  UInt8((unsigned_company_bin >> 14) & 0xFF) // 8 bit
+            EPC[3] =  UInt8((unsigned_company_bin >> 6) & 0xFF) // 8 bit
+            EPC[4] =  UInt8((company_bin! << 2) & 0xFC) // 6 bit
+            EPC[4] |= UInt8((unsigned_item_bin >> 18) & 0x03) // 2 bit
+            EPC[5] =  UInt8((company_bin! << 7) & 0x80) // 8 bit
+            EPC[6] =  UInt8((unsigned_item_bin >> 2) & 0xFF) // 8 bit
+            EPC[7] =  UInt8((item_bin! << 6) & 0xC0) // 2 bit
+
+        case 6: // 20 bits for company + 24 bits for item
+            EPC[1] |= UInt8((unsigned_company_bin >> 18) & 0x03) // 2 bit
+            EPC[2] =  UInt8((unsigned_company_bin >> 10) & 0xFF) // 8 bit
+            EPC[3] =  UInt8((unsigned_company_bin >> 2) & 0xFF) // 8 bit
+            EPC[4] =  UInt8((unsigned_company_bin << 6) & 0xC0) // 2 bit
+            EPC[4] |= UInt8((unsigned_item_bin >> 18) & 0x3F) // 6 bit
+            EPC[5] =  UInt8((unsigned_item_bin >> 10) & 0xFF) // 8 bit
+            EPC[6] =  UInt8((unsigned_item_bin >> 2) & 0xFF) // 8 bit
+            EPC[7] =  UInt8((unsigned_item_bin << 6) & 0xC0) // 2 bit
+        default:
+            return nil
+        }
+        
+        dot3 = sgtin96.index(after: dot3!)  // dot3+1
+        let serial: String = String(sgtin96[dot3!..<sgtin96.endIndex])
+        if serial.utf8.count == 0 {
+            return nil
+        }
+        
+        digits = serial.utf8.count
+        if digits > 12 {
+            return nil
+        }
+        let serial_bin = Int64(serial)
+        if serial_bin == nil {
+            return nil
+        }
+        let unsigned_serial_bin = UInt64(serial_bin!)
+        EPC[7] |= UInt8((unsigned_serial_bin >> 32) & 0x3F) // 6 bit
+        EPC[8] =  UInt8((unsigned_serial_bin >> 24) & 0xFF) // 8 bit
+        EPC[9] =  UInt8((unsigned_serial_bin >> 16) & 0xFF) // 8 bit
+        EPC[10] = UInt8((unsigned_serial_bin >> 8) & 0xFF) // 8 bit
+        EPC[11] = UInt8(serial_bin! & 0xFF) // 8 bit
+
+        return EPC
+    }
+    
+    func writeIDToSelectedTag(inputMode: Int, ID: String, NSI: String) {
+        var newTagID: [UInt8]
+        var newNSIValue: UInt16 = 0
+        
+        if inputMode == 0 {
+            // Hex mode
+            if (ID.utf8.count % 2) != 0 {
+                self.appendTextToBuffer(text: "Hex string must be even lengthed!", color: .red)
+                self.enableStartButton(enabled: true)
+                return
+            }
+            for character in ID {
+                if !(character >= "a" && character <= "f") && !(character >= "A" && character <= "F") &&
+                    !(character >= "0" && character <= "9") {
+                    self.appendTextToBuffer(text: "Wrong hex string input!", color: .red)
+                    self.enableStartButton(enabled: true)
+                    return
+                }
+            }
+            newTagID = PassiveReader.hexStringToByte(hex: ID)
+        } else if inputMode == 1 {
+            // Ascii mode
+            var i: Int = 0
+            newTagID = [UInt8](repeating: 0, count: ID.utf8.count)
+            for char in ID.utf8 {
+                newTagID[i] = UInt8(char)
+                i += 1
+            }
+        } else if inputMode == 2 {
+            // SGTIN mode
+            if let sgtinTagID = self.SGTIN96toEPC(sgtin96: ID) {
+                newTagID = sgtinTagID
+            } else {
+                self.appendTextToBuffer(text: "Wrong SGTIN96 format entered!", color: .red)
+                self.enableStartButton(enabled: true)
+                return
+            }
+        } else {
+            // Error
+            self.appendTextToBuffer(text: "Unexpected else reached!", color: .red)
+            self.enableStartButton(enabled: true)
+            return
+        }
+        
+        newNSIValue = UInt16(NSI) ?? 0
+        if self._tags.count != 0 {
+            if let tag = self._tags[self._selectedTag] as? EPC_tag? {
+                tag?.writeID(ID: newTagID, NSI: newNSIValue)
+            } else {
+                self.appendTextToBuffer(text: "Command unavailable on this tag", color: .red)
+                self.enableStartButton(enabled: true)
+                return
+            }
+        } else {
+            self.appendTextToBuffer(text: "Please do inventory first!", color: .red)
+            self.enableStartButton(enabled: true)
+            return
+        }
     }
     
     // TOOD: implement new method

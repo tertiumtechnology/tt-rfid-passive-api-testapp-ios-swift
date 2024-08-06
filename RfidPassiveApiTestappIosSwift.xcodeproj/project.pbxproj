@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -19,6 +19,7 @@
 		7B27EBD420176820005D738A /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B27EBD320176820005D738A /* SettingsViewController.swift */; };
 		7BFDF1A820D92DF000810566 /* RfidPassiveAPILib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BFDF1A720D92DCD00810566 /* RfidPassiveAPILib.framework */; };
 		7BFDF1A920D92DF000810566 /* RfidPassiveAPILib.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7BFDF1A720D92DCD00810566 /* RfidPassiveAPILib.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		9237C9622C5C34950069624D /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9237C9612C5C34950069624D /* StringExtension.swift */; };
 		927E09E51F743473009573FF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 927E09E41F743473009573FF /* AppDelegate.swift */; };
 		927E09EA1F743473009573FF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 927E09E81F743473009573FF /* Main.storyboard */; };
 		927E09EC1F743473009573FF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 927E09EB1F743473009573FF /* Assets.xcassets */; };
@@ -72,6 +73,7 @@
 		7B27EBD320176820005D738A /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsViewController.swift; path = TestApp/SettingsViewController.swift; sourceTree = "<group>"; };
 		7B32F2D42016231900F15FB7 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7BFDF1A120D92DCD00810566 /* RfidPassiveAPILib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RfidPassiveAPILib.xcodeproj; path = "tt-rfid-passive-api-lib-ios-swift/RfidPassiveAPILib.xcodeproj"; sourceTree = "<group>"; };
+		9237C9612C5C34950069624D /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		927E09E11F743473009573FF /* RfidPassiveApiTestappIosSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RfidPassiveApiTestappIosSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		927E09E41F743473009573FF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		927E09E91F743473009573FF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -117,6 +119,7 @@
 		7B3FE9BE1FEBEA290030079B /* Testing */ = {
 			isa = PBXGroup;
 			children = (
+				9237C9612C5C34950069624D /* StringExtension.swift */,
 				7B27EBD12017680B005D738A /* DeviceDetailViewController.swift */,
 				7B3FE9BC1FEBE2540030079B /* ExtendedTagTests */,
 			);
@@ -217,8 +220,9 @@
 		927E09D91F743473009573FF /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				BuildIndependentTargetsInParallel = YES;
 				LastSwiftUpdateCheck = 0830;
-				LastUpgradeCheck = 1240;
+				LastUpgradeCheck = 1540;
 				ORGANIZATIONNAME = "Stefano Crosara";
 				TargetAttributes = {
 					927E09E01F743473009573FF = {
@@ -289,6 +293,7 @@
 				7B27EBC8201767F6005D738A /* BleTableViewHeaderCell.swift in Sources */,
 				7B27EBC6201767F6005D738A /* ScanViewController.swift in Sources */,
 				7B27EBCD20176802005D738A /* ExtendedTagTestsTagCell.swift in Sources */,
+				9237C9622C5C34950069624D /* StringExtension.swift in Sources */,
 				7B27EBD22017680B005D738A /* DeviceDetailViewController.swift in Sources */,
 				7B27EBC2201767E4005D738A /* EventsForwarder.swift in Sources */,
 				7B27EBD420176820005D738A /* SettingsViewController.swift in Sources */,
@@ -361,6 +366,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -423,6 +429,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -435,7 +442,8 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -451,7 +459,10 @@
 				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = 4M64748SEZ;
 				INFOPLIST_FILE = "$(SRCROOT)/TestApp/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.tertiumtechnology.test.RfidPassiveApiTestAppIosSwift;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -469,7 +480,10 @@
 				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = 4M64748SEZ;
 				INFOPLIST_FILE = "$(SRCROOT)/TestApp/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.tertiumtechnology.test.RfidPassiveApiTestAppIosSwift;
 				PRODUCT_NAME = "$(TARGET_NAME)";
